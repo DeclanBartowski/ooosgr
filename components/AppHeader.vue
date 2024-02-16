@@ -136,6 +136,106 @@
       </div>
     </div>
   </header>
+    <div class="header header--simple wrap mobile mobile--980p">
+        <div class="header__data wrap_cont">
+            <a
+                    class="logo"
+                    href="/"
+                    title="На главную"
+            >
+                <img
+                        alt=""
+                        src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+                >
+            </a>
+            <div class="title">
+                «СТРОЙГЕОРЕСУРС»
+            </div>
+        </div>
+
+        <div class="options">
+            <div class="options__email icon-email">
+                <a
+                        href="mailto:info@ooosgr.ru"
+                        title="Написать письмо"
+                >info@ooosgr.ru</a>
+            </div>
+            <div class="options__phone icon-phone">
+                <a
+                        class="callibri_phone"
+                        href="tel:+74957773646"
+                >+7 (495) 777-36-46</a>
+            </div>
+        </div>
+
+        <div class="wrap_cont">
+            <div class="header__menu js-menu">
+                <div class="menu-switcher js-menu__switcher">
+                    <div class="lines">
+                        <span class="line line--1"/>
+                        <span class="line line--2"/>
+                        <span class="line line--3"/>
+                        <span class="line line--4"/>
+                    </div>
+                    Меню сайта
+                </div>
+
+                <div class="menu-options js-menu__options">
+                    <ul>
+                        <li class="first">
+                            <a href="/truby-b-u">Трубы б/у</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/balks/">Балка б/у</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/truby-stalnye-v-vus-izolyaczii">ВУС</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/vosstanovlenie-trub">Восстановление</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/promos/">Акции</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/procurement">Закупки</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/articles/articles/">Статьи</a>
+                        </li>
+
+
+                        <li>
+                            <a href="/about-company">О компании</a>
+                        </li>
+
+
+                        <li class="last">
+                            <a href="/kontakty">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <a
+                    class="btn red fancybox_dialog"
+                    href="#popup-callback"
+            >
+                Заказать обратный звонок </a>
+        </div>
+    </div>
 </template>
 
 <style scoped>

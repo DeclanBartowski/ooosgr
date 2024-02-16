@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/tailwindcss',
     'nuxt-primevue'
   ],
   components: [
@@ -11,12 +10,10 @@ export default defineNuxtConfig({
     }
   ],
   css: [
-    '~/assets/css/main.css',
-    'primevue/resources/themes/lara-light-green/theme.css'
+    '~/assets/css/main.css'
   ],
   postcss: {
     plugins: {
-      tailwindcss: {},
       autoprefixer: {},
     },
   },
