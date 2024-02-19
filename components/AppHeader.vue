@@ -132,7 +132,11 @@ const header  = ref({
                 <li v-for="(item, index) in header.menu"
                     :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
                 >
-                    <a :href="item.link">{{ item.title }}</a>
+                    <nuxt-link
+                            :to="item.link"
+                    >
+                        {{ item.title }}
+                    </nuxt-link>
                 </li>
             </ul>
           </div>
@@ -189,7 +193,12 @@ const header  = ref({
                         <li v-for="(item, index) in header.menu"
                             :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
                         >
-                            <a :href="item.link">{{ item.title }}</a>
+                            <nuxt-link
+                                    :to="item.link"
+
+                            >
+                                {{ item.title }}
+                            </nuxt-link>
                         </li>
                     </ul>
                 </div>

@@ -169,63 +169,6 @@
             </div>
         </div>
 
-        <div class="widget pipe_calculator" id="pipe-calculator" style="left: -465px;">
-            <div class="title">Основные параметры</div>
-
-            <div class="form form_horizontal">
-
-
-                <form name="pipe_calculator" method="post" action="" ng-app="pipeCalculator" ng-controller="calculatorController" class="ng-pristine ng-scope ng-invalid ng-invalid-required">
-                    <p>Введите исходные данные</p>
-                    <div class="two columns">
-                        <div class="column">
-                            <div class="row">
-                                <div class="widget"><select id="pipe_calculator_parameters_diameter" name="pipe_calculator[parameters][diameter]" ng-change="updateMetersOrTons()" ng-model="data.diameter" placeholder="Диаметр" data-placeholder="Диаметр" class="ng-pristine ng-untouched ng-valid" style="display: none;"><option value=""></option><option value="32">32</option><option value="40">40</option><option value="45">45</option><option value="51">51</option><option value="57">57</option><option value="60">60</option><option value="76">76</option><option value="89">89</option><option value="95">95</option><option value="102">102</option><option value="108">108</option><option value="114">114</option><option value="120">120</option><option value="127">127</option><option value="133">133</option><option value="140">140</option><option value="152">152</option><option value="159">159</option><option value="168">168</option><option value="194">194</option><option value="196">196</option><option value="219">219</option><option value="245">245</option><option value="273">273</option><option value="299">299</option><option value="325">325</option><option value="377">377</option><option value="426">426</option><option value="508">508</option><option value="529">529</option><option value="530">530</option><option value="630">630</option><option value="720">720</option><option value="820">820</option><option value="920">920</option><option value="1020">1020</option><option value="1220">1220</option><option value="1420">1420</option><option value="1620">1620</option><option value="1720">1720</option><option value="1820">1820</option><option value="1920">1920</option><option value="2020">2020</option><option value="2220">2220</option></select><div class="chosen-container chosen-container-single" style="width: 145px;" title="" id="pipe_calculator_parameters_diameter_chosen"><a class="chosen-single chosen-default" tabindex="-1"><span>Диаметр</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div></div>    <div class="symbol"><label for="pipe_calculator_parameters_diameter">
-                                мм</label></div></div>
-                            <div class="row">
-                                <div class="widget"><input type="text" id="pipe_calculator_parameters_tons" name="pipe_calculator[parameters][tons]" required="required" class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-change="updateMeters()" ng-model="data.tons" placeholder="Тонны" data-placeholder="Тонны"></div>    <div class="symbol"><label for="pipe_calculator_parameters_tons" class="required">
-                                тн</label></div></div>
-                        </div>
-                        <div class="column text-pad-left">
-                            <div class="row">
-                                <div class="widget"><select id="pipe_calculator_parameters_thickness" name="pipe_calculator[parameters][thickness]" ng-change="updateMetersOrTons()" ng-model="data.thickness" placeholder="Стенка" data-placeholder="Стенка" class="ng-pristine ng-untouched ng-valid" style="display: none;"><option value=""></option><option value="2">2</option><option value="2">2.8</option><option value="3">3</option><option value="3">3.5</option><option value="4">4</option><option value="4">4.5</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="15">15.7</option><option value="16">16</option><option value="16">16.5</option><option value="16">16.8</option><option value="17">17</option><option value="18">18</option><option value="18">18.7</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><div class="chosen-container chosen-container-single" style="width: 145px;" title="" id="pipe_calculator_parameters_thickness_chosen"><a class="chosen-single chosen-default" tabindex="-1"><span>Стенка</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div></div>    <div class="symbol"><label for="pipe_calculator_parameters_thickness">
-                                мм</label></div></div>
-                            <div class="row">
-                                <div class="widget"><input type="text" id="pipe_calculator_parameters_meters" name="pipe_calculator[parameters][meters]" required="required" class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-change="updateTons()" ng-model="data.meters" placeholder="Метры" data-placeholder="Метры"></div>    <div class="symbol"><label for="pipe_calculator_parameters_meters" class="required">
-                                м</label></div></div>
-                        </div>
-                    </div>
-                    <p>Укажите цену, чтобы рассчитать стоимость</p>
-                    <div class="two columns">
-                        <div class="column">
-                            <div class="row">
-                                <div class="widget"><input type="text" id="pipe_calculator_price_price_per_ton" name="pipe_calculator[price][price_per_ton]" required="required" class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-change="updatePricePerMeter()" ng-model="data.pricePerTon" placeholder="Цена за тонну" data-placeholder="Цена за тонну"></div>    <div class="symbol"><label for="pipe_calculator_price_price_per_ton" class="required">
-                                руб/тн</label></div></div>
-                        </div>
-                        <div class="column text-pad-left">
-                            <div class="row">
-                                <div class="widget"><input type="text" id="pipe_calculator_price_price_per_meter" name="pipe_calculator[price][price_per_meter]" required="required" class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-change="updatePricePerTon()" ng-model="data.pricePerMeter" placeholder="Цена за метр" data-placeholder="Цена за метр"></div>    <div class="symbol"><label for="pipe_calculator_price_price_per_meter" class="required">
-                                руб/м</label></div></div>
-                        </div>
-                    </div>
-                    <p>Итоговая стоимость</p>
-                    <div class="two columns">
-                        <div class="column">
-                            <div class="row">
-                                <div class="widget"><input type="text" id="pipe_calculator_total_price_total_price" name="pipe_calculator[total_price][total_price]" readonly="readonly" required="required" ng-model="data.totalPrice" placeholder="Итоговая стоимость" data-placeholder="Итоговая стоимость" class="ng-pristine ng-untouched ng-valid ng-valid-required"></div>    <div class="symbol"><label for="pipe_calculator_total_price_total_price" class="required">
-                                руб.</label></div></div>
-                        </div>
-                        <div class="column text-pad-left">
-                            <a class="btn red fancybox_dialog js-fancyboxOrder js-calculatorData" data-message="" href="#popup-order">
-                                Заказать            </a>
-                        </div>
-                    </div>
-
-
-                </form>
-
-            </div>
-        </div>
 
 
         <div class="push"></div>
