@@ -1,5 +1,47 @@
 <script setup lang="ts">
-
+const header  = ref({
+    "mainLogo" : 'https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a',
+    "altLogo": 'https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a',
+    "title": "СТРОЙГЕОРЕСУРС",
+    "menu": [
+        {
+            "link": '/truby-b-u',
+            "title": "Трубы б/у"
+        },
+        {
+            "link": '/balks',
+            "title": "Балка б/у"
+        },
+        {
+            "link": '/truby-stalnye-v-vus-izolyaczii',
+            "title": "ВУС"
+        },
+        {
+            "link": '/vosstanovlenie-trub',
+            "title": "Восстановление"
+        },
+        {
+            "link": '/promos/',
+            "title": "Акции"
+        },
+        {
+            "link": '/procurement',
+            "title": "Закупки"
+        },
+        {
+            "link": '/articles/articles/',
+            "title": "Статьи"
+        },
+        {
+            "link": '/about-company',
+            "title": "О компании"
+        },
+        {
+            "link": '/kontakty',
+            "title": "Контакты"
+        },
+    ]
+});
 </script>
 
 <template>
@@ -87,49 +129,11 @@
           </div>
           <div class="main_menu">
             <ul>
-              <li class="first">
-                <a href="/truby-b-u">Трубы б/у</a>
-              </li>
-
-
-              <li>
-                <a href="/balks/">Балка б/у</a>
-              </li>
-
-
-              <li>
-                <a href="/truby-stalnye-v-vus-izolyaczii">ВУС</a>
-              </li>
-
-
-              <li>
-                <a href="/vosstanovlenie-trub">Восстановление</a>
-              </li>
-
-
-              <li>
-                <a href="/promos/">Акции</a>
-              </li>
-
-
-              <li>
-                <a href="/procurement">Закупки</a>
-              </li>
-
-
-              <li>
-                <a href="/articles/articles/">Статьи</a>
-              </li>
-
-
-              <li>
-                <a href="/about-company">О компании</a>
-              </li>
-
-
-              <li class="last">
-                <a href="/kontakty">Контакты</a>
-              </li>
+                <li v-for="(item, index) in header.menu"
+                    :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+                >
+                    <a :href="item.link">{{ item.title }}</a>
+                </li>
             </ul>
           </div>
         </div>
@@ -182,48 +186,10 @@
 
                 <div class="menu-options js-menu__options">
                     <ul>
-                        <li class="first">
-                            <a href="/truby-b-u">Трубы б/у</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/balks/">Балка б/у</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/truby-stalnye-v-vus-izolyaczii">ВУС</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/vosstanovlenie-trub">Восстановление</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/promos/">Акции</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/procurement">Закупки</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/articles/articles/">Статьи</a>
-                        </li>
-
-
-                        <li>
-                            <a href="/about-company">О компании</a>
-                        </li>
-
-
-                        <li class="last">
-                            <a href="/kontakty">Контакты</a>
+                        <li v-for="(item, index) in header.menu"
+                            :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+                        >
+                            <a :href="item.link">{{ item.title }}</a>
                         </li>
                     </ul>
                 </div>
