@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     }
   ],
   css: [
-    '~/assets/css/main.css'
+    '~/assets/css/main.css',
+    'primevue/resources/themes/lara-light-green/theme.css'
   ],
   postcss: {
     plugins: {
@@ -19,7 +20,9 @@ export default defineNuxtConfig({
   },
   primevue: {
     components: {
-      include: []
+      include: [
+          'Carousel'
+      ]
     }
   },
   devtools: { enabled: false }
