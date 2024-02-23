@@ -31,7 +31,22 @@
 
 <template>
   <div class="main slider">
-    <ul class="owl-carousel js-slider">
+<!--    <Carousel
+        :unstyled="false"
+        :value="data.items"
+        :numVisible="1"
+        :numScroll="1"
+    >
+      <template #item="slotProps">
+        <div>
+          <div class="parallax">
+            <img alt="" :src="slotProps.data.previewImg">
+          </div>
+          <img alt="" :src="slotProps.data.detailImg">
+        </div>
+      </template>
+    </Carousel>-->
+<ul class="owl-carousel js-slider">
       <li v-for="slide in data.items">
         <div class="parallax">
           <img alt="" :src="slide.previewImg">

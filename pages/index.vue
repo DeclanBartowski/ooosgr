@@ -3,7 +3,7 @@ import AboutBlock from "~/components/main/AboutBlock.vue";
 import PipeModal from "~/components/modals/PipeModal.vue";
 
 const page =ref({
-  title:'Металлобаза трубы балки б/у - "СтройГеоРесурс"',
+  title:'МЕТАЛЛОБАЗА ТРУБА БУ БАЛКА Б/У РАЗРАБОТКА КОТЛОВАНА – «СТРОЙГЕОРЕСУРС»',
 })
 </script>
 

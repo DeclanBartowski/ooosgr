@@ -2,10 +2,8 @@
   const category = ref({
   template: '',
   priceList: 'https://ooosgr.ru/files/pipe/category/5a97a18be80e79e940079c3f3b8fc169a29c9e7f9.pdf',
-  name: 'Купить трубы бу 114 мм',
-  previewTextHtml: '<p>Трубы б/у с диаметром 114 мм также являются популярным выбором для различных строительных и инженерных проектов. Они могут использоваться для установки тепловых сетей и водопроводов, строительства металлических конструкций, газопроводов и систем орошения для сельского хозяйства.</p>\n' +
-      '\n' +
-      '<p>В зависимости от потребностей, трубы б/у диаметром 114 мм могут иметь различную толщину стенок - от 3 до 10 мм, а также различную ширину - от 2 до 14 мм.</p>',
+  name: 'КУПИТЬ ТРУБЫ 108 БУ С ДЕМОНТАЖА',
+  previewTextHtml: '<p>Стальные трубы бу диаметром 108 мм, ранее применялись в различных инженерных системах, таких как водоснабжение, отопление, газоснабжение или промышленные технологические процессы. Такая труба бу 108 мм обычно имеет защитное покрытие от коррозии, а прочность и долговечность делает ее популярным выбором для широкого спектра последующих применений. Приобретая или используя стальные трубы б у 108 мм, необходимо убедиться, что они соответствуют всем актуальным стандартам и нормам безопасности.</p>',
   slider: [
     {
       big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
@@ -36,67 +34,41 @@
   ],
   items: [
     {
-      name: '530×10',
-      htmlName: '530<span style="font-size:11px">х</span>10',
+      name: '108×6',
+      htmlName: '108<span style="font-size:11px">х</span>6',
       mobilePrefixName: 'ø',
-      text: 'С нерабочей ветки, снаружи без изоляции, внутри совершенно чистая, подходит под восстановление',
-      priceFormated: '59 000 руб.',
+      text: 'Труба бу без изоляции, вся длинная, ровная, внутри чистая',
+      priceFormated: '44 500 руб.',
       img: {
         big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
         small: 'https://ooosgr.ru/cache/pipe_category_small/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        title: '530×10 мм',
+        title: '108×6 мм',
         rel: 'pipe47',
       }
     },
     {
-      name: '530×10',
-      htmlName: '530<span style="font-size:11px">х</span>10',
+      name: '108×5',
+      htmlName: '108<span style="font-size:11px">х</span>5',
       mobilePrefixName: 'ø',
-      text: 'С нерабочей ветки, снаружи без изоляции, внутри совершенно чистая, подходит под восстановление',
-      priceFormated: '59 000 руб.',
+      text: 'Труба бу 108 с нерабочей ветки, полностью вся чистая, с правильной геометрией',
+      priceFormated: '46 000 руб.',
       img: {
         big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
         small: 'https://ooosgr.ru/cache/pipe_category_small/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        title: '530×10 мм',
+        title: '108×5 мм',
         rel: 'pipe47',
       }
     },
     {
-      name: '530×10',
-      htmlName: '530<span style="font-size:11px">х</span>10',
+      name: '108×7',
+      htmlName: '108<span style="font-size:11px">х</span>7',
       mobilePrefixName: 'ø',
-      text: 'С нерабочей ветки, снаружи без изоляции, внутри совершенно чистая, подходит под восстановление',
-      priceFormated: '59 000 руб.',
+      text: 'Бу труба 108 отличного качества, внутри чистая, снаружи частичный битум',
+      priceFormated: '45 000 руб.',
       img: {
         big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
         small: 'https://ooosgr.ru/cache/pipe_category_small/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        title: '530×10 мм',
-        rel: 'pipe47',
-      }
-    },
-    {
-      name: '530×10',
-      htmlName: '530<span style="font-size:11px">х</span>10',
-      mobilePrefixName: 'ø',
-      text: 'С нерабочей ветки, снаружи без изоляции, внутри совершенно чистая, подходит под восстановление',
-      priceFormated: '59 000 руб.',
-      img: {
-        big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        small: 'https://ooosgr.ru/cache/pipe_category_small/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        title: '530×10 мм',
-        rel: 'pipe47',
-      }
-    },
-    {
-      name: '530×10',
-      htmlName: '530<span style="font-size:11px">х</span>10',
-      mobilePrefixName: 'ø',
-      text: 'С нерабочей ветки, снаружи без изоляции, внутри совершенно чистая, подходит под восстановление',
-      priceFormated: '59 000 руб.',
-      img: {
-        big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        small: 'https://ooosgr.ru/cache/pipe_category_small/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-        title: '530×10 мм',
+        title: '108×7 мм',
         rel: 'pipe47',
       }
     },

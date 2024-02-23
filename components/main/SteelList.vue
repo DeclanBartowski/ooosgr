@@ -4,19 +4,15 @@ const data = ref({
   items: [
     {
       img: 'https://ooosgr.ru/bundles/app/images/circle1.png?51080781afe3f2dcd50bc049a8d5083a',
-      name: 'Б/у трубы <br>\n' +
-          '              всегда в наличии на складе',
+      name: 'Б/у трубы <br>всегда в наличии на складе',
     },
     {
       img: 'https://ooosgr.ru/bundles/app/images/circle2.png?51080781afe3f2dcd50bc049a8d5083a',
-      name: 'Собственный склад<br>\n' +
-          '              в Москве',
+      name: 'Собственный склад<br>в Москве',
     },
     {
       img: 'https://ooosgr.ru/bundles/app/images/circle3.png?51080781afe3f2dcd50bc049a8d5083a',
-      name: 'Автопарк бортового<br>\n' +
-          '              и тентованного<br>\n' +
-          '              транспорта',
+      name: 'РАЗРАБОТКА КОТЛОВАНОВ<br> В МОСКВЕ И МОСКОВСКОЙ<br> ОБЛАСТИ',
     },
   ]
 })

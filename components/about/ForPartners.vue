@@ -79,7 +79,7 @@
 
 <template>
   <div class="parallax_cont about_partner">
-    <div class="parallax" data-parallax-velocity="0.06399034108059161"><img alt="" :src="data.img" style="top: -79.1561px;"></div>
+    <div class="parallax" data-parallax-velocity="0.06399034108059161"><img alt="" :src="data.img"></div>
 
     <div class="text white">
       <div class="two columns">
@@ -87,6 +87,10 @@
           <h2 class="big white">{{data.title}}</h2>
 
           <div class="text" v-html="data.text"/>
+          <div class="text--center">
+            <p style="font-size: 30px; font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">Звоните: <span class="callibri_phone"><a :href="'tel:' + data.phone">
+            {{data.phone}}</a></span></p>
+          </div>
         </div>
 
         <div class="column text-pad-left">
@@ -111,8 +115,7 @@
 
       <div class="two columns" style="margin-top:20px;">
         <div class="column text--center">
-          <p style="font-size: 30px; font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">Звоните: <span class="callibri_phone"><a :href="'tel:' + data.phone">
-            {{data.phone}}</a></span></p>
+          <NewsMenuAbout />
         </div>
 
         <div class="column text-pad-left"><small style="display: inline-block;width: 350px;line-height: 1.8em">{{data.warning}}</small>
@@ -134,5 +137,11 @@
 </template>
 
 <style scoped>
-
+  .about_partner {
+    background: #38424e;
+    color: #fff;
+    height: 600px;
+    margin: 0 -45px;
+    padding: 50px 45px 50px 45px
+  }
 </style>

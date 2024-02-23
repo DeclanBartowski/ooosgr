@@ -12,7 +12,7 @@ const articleCollection = ref({
       code: 'news'
     },
     type:'news',
-    create:'16.02.2023',
+    create:'16.02.2024',
     code:'kupit-vus-izolyacziyu',
   },
   1: {
@@ -47,7 +47,7 @@ const articleCollection = ref({
       code: 'news'
     },
     type:'news',
-    create:'16.02.2023',
+    create:'16.02.2024',
     code:'kupit-vus-izolyacziyu',
   },
   4: {
@@ -59,7 +59,7 @@ const articleCollection = ref({
       code: 'news'
     },
     type:'news',
-    create:'16.02.2023',
+    create:'16.02.2024',
     code:'kupit-vus-izolyacziyu',
   },
 

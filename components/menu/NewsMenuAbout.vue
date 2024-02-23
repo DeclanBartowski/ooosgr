@@ -16,7 +16,7 @@ const menu = ref([
 </script>
 
 <template>
-  <div class="news__link">
+  <div class="news__link news__link-about">
     <a v-for="menuItem in menu" class="title" :href="menuItem.link" :title="menuItem.title">
       {{ menuItem.title }}
     </a>
@@ -24,5 +24,11 @@ const menu = ref([
 </template>
 
 <style scoped>
-
+.news__link-about {
+  top:0;
+}
+ .news__link-about a {
+   font-size:30px;
+   font-weight:normal;
+ }
 </style>

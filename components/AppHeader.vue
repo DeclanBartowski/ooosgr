@@ -6,11 +6,15 @@ const header  = ref({
     "menu": [
         {
             "link": '/truby-b-u',
-            "title": "Трубы б/у"
+            "title": "Труба б/у"
         },
         {
             "link": '/balks',
             "title": "Балка б/у"
+        },
+        {
+          "link": '/kotlovan',
+          "title": "Котлован"
         },
         {
             "link": '/truby-stalnye-v-vus-izolyaczii',
@@ -27,10 +31,6 @@ const header  = ref({
         {
             "link": '/procurement',
             "title": "Закупки"
-        },
-        {
-            "link": '/articles/articles/',
-            "title": "Статьи"
         },
         {
             "link": '/about-company',
@@ -214,5 +214,20 @@ const header  = ref({
 </template>
 
 <style scoped>
-
+  header .main_menu ul {
+    display:flex;
+    justify-content:space-between;
+    text-align: justify;
+    line-height: 0;
+    font-size: 1px;
+    text-align-last: justify
+  }
+  header .main_menu ul:after {
+    /*width: 100%;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    content: '';
+    display: inline-block*/
+  }
 </style>

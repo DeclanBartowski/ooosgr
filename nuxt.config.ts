@@ -11,7 +11,6 @@ export default defineNuxtConfig({
   ],
   css: [
     '~/assets/css/main.css',
-    'primevue/resources/themes/lara-light-green/theme.css'
   ],
   postcss: {
     plugins: {
