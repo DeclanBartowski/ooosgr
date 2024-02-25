@@ -9,29 +9,35 @@
 </script>
 
 <template>
-    <div class="wrap content page common page--procurement">
-        <div class="wrap_cont">
-            <h1>{{ page.title }}</h1>
-            <div class="text">
-                <div class="content pipes zakupki-cont">
-                    <ul class="category_list">
-                        <li style="list-style: none;">
-                            <div class="desc">
-                                <h1>{{ page.title }}</h1>
-                                <div class="text" v-html="page.description"/>
-                            </div>
-
-                            <div class="img" style="height: 401px;"><img :alt="page.title" :src="page.img"></div>
-                        </li>
-                    </ul>
-                </div>
-                <p>&nbsp;</p>
-                <ProcurementList/>
-            </div>
+  <div class="wrap content page common page--procurement">
+    <div class="wrap_cont">
+      <h1>{{ page.title }}</h1>
+      <div class="text">
+        <div class="content pipes zakupki-cont">
+          <ul class="category_list">
+            <li style="list-style: none;">
+              <div class="desc">
+                <h1>{{ page.title }}</h1>
+                <div
+                  class="text"
+                  v-html="page.description"
+                />
+              </div>
+              <div class="img">
+                <img
+                  :alt="page.title"
+                  :src="page.img"
+                >
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="push"></div>
+        <p>&nbsp;</p>
+        <ProcurementList />
+      </div>
     </div>
-
+    <div class="push" />
+  </div>
 </template>
 
 <style scoped>
