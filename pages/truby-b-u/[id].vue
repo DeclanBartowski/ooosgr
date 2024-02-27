@@ -86,6 +86,7 @@
       </div>
     </div>
   </div>
+  <BitrixForm />
   <div class="push" />
 </template>
 

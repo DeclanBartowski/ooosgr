@@ -98,6 +98,7 @@ const data = ref([
       </ul>
     </div>
     <br>
+    <BitrixForm />
     <div class="push"/>
   </div>
 </template>

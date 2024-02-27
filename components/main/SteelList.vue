@@ -11,7 +11,7 @@ const data = ref({
       name: 'Собственный склад<br>в Москве',
     },
     {
-      img: 'https://ooosgr.ru/bundles/app/images/circle3.png?51080781afe3f2dcd50bc049a8d5083a',
+      img: '/images/site/иконка котлованных работ.jpg',
       name: 'РАЗРАБОТКА КОТЛОВАНОВ<br> В МОСКВЕ И МОСКОВСКОЙ<br> ОБЛАСТИ',
     },
   ]
@@ -29,6 +29,7 @@ const data = ref({
         style="height: 102px;"
       >
         <img
+          class="icon-image-wh-100"
           alt=""
           :src="item.img"
         >
@@ -42,5 +43,8 @@ const data = ref({
 </template>
 
 <style scoped>
-
+   .icon-image-wh-100 {
+     width:100px;
+     height:100px;
+   }
 </style>

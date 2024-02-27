@@ -14,6 +14,7 @@ const page = ref({
       </div>
     </div>
   </div>
+  <BitrixForm />
   <div class="push" />
 </template>
 

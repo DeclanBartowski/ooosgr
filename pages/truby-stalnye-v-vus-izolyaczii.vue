@@ -162,17 +162,16 @@ const category = ref({
 </script>
 
 <template>
-    <div class="wrap content page isolation page--truby-stalnye-v-vus-izolyaczii">
-        <div class="wrap_cont">
-
-            <div class="two columns columns--adaptive">
-              <Sidebar :wrapper-class="'archetype archetype--1280p'" />
-              <Category :category="category"/>
-            </div>
-        </div>
+  <div class="wrap content page isolation page--truby-stalnye-v-vus-izolyaczii">
+    <div class="wrap_cont">
+      <div class="two columns columns--adaptive">
+        <Sidebar :wrapper-class="'archetype archetype--1280p'" />
+        <Category :category="category" />
+      </div>
     </div>
-    <div class="push"></div>
-
+  </div>
+  <BitrixForm />
+  <div class="push" />
 </template>
 
 <style scoped>

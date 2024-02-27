@@ -36,6 +36,7 @@
         <ProcurementList />
       </div>
     </div>
+    <BitrixForm />
     <div class="push" />
   </div>
 </template>

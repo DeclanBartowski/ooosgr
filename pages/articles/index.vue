@@ -17,6 +17,7 @@ const page = ref({
       <Pagination />
     </div>
   </div>
+  <BitrixForm />
   <div class="push" />
 </template>
 

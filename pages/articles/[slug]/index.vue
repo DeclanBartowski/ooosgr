@@ -73,12 +73,17 @@ const articleCollection = ref({
     <div class="wrap_cont">
       <div class="articles__title">
         <h1>{{ page.title }}</h1>
+        <NewsMenu />
       </div>
-      <ArticlesCategoryList :type="$route.params.slug" :collection="articleCollection" />
+      <ArticlesCategoryList
+        :type="$route.params.slug"
+        :collection="articleCollection"
+      />
       <Pagination />
     </div>
   </div>
-  <div class="push"></div>
+  <BitrixForm />
+  <div class="push" />
 </template>
 
 <style scoped>

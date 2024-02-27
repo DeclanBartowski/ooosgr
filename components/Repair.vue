@@ -176,23 +176,44 @@ const data = ref({
           <div class="desc">
             <h1>{{ data.previewBlock.title }}</h1>
 
-            <div class="text" v-html="data.previewBlock.previewTextHtml"/>
-            <a class="pipe_category_more" :href="data.previewBlock.link" :title="data.previewBlock.linkName">{{
-                data.previewBlock.linkName
-              }}</a></div>
+            <div
+              class="text"
+              v-html="data.previewBlock.previewTextHtml"
+            />
+            <a
+              class="pipe_category_more"
+              :href="data.previewBlock.link"
+              :title="data.previewBlock.linkName"
+            >{{
+              data.previewBlock.linkName
+            }}</a>
+          </div>
 
-          <div class="img" style="height: 390px;"><img :alt="data.previewBlock.title"
-                                                       :src="data.previewBlock.img"
-                                                       style="width: 707px; height: 390px;"
-          ></div>
+          <div
+            class="img"
+            style="height: 390px;"
+          >
+            <img
+              :alt="data.previewBlock.title"
+              :src="data.previewBlock.img"
+              style="width: 707px; height: 390px;"
+            >
+          </div>
         </li>
       </ul>
     </div>
-    <div class="two columns" style="padding: 30px 0;">
-      <div class="column text-pad-right" v-html="data.previewBlock.detailText.left"/>
-      <div class="column text-pad-left" v-html="data.previewBlock.detailText.right">
-      </div>
-
+    <div
+      class="two columns"
+      style="padding: 30px 0;"
+    >
+      <div
+        class="column text-pad-right"
+        v-html="data.previewBlock.detailText.left"
+      />
+      <div
+        class="column text-pad-left"
+        v-html="data.previewBlock.detailText.right"
+      />
     </div>
   </div>
   <div class="wrap content page pipes">
@@ -201,33 +222,55 @@ const data = ref({
         <li class="archetype archetype--1280p">
           <div class="clearfix desc_cont">
             <div class="desc">
-              <a :href="item.link" :title="item.linkName" class="title">
+              <a
+                :href="item.link"
+                :title="item.linkName"
+                class="title"
+              >
                 <h2>{{ item.title }}</h2>
               </a>
 
-              <div class="text" v-html="item.previewTextHtml"/>
-              <a :href="item.link" :title="item.linkName" class="pipe_category_more">
+              <div
+                class="text"
+                v-html="item.previewTextHtml"
+              />
+              <a
+                :href="item.link"
+                :title="item.linkName"
+                class="pipe_category_more"
+              >
                 {{ item.linkName }}
               </a>
             </div>
-            <div class="img" :style="{ background: `url('${item.img}') right top / cover`, height: '385px' }"/>
+            <div
+              class="img"
+              :style="{ background: `url('${item.img}') right top / cover`, height: '385px' }"
+            />
           </div>
 
-          <div class="gallery clearfix" v-if="item.slider">
-            <a v-for="slide in item.slider"
-               class="photo_thumb fancybox"
-               :href="slide.big"
-               :title="slide.title"
-               :rel="slide.rel"
+          <div
+            v-if="item.slider"
+            class="gallery clearfix"
+          >
+            <a
+              v-for="slide in item.slider"
+              class="photo_thumb fancybox"
+              :href="slide.big"
+              :title="slide.title"
+              :rel="slide.rel"
             >
-              <img :alt="slide.title"
-                   :src="slide.small"
+              <img
+                :alt="slide.title"
+                :src="slide.small"
               >
             </a>
           </div>
         </li>
-        <li v-if="item.showCalculator" class="archetype archetype--1280p">
-          <Calculator/>
+        <li
+          v-if="item.showCalculator"
+          class="archetype archetype--1280p"
+        >
+          <Calculator />
         </li>
       </template>
     </ul>

@@ -8,30 +8,33 @@ const page =ref({
 </script>
 
 <template>
-  <MainSlider/>
+  <MainSlider />
   <div class="wrap content home">
     <div class="wrap_cont">
       <h1>{{ page.title }}</h1>
       <div class="archetype archetype--720p">
-        <SteelList/>
+        <SteelList />
       </div>
       <div class="home__content two columns">
         <div class="column w65">
-          <MainCalculator/>
-        <div class="mobile mobile--720p">
-          <SteelList/>
+          <MainCalculator />
+          <div class="mobile mobile--720p">
+            <SteelList />
+          </div>
         </div>
-      </div>
-        <AboutBlock/>
-        <NewsBlock/>
+        <div class="column w35 text-pad-left">
+          <AboutBlock />
+        </div>
+        <BitrixForm />
+        <NewsBlock />
       </div>
     </div>
   </div>
 
-  <PipeModal/>
+  <PipeModal />
 
 
-  <div class="push"/>
+  <div class="push" />
 </template>
 
 <style scoped>

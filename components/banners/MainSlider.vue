@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
+  import 'vue3-carousel/dist/carousel.css'
   const data = ref({
     items:[
       {
@@ -31,32 +33,67 @@
 
 <template>
   <div class="main slider">
-<!--    <Carousel
-        :unstyled="false"
-        :value="data.items"
-        :numVisible="1"
-        :numScroll="1"
+    <Carousel
+      :model="currentSlide"
+      :autoplay="4800"
+      :wrapAround="true"
     >
-      <template #item="slotProps">
-        <div>
+      <Slide
+        v-for="slide in data.items"
+        :key="slide"
+      >
+        <div class="slide-wrapper">
           <div class="parallax">
-            <img alt="" :src="slotProps.data.previewImg">
+            <img
+              alt=""
+              :src="slide.previewImg"
+            >
           </div>
-          <img alt="" :src="slotProps.data.detailImg">
+          <img
+            alt=""
+            :src="slide.detailImg"
+          >
         </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <Pagination />
       </template>
-    </Carousel>-->
-<ul class="owl-carousel js-slider">
-      <li v-for="slide in data.items">
-        <div class="parallax">
-          <img alt="" :src="slide.previewImg">
-        </div>
-        <img alt="" :src="slide.detailImg">
-      </li>
-    </ul>
+    </Carousel>
+<!--    <div class="owl-dots">
+      <button role="button" class="owl-dot"><span></span></button>
+      <button role="button" class="owl-dot"><span></span></button>
+      <button role="button" class="owl-dot active"><span></span></button>
+      <button role="button" class="owl-dot"><span></span></button>
+      <button role="button" class="owl-dot"><span></span></button>
+      <button role="button" class="owl-dot"><span></span></button>
+      <button role="button" class="owl-dot"><span></span></button>
+    </div>
+    <div class="owl-nav">
+      <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
+      <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
+    </div>-->
   </div>
 </template>
 
 <style scoped>
-
+.slide-wrapper {
+  align-items: center;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  position: relative;
+}
+.main.slider .slide-wrapper .parallax {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.main.slider .slide-wrapper>img, .main.slider .slide-wrapper .parallax img {
+  display: block;
+  position: relative;
+  width: 100%;
+}
 </style>

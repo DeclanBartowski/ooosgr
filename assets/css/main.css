@@ -2043,7 +2043,7 @@ header {
     z-index: 10
 }
 
-header .header--fixed:after,header:after {
+header .header--fixed:after,header:not(.hide-shadow):after {
     content: '';
     position: absolute;
     top: 100%;
@@ -4251,7 +4251,7 @@ a.c-white span,.c-white {
     bottom: 0;
     left: 0;
     right: 0;
-    text-align: center;
+    text-align: right;
     background: #f1f1f2;
     background: linear-gradient(to top,#f1f1f2,#f1f1f2,transparent);
     font-size: 12px;

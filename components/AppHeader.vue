@@ -1,4 +1,35 @@
 <script setup lang="ts">
+const route = useRoute();
+const hideShadow = ref(false);
+const isHeaderFixed = ref(false);
+const headerHeight = ref(0);
+const initialOffsetTop = ref(0);
+const { $checkShadowByRouteName } = useNuxtApp();
+
+const initializeHeader = () => {
+  const header = document.querySelector('.js-header');
+  const menu = document.querySelector('.main_menu');
+  headerHeight.value = header.offsetHeight;
+  initialOffsetTop.value = menu.offsetTop;
+};
+const handleScroll = () => {
+  isHeaderFixed.value = window.scrollY > initialOffsetTop.value;
+  document.querySelector('.js-header').parentElement.style.paddingBottom =
+      isHeaderFixed.value ? `${headerHeight.value}px` : '';
+};
+onMounted(()=>{
+  hideShadow.value = $checkShadowByRouteName(route.name);
+  initializeHeader();
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+watch(() => route.name, (newName) => {
+  hideShadow.value = $checkShadowByRouteName(newName);
+});
+
 const header  = ref({
     "mainLogo" : 'https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a',
     "altLogo": 'https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a',
@@ -45,107 +76,107 @@ const header  = ref({
 </script>
 
 <template>
-  <header class="wrap archetype--980p">
-    <div class="js-header">
-      <div class="wrap_cont clearfix">
-        <a
-          class="logo"
-          href="/"
-          title="На главную"
-        >
-          <img
-            class="logo_image"
-            alt="СТРОЙГЕОРЕСУРС"
-            src="https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a"
+    <header class="wrap archetype--980p" :class="{'hide-shadow':hideShadow===true}">
+      <div class="js-header" :class="{'header--fixed': isHeaderFixed}">
+        <div class="wrap_cont clearfix">
+          <a
+            class="logo"
+            href="/"
+            title="На главную"
           >
-          <img
-            class="logo_image_alt"
-            alt="СТРОЙГЕОРЕСУРС"
-            src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
-          >
-        </a>
-        <div class="title js-title">
-          ООО "СТРОЙГЕОРЕСУРС"
-        </div>
-        <div class="title title--hide js-short-title">
-          ООО "СГР"
-        </div>
-        <div class="right">
-          <div class="top">
-            <div class="two columns">
-              <div class="column text-pad-right">
-                <span style="white-space: nowrap;color:#27297b;font-weight:bold;">e-mail: <a
-                  href="mailto:info@ooosgr.ru"
-                  title="Написать письмо"
-                >info@ooosgr.ru</a></span>
-                <div class="search">
-                  <div class="form form_inline">
-                    <form
-                      action="/search/"
-                      method="get"
-                    >
-                      <div class="row">
-                        <div class="widget">
-                          <input
-                            class="query"
-                            name="q"
-                            placeholder="Поиск"
-                            type="text"
-                          >
-                          <button
-                            class="icon-search"
-                            title="Искать"
-                            type="submit"
-                          />
+            <img
+              class="logo_image"
+              alt="СТРОЙГЕОРЕСУРС"
+              src="https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a"
+            >
+            <img
+              class="logo_image_alt"
+              alt="СТРОЙГЕОРЕСУРС"
+              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+            >
+          </a>
+          <div class="title js-title">
+            ООО "СТРОЙГЕОРЕСУРС"
+          </div>
+          <div class="title title--hide js-short-title">
+            ООО "СГР"
+          </div>
+          <div class="right">
+            <div class="top">
+              <div class="two columns">
+                <div class="column text-pad-right">
+                  <span style="white-space: nowrap;color:#27297b;font-weight:bold;">e-mail: <a
+                    href="mailto:info@ooosgr.ru"
+                    title="Написать письмо"
+                  >info@ooosgr.ru</a></span>
+                  <div class="search">
+                    <div class="form form_inline">
+                      <form
+                        action="/search/"
+                        method="get"
+                      >
+                        <div class="row">
+                          <div class="widget">
+                            <input
+                              class="query"
+                              name="q"
+                              placeholder="Поиск"
+                              type="text"
+                            >
+                            <button
+                              class="icon-search"
+                              title="Искать"
+                              type="submit"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="column text-pad-left">
-                <div class="phone">
+                <div class="column text-pad-left">
+                  <div class="phone">
+                    <a
+                      class="callibri_phone"
+                      style="white-space: nowrap;"
+                      href="tel:+74957773646"
+                    >
+                      <small>+7 (495) </small>777-36-46
+                    </a>
+                  </div>
                   <a
-                    class="callibri_phone"
-                    style="white-space: nowrap;"
-                    href="tel:+74957773646"
+                    href="#popup-callback"
+                    class="is_block btn red fancybox_dialog"
                   >
-                    <small>+7 (495) </small>777-36-46
-                  </a>
+                    Заказать звонок </a>
                 </div>
-                <a
-                  href="#popup-callback"
-                  class="is_block btn red fancybox_dialog"
-                >
-                  Заказать звонок </a>
               </div>
             </div>
-          </div>
-          <div class="phone phone--hidden">
-            <a
-              class="callibri_phone"
-              href="tel:+74957773646"
-            ><small>+7 (495) </small>777-36-46</a>
-          </div>
-          <div class="main_menu">
-            <ul>
-                <li v-for="(item, index) in header.menu"
-                    :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
-                >
-                    <nuxt-link
-                            :to="item.link"
-                    >
-                        {{ item.title }}
-                    </nuxt-link>
-                </li>
-            </ul>
+            <div class="phone phone--hidden">
+              <a
+                class="callibri_phone"
+                href="tel:+74957773646"
+              ><small>+7 (495) </small>777-36-46</a>
+            </div>
+            <div class="main_menu">
+              <ul>
+                  <li v-for="(item, index) in header.menu"
+                      :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+                  >
+                      <nuxt-link
+                              :to="item.link"
+                      >
+                          {{ item.title }}
+                      </nuxt-link>
+                  </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
     <div class="header header--simple wrap mobile mobile--980p">
-        <div class="header__data wrap_cont">
+        <div class="header__data-mobile">
             <a
                     class="logo"
                     href="/"
@@ -156,27 +187,21 @@ const header  = ref({
                         src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
                 >
             </a>
-            <div class="title">
-                «СТРОЙГЕОРЕСУРС»
-            </div>
         </div>
 
-        <div class="options">
-            <div class="options__email icon-email">
-                <a
+        <div class="options-mobile">
+                <a class="options__email icon-email"
                         href="mailto:info@ooosgr.ru"
                         title="Написать письмо"
-                >info@ooosgr.ru</a>
-            </div>
-            <div class="options__phone icon-phone">
-                <a
-                        class="callibri_phone"
-                        href="tel:+74957773646"
-                >+7 (495) 777-36-46</a>
-            </div>
+                ></a>
+              <a
+                  class="fancybox_dialog options__phone icon-phone"
+                  href="#popup-callback"
+              ></a>
         </div>
+        <a class="callibri_phone-mobile" href="tel:+74957773646">+7 (495) 777-36-46</a>
 
-        <div class="wrap_cont">
+        <div class="wrap_cont-mobile">
             <div class="header__menu js-menu">
                 <div class="menu-switcher js-menu__switcher">
                     <div class="lines">
@@ -185,7 +210,6 @@ const header  = ref({
                         <span class="line line--3"/>
                         <span class="line line--4"/>
                     </div>
-                    Меню сайта
                 </div>
 
                 <div class="menu-options js-menu__options">
@@ -203,12 +227,6 @@ const header  = ref({
                     </ul>
                 </div>
             </div>
-
-            <a
-                    class="btn red fancybox_dialog"
-                    href="#popup-callback"
-            >
-                Заказать обратный звонок </a>
         </div>
     </div>
 </template>
@@ -229,5 +247,43 @@ const header  = ref({
     overflow: hidden;
     content: '';
     display: inline-block*/
+  }
+  @media only screen and (max-width: 980px) {
+    .mobile--980p {
+      display: flex !important;
+      justify-content:space-around;
+      align-items:flex-end;
+    }
+    .header--simple .header__menu .menu-switcher .lines {
+      height: 27px;
+      margin-right: 0px;
+      position: relative;
+      width: 27px
+    }
+    .options-mobile {
+      align-items: center;
+      display: flex;
+      font-size: 18px;
+      font-weight: bold;
+      justify-content: center;
+    }
+    .callibri_phone-mobile {
+      color: #2d2f8e;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .options-mobile a {
+      margin:0 5px;
+    }
+    .wrap_cont-mobile .header__menu {
+      font-size: 13px;
+      line-height: 20px;
+      margin-bottom: 0;
+      text-align: center;
+      position: relative;
+    }
+    .header__data-mobile .logo{
+      margin:0;
+    }
   }
 </style>

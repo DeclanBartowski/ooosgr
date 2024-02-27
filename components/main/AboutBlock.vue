@@ -8,16 +8,16 @@ const data = ref({
 </script>
 
 <template>
-
-  <div class="column w35 text-pad-left">
-    <div class="page text-pad-left about_widget">
-      <a :href="data.link">
-        <h2>
-          {{ data.title }}
-        </h2>
-      </a>
-      <div class="text" v-html="data.description"/>
-    </div>
+  <div class="page text-pad-left about_widget">
+    <a :href="data.link">
+      <h2>
+        {{ data.title }}
+      </h2>
+    </a>
+    <div
+      class="text"
+      v-html="data.description"
+    />
   </div>
 </template>
 

@@ -1,14 +1,17 @@
 <script setup lang="ts">
-
+const { $initializeParallax } = useNuxtApp();
+onMounted(() => {
+  $initializeParallax();
+});
 </script>
 
 <template>
   <div>
     <div class="main_wrapper">
-      <AppHeader/>
-      <slot/>
+      <AppHeader />
+      <slot />
     </div>
-    <AppFooter/>
+    <AppFooter />
   </div>
 </template>
 

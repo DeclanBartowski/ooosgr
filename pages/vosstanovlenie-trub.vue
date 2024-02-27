@@ -10,8 +10,10 @@ const page = ref({
   <div class="wrap content page common page--vosstanovlenie-trub">
     <div class="wrap_cont">
       <h1>{{ page.title }}</h1>
-      <Repair/>
+      <Repair />
     </div>
+    <BitrixForm />
+    <div class="push" />
   </div>
 </template>
 

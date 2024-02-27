@@ -201,40 +201,56 @@ const categoryUrl = route.path + '/' + article.category.code;
 <template>
   <div class="wrap content article">
     <div class="wrap_cont">
-
       <div class="text clearfix">
-        <div class="article_image" v-if="article.detailImg && article.img">
-          <a class="fancybox" :href="article.detailImg" target="_blank">
-            <img :alt="article.title" :src="article.img">
+        <div
+          v-if="article.detailImg && article.img"
+          class="article_image"
+        >
+          <a
+            class="fancybox"
+            :href="article.detailImg"
+            target="_blank"
+          >
+            <img
+              :alt="article.title"
+              :src="article.img"
+            >
           </a>
         </div>
 
         <h1>{{ article.title }}</h1>
 
         <div class="brief">
-                <span>
-                    <a :href="categoryUrl" title="Перейти на страницу категории статей">
-                        <b>{{ article.category.name }}</b>
-                    </a>
-                </span>
           <span>
-                    Дата создания: {{ article.create }}
-                </span>
+            <a
+              :href="categoryUrl"
+              title="Перейти на страницу категории статей"
+            >
+              <b>{{ article.category.name }}</b>
+            </a>
+          </span>
+          <span>
+            Дата создания: {{ article.create }}
+          </span>
         </div>
 
-        <div class="wysiwyg" v-html="article.html"></div>
-
+        <div
+          class="wysiwyg"
+          v-html="article.html"
+        />
       </div>
 
       <div class="back-option">
-        <a :href="categoryUrl" title="Перейти на страницу категории статей">
+        <a
+          :href="categoryUrl"
+          title="Перейти на страницу категории статей"
+        >
           Вернуться к списку статей </a>
       </div>
-
     </div>
   </div>
-
-  <div class="push"/>
+  <BitrixForm />
+  <div class="push" />
 </template>
 
 <style scoped>

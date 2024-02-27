@@ -79,48 +79,80 @@
 
 <template>
   <div class="parallax_cont about_partner">
-    <div class="parallax" data-parallax-velocity="0.06399034108059161"><img alt="" :src="data.img"></div>
+    <div
+      class="parallax"
+    >
+      <img
+        alt=""
+        :src="data.img"
+      >
+    </div>
 
     <div class="text white">
       <div class="two columns">
         <div class="column text-pad-right">
-          <h2 class="big white">{{data.title}}</h2>
+          <h2 class="big white">
+            {{ data.title }}
+          </h2>
 
-          <div class="text" v-html="data.text"/>
+          <div
+            class="text"
+            v-html="data.text"
+          />
           <div class="text--center">
-            <p style="font-size: 30px; font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">Звоните: <span class="callibri_phone"><a :href="'tel:' + data.phone">
-            {{data.phone}}</a></span></p>
+            <p style="font-size: 30px; font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">
+              Звоните: <span class="callibri_phone"><a :href="'tel:' + data.phone">
+                {{ data.phone }}</a></span>
+            </p>
           </div>
         </div>
 
         <div class="column text-pad-left">
-          <h2 class="big white">{{ data.reqTitle }}</h2>
+          <h2 class="big white">
+            {{ data.reqTitle }}
+          </h2>
 
-          <div class="text white" style="font-size: 14px"><table>
-            <tbody>
-              <tr v-for="req in data.reqItems">
-                <td><b>{{ req.name }}</b></td>
-                <template v-if="req.type=='phone'">
-                  <td><span class="callibri_phone">{{ req.value }}</span></td>
-                </template>
-                <template v-else>
-                  <td>{{ req.value }}</td>
-                </template>
-              </tr>
-            </tbody>
-          </table>
+          <div
+            class="text white"
+            style="font-size: 14px"
+          >
+            <table>
+              <tbody>
+                <tr v-for="req in data.reqItems">
+                  <td><b>{{ req.name }}</b></td>
+                  <template v-if="req.type=='phone'">
+                    <td><span class="callibri_phone">{{ req.value }}</span></td>
+                  </template>
+                  <template v-else>
+                    <td>{{ req.value }}</td>
+                  </template>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      <div class="two columns" style="margin-top:20px;">
+      <div
+        class="two columns"
+        style="margin-top:20px;"
+      >
         <div class="column text--center">
-          <NewsMenuAbout />
+          <NewsMenu :class-name="'news__link-about'" />
         </div>
 
-        <div class="column text-pad-left"><small style="display: inline-block;width: 350px;line-height: 1.8em">{{data.warning}}</small>
+        <div class="column text-pad-left">
+          <small style="display: inline-block;width: 350px;line-height: 1.8em">{{ data.warning }}</small>
 
-          <div class="text-pad-left is_inline_block" style="vertical-align: top;"><a :href="data.reqFile"><span class="icon-pdf left_align c-white" style="cursor: pointer"><span style="text-decoration: underline;
+          <div
+            class="text-pad-left is_inline_block"
+            style="vertical-align: top;"
+          >
+            <a :href="data.reqFile"><span
+              class="icon-pdf left_align c-white"
+              style="cursor: pointer"
+            ><span
+              style="text-decoration: underline;
     margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
@@ -128,8 +160,10 @@
     font-family: 'Open Sans';
     font-size: 12px;
     font-weight: bold;
-    line-height: 1.4em;">Скачать реквизиты<br>
-нашей организации</span> </span></a></div>
+    line-height: 1.4em;"
+            >Скачать реквизиты<br>
+              нашей организации</span> </span></a>
+          </div>
         </div>
       </div>
     </div>

@@ -154,12 +154,13 @@ const category = ref({
   <div class="wrap content page pipe">
     <div class="wrap_cont">
       <div class="two columns columns--adaptive">
-        <Sidebar/>
-        <Category :category="category"/>
+        <Sidebar />
+        <Category :category="category" />
       </div>
     </div>
   </div>
-  <div class="push"></div>
+  <BitrixForm />
+  <div class="push" />
 </template>
 
 <style scoped>

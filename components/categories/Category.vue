@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const props = defineProps(['category']);
+defineProps(['category']);
+const { $alignCatText } = useNuxtApp()
+onMounted(() => {
+  $alignCatText();
+});
 </script>
 
 <template>
@@ -9,63 +13,74 @@ const props = defineProps(['category']);
         <div class="two columns columns--adaptive">
           <div class="column text-pad-right js-column-text">
             <h1><span style="font-size: 22px;">{{ category.name }}</span></h1>
-
             <div
-                class="text"
-                v-html="category.previewTextHtml"
+              class="text"
+              v-html="category.previewTextHtml"
             />
           </div>
 
           <div class="column text-pad-left js-column-image text--center">
             <DownloadPdfBtn
-                v-if="category.priceList"
-                :link="category.priceList"
+              v-if="category.priceList"
+              :link="category.priceList"
             />
             <CategoryGallery
-                v-if="category.slider"
-                :slides="category.slider"
+              v-if="category.slider"
+              :slides="category.slider"
             />
           </div>
         </div>
         <div
-            class="text"
-            v-html="category.text"
+          class="text"
+          v-html="category.text"
         />
       </div>
-      <NewsMenu v-if="category.showMenu"/>
+      <NewsMenu v-if="category.showMenu" />
       <CategoryItemsList
-          v-if="category.items"
-          :head="category.itemsHead"
-          :items="category.items"
+        v-if="category.items"
+        :head="category.itemsHead"
+        :items="category.items"
       />
       <div class="two columns columns--adaptive">
         <div class="column w75">
           <div
-              class="text small"
-              v-html="category.additionalPreviewTextHtml"
+            class="text small"
+            v-html="category.additionalPreviewTextHtml"
           />
         </div>
       </div>
     </template>
     <template v-if="category.template=='vus'">
       <div class="text">
-        <h1>Трубы ВУС</h1>
+        <h1>{{ category.name }}</h1>
         <p
-            v-if="category.img"
-            class="mobile mobile--720p" style="text-align: center;"
+          v-if="category.img"
+          class="mobile mobile--720p"
+          style="text-align: center;"
         >
-          <a class="photo_thumb fancybox" :href="category.img.big" rel="insultation-mobile"><img alt=""
-                                                                                                 :src="category.img.small"
-          /></a>
+          <a
+            class="photo_thumb fancybox"
+            :href="category.img.big"
+            rel="insultation-mobile"
+          ><img
+            alt=""
+            :src="category.img.small"
+          ></a>
         </p>
 
         <p v-if="category.img">
-          <a class="archetype archetype--720p photo_thumb fancybox" :href="category.img.big" rel="insultation"
-             style="float: right; margin: 0 0 20px 20px;"
+          <a
+            class="archetype archetype--720p photo_thumb fancybox"
+            :href="category.img.big"
+            rel="insultation"
+            style="float: right; margin: 0 0 20px 20px;"
           >
-            <img alt="" :src="category.img.small"/></a>
+            <img
+              alt=""
+              :src="category.img.small"
+            ></a>
         </p>
-        <span v-html="category.text"></span>
+        <span v-html="category.text" />
       </div>
     </template>
     <template v-else>
@@ -73,34 +88,31 @@ const props = defineProps(['category']);
         <div class="two columns columns--adaptive">
           <div class="column text-pad-right js-column-text">
             <h1>{{ category.name }}</h1>
-            <div
-                class="text"
-                v-html="category.previewTextHtml"
-            />
+            <div class="text" v-html="category.previewTextHtml"/>
           </div>
           <div class="column text-pad-left js-column-image text--center">
             <DownloadPdfBtn
-                v-if="category.priceList"
-                :link="category.priceList"
+              v-if="category.priceList"
+              :link="category.priceList"
             />
             <CategoryGallery
-                v-if="category.slider"
-                :slides="category.slider"
+              v-if="category.slider"
+              :slides="category.slider"
             />
           </div>
         </div>
       </div>
-      <NewsMenu v-if="category.showMenu"/>
+      <NewsMenu v-if="category.showMenu" />
       <CategoryItemsList
-          v-if="category.items"
-          :head="category.itemsHead"
-          :items="category.items"
+        v-if="category.items"
+        :head="category.itemsHead"
+        :items="category.items"
       />
       <div class="two columns columns--adaptive">
         <div class="column w75">
           <div
-              class="text small"
-              v-html="category.textHtml"
+            class="text small"
+            v-html="category.textHtml"
           />
         </div>
       </div>
