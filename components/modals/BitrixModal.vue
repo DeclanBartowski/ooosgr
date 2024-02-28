@@ -282,8 +282,8 @@ const { $openB24AgreementModal } = useNuxtApp();
 </template>
 
 <style scoped>
-#callback-form {
-  margin: 30px 0;
+#popup-callback {
+  background: transparent;
 }
 .b24-form-click-btn-wrapper button, .b24-form-click-btn-wrapper a {
   cursor: pointer

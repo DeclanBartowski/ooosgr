@@ -248,6 +248,12 @@ const header  = ref({
 </template>
 
 <style scoped>
+  .header--simple.mobile .header__menu .menu-options {
+    position: absolute;
+    left: -144px;
+    background: rgb(241, 241, 242);
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75);
+  }
   header .main_menu ul {
     display:flex;
     justify-content:space-between;

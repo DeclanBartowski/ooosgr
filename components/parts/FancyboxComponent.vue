@@ -29,7 +29,7 @@ onUpdated(() => {
   Fancybox.close()
 
   Fancybox.bind(container.value, '[data-fancybox]', {
-    ...(this.options || {})
+    ...(props.options || {})
   })
 })
 

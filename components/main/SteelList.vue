@@ -19,7 +19,7 @@ const data = ref({
 </script>
 
 <template>
-  <div class="three columns banners">
+  <div class="three columns banners t-align-center">
     <div
       v-for="item in data.items"
       class="column"
@@ -43,8 +43,7 @@ const data = ref({
 </template>
 
 <style scoped>
-   .icon-image-wh-100 {
-     width:100px;
-     height:100px;
-   }
+.t-align-center {
+  text-align: center;
+}
 </style>

@@ -50,7 +50,7 @@ onMounted(() => {
         </div>
       </div>
     </template>
-    <template v-if="category.template=='vus'">
+    <template v-else-if="category.template=='vus'">
       <div class="text">
         <h1>{{ category.name }}</h1>
         <p

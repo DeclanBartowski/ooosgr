@@ -78,4 +78,34 @@ export default defineNuxtPlugin(nuxtApp => {
             }, 250);
         }
     });
+    nuxtApp.provide('initSlidingMenus', (target) => {
+        target = target ? target : document.body;
+        const menus = target.querySelectorAll('.js-menu');
+
+        if (menus.length <= 0) {
+            return false;
+        }
+
+        menus.forEach(function (menu) {
+            const mode = menu.dataset.mode;
+            const switcher = menu.querySelector('.js-menu__switcher');
+            const options = menu.querySelector('.js-menu__options');
+
+            switcher.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                switcher.classList.toggle('menu-switcher--active');
+
+                if (mode) {
+                    options.classList.toggle('menu-options--active');
+                } else {
+                    if (options.style.display === 'none' || options.style.display === '') {
+                        options.style.display = 'block';
+                    } else {
+                        options.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
 });

@@ -96,4 +96,9 @@
   position: relative;
   width: 100%;
 }
+@media only screen and (max-width: 1280px){
+  .main.slider, .main.slider ol li, .slide-wrapper {
+    height: 30vw;
+  }
+}
 </style>

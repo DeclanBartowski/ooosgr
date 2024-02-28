@@ -1,8 +1,9 @@
 <script setup lang="ts">
-const { $initializeParallax,$variableTitle } = useNuxtApp();
+const { $initializeParallax,$variableTitle,$initSlidingMenus } = useNuxtApp();
 onMounted(() => {
   $initializeParallax();
   $variableTitle();
+  $initSlidingMenus();
 });
 </script>
 
