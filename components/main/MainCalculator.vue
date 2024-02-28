@@ -16,21 +16,23 @@ const calculatorData = ref({
 <template>
       <div class="used_pipes widget">
         <div class="title title--flex">
-          <a
-              :href="calculatorData.link"
-              :title="calculatorData.title"
+          <NuxtLink :to="calculatorData.link" :title="calculatorData.title">{{ calculatorData.title }}</NuxtLink>
+          <FancyboxComponent
+              :options="{
+                    defaultType:'html'
+                  }"
           >
-            {{ calculatorData.title }}
-          </a>
-          <a
-              class="btn red icon-calculator fancybox_dialog"
-              href="#pipe-calculator"
-          > Калькулятор по трубам</a>
+            <a
+                data-fancybox
+                class="btn red icon-calculator fancybox_dialog"
+                href="#pipe-calculator"
+            > Калькулятор по трубам</a>
+          </FancyboxComponent>
         </div>
         <div class="body">
-          <a v-for="calcItem in calculatorData.items" :href="calcItem.link" :title="calcItem.name">
+          <NuxtLink v-for="calcItem in calculatorData.items" :to="calcItem.link" :title="calcItem.name">
             {{ calcItem.name }}
-          </a>
+          </NuxtLink>
           <SidebarBtn :class-name="'_normal'"/>
         </div>
         <DownloadCalculatorBtnMain :link="calculatorData.priceList"/>

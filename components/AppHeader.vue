@@ -1,4 +1,7 @@
 <script setup lang="ts">
+
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+
 const route = useRoute();
 const hideShadow = ref(false);
 const isHeaderFixed = ref(false);
@@ -22,6 +25,7 @@ onMounted(()=>{
   initializeHeader();
   window.addEventListener('scroll', handleScroll);
   handleScroll();
+
 });
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
@@ -76,159 +80,171 @@ const header  = ref({
 </script>
 
 <template>
-    <header class="wrap archetype--980p" :class="{'hide-shadow':hideShadow===true}">
-      <div class="js-header" :class="{'header--fixed': isHeaderFixed}">
-        <div class="wrap_cont clearfix">
-          <a
-            class="logo"
-            href="/"
-            title="На главную"
-          >
-            <img
+  <header
+    class="wrap archetype--980p"
+    :class="{'hide-shadow':hideShadow===true}"
+  >
+    <div
+      class="js-header"
+      :class="{'header--fixed': isHeaderFixed}"
+    >
+      <div class="wrap_cont clearfix">
+        <NuxtLink :to="'/'" :class="'logo'" :title="'На главную'">
+          <img
               class="logo_image"
               alt="СТРОЙГЕОРЕСУРС"
               src="https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a"
-            >
-            <img
+          >
+          <img
               class="logo_image_alt"
               alt="СТРОЙГЕОРЕСУРС"
               src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
-            >
-          </a>
-          <div class="title js-title">
-            ООО "СТРОЙГЕОРЕСУРС"
-          </div>
-          <div class="title title--hide js-short-title">
-            ООО "СГР"
-          </div>
-          <div class="right">
-            <div class="top">
-              <div class="two columns">
-                <div class="column text-pad-right">
-                  <span style="white-space: nowrap;color:#27297b;font-weight:bold;">e-mail: <a
-                    href="mailto:info@ooosgr.ru"
-                    title="Написать письмо"
-                  >info@ooosgr.ru</a></span>
-                  <div class="search">
-                    <div class="form form_inline">
-                      <form
-                        action="/search/"
-                        method="get"
-                      >
-                        <div class="row">
-                          <div class="widget">
-                            <input
-                              class="query"
-                              name="q"
-                              placeholder="Поиск"
-                              type="text"
-                            >
-                            <button
-                              class="icon-search"
-                              title="Искать"
-                              type="submit"
-                            />
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div class="column text-pad-left">
-                  <div class="phone">
-                    <a
-                      class="callibri_phone"
-                      style="white-space: nowrap;"
-                      href="tel:+74957773646"
+          >
+        </NuxtLink>
+        <div class="title js-title">
+          ООО "СТРОЙГЕОРЕСУРС"
+        </div>
+        <div class="title title--hide js-short-title">
+          ООО "СГР"
+        </div>
+        <div class="right">
+          <div class="top">
+            <div class="two columns">
+              <div class="column text-pad-right">
+                <span style="white-space: nowrap;color:#27297b;font-weight:bold;">e-mail: <a
+                  href="mailto:info@ooosgr.ru"
+                  title="Написать письмо"
+                >info@ooosgr.ru</a></span>
+                <div class="search">
+                  <div class="form form_inline">
+                    <form
+                      action="/search/"
+                      method="get"
                     >
-                      <small>+7 (495) </small>777-36-46
-                    </a>
+                      <div class="row">
+                        <div class="widget">
+                          <input
+                            class="query"
+                            name="q"
+                            placeholder="Поиск"
+                            type="text"
+                          >
+                          <button
+                            class="icon-search"
+                            title="Искать"
+                            type="submit"
+                          />
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <a
-                    href="#popup-callback"
-                    class="is_block btn red fancybox_dialog"
-                  >
-                    Заказать звонок </a>
                 </div>
               </div>
-            </div>
-            <div class="phone phone--hidden">
-              <a
-                class="callibri_phone"
-                href="tel:+74957773646"
-              ><small>+7 (495) </small>777-36-46</a>
-            </div>
-            <div class="main_menu">
-              <ul>
-                  <li v-for="(item, index) in header.menu"
-                      :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+              <div class="column text-pad-left">
+                <div class="phone">
+                  <a
+                    class="callibri_phone"
+                    style="white-space: nowrap;"
+                    href="tel:+74957773646"
                   >
-                      <nuxt-link
-                              :to="item.link"
-                      >
-                          {{ item.title }}
-                      </nuxt-link>
-                  </li>
-              </ul>
+                    <small>+7 (495) </small>777-36-46
+                  </a>
+                </div>
+                <FancyboxComponent
+                  :options="{
+                    defaultType:'html'
+                  }"
+                >
+                  <a
+                    href="#popup-callback"
+                    class="is_block btn red"
+                    data-fancybox
+                  >
+                    Заказать звонок </a>
+                </FancyboxComponent>
+              </div>
             </div>
+          </div>
+          <div class="phone phone--hidden">
+            <a
+              class="callibri_phone"
+              href="tel:+74957773646"
+            ><small>+7 (495) </small>777-36-46</a>
+          </div>
+          <div class="main_menu">
+            <ul>
+              <li
+                v-for="(item, index) in header.menu"
+                :key="index"
+                :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+              >
+                <nuxt-link
+                  :to="item.link"
+                >
+                  {{ item.title }}
+                </nuxt-link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </header>
-    <div class="header header--simple wrap mobile mobile--980p">
-        <div class="header__data-mobile">
-            <a
-                    class="logo"
-                    href="/"
-                    title="На главную"
-            >
-                <img
-                        alt=""
-                        src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
-                >
-            </a>
-        </div>
-
-        <div class="options-mobile">
-                <a class="options__email icon-email"
-                        href="mailto:info@ooosgr.ru"
-                        title="Написать письмо"
-                ></a>
-              <a
-                  class="fancybox_dialog options__phone icon-phone"
-                  href="#popup-callback"
-              ></a>
-        </div>
-        <a class="callibri_phone-mobile" href="tel:+74957773646">+7 (495) 777-36-46</a>
-
-        <div class="wrap_cont-mobile">
-            <div class="header__menu js-menu">
-                <div class="menu-switcher js-menu__switcher">
-                    <div class="lines">
-                        <span class="line line--1"/>
-                        <span class="line line--2"/>
-                        <span class="line line--3"/>
-                        <span class="line line--4"/>
-                    </div>
-                </div>
-
-                <div class="menu-options js-menu__options">
-                    <ul>
-                        <li v-for="(item, index) in header.menu"
-                            :key="index" :class="{ first: index === 0, last: index === header.menu.length - 1 }"
-                        >
-                            <nuxt-link
-                                    :to="item.link"
-
-                            >
-                                {{ item.title }}
-                            </nuxt-link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
+  </header>
+  <div class="header header--simple wrap mobile mobile--980p">
+    <div class="header__data-mobile">
+      <NuxtLink :to="'/'" :class="'logo'" :title="'На главную'">
+        <img
+            alt=""
+            src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+        >
+      </NuxtLink>
+    </div>
+
+    <div class="options-mobile">
+      <a
+        class="options__email icon-email"
+        href="mailto:info@ooosgr.ru"
+        title="Написать письмо"
+      />
+      <a
+        class="fancybox_dialog options__phone icon-phone"
+        href="#popup-callback"
+      />
+    </div>
+    <a
+      class="callibri_phone-mobile"
+      href="tel:+74957773646"
+    >+7 (495) 777-36-46</a>
+
+    <div class="wrap_cont-mobile">
+      <div class="header__menu js-menu">
+        <div class="menu-switcher js-menu__switcher">
+          <div class="lines">
+            <span class="line line--1" />
+            <span class="line line--2" />
+            <span class="line line--3" />
+            <span class="line line--4" />
+          </div>
+        </div>
+
+        <div class="menu-options js-menu__options">
+          <ul>
+            <li
+              v-for="(item, index) in header.menu"
+              :key="index"
+              :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+            >
+              <nuxt-link
+                :to="item.link"
+              >
+                {{ item.title }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>

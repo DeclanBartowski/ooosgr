@@ -222,12 +222,12 @@ const categoryUrl = route.path + '/' + article.category.code;
 
         <div class="brief">
           <span>
-            <a
-              :href="categoryUrl"
+            <NuxtLink
+              :to="categoryUrl"
               title="Перейти на страницу категории статей"
             >
               <b>{{ article.category.name }}</b>
-            </a>
+            </NuxtLink>
           </span>
           <span>
             Дата создания: {{ article.create }}
@@ -241,11 +241,11 @@ const categoryUrl = route.path + '/' + article.category.code;
       </div>
 
       <div class="back-option">
-        <a
-          :href="categoryUrl"
+        <NuxtLink
+          :to="categoryUrl"
           title="Перейти на страницу категории статей"
         >
-          Вернуться к списку статей </a>
+          Вернуться к списку статей </NuxtLink>
       </div>
     </div>
   </div>

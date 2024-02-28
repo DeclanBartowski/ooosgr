@@ -40,4 +40,42 @@ export default defineNuxtPlugin(nuxtApp => {
             window.addEventListener("resize", resizeParallax);
         }
     });
+    nuxtApp.provide('openB24AgreementModal', () => {
+        const overlay = document.querySelector('#b24-window-mount .b24-window-overlay');
+        const popup = document.querySelector('#b24-window-mount .b24-window-popup');
+        if (overlay){
+            overlay.style.display = '';
+        }
+        if (popup){
+            popup.style.display = '';
+        }
+    });
+    nuxtApp.provide('variableTitle', () => {
+        const a = document.querySelector(".js-title");
+        const c = document.querySelector(".js-short-title");
+        const queryInput = document.querySelector("header .form .query");
+
+        queryInput.addEventListener("focus", function () {
+            queryInput.style.width = "455px";
+            fadeInAndOut(a, c);
+        });
+
+        queryInput.addEventListener("blur", function () {
+            queryInput.style.width = "250px";
+            fadeInAndOut(c, a);
+        });
+        function fadeInAndOut(fadeOutElement, fadeInElement) {
+            fadeOutElement.style.transition = "opacity 0.25s";
+            fadeOutElement.style.opacity = 0;
+
+            setTimeout(function () {
+                fadeOutElement.style.display = "none";
+                fadeInElement.style.display = "block";
+
+                setTimeout(function () {
+                    fadeInElement.style.opacity = 1;
+                }, 0);
+            }, 250);
+        }
+    });
 });

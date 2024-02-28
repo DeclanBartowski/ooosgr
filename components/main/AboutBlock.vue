@@ -9,11 +9,11 @@ const data = ref({
 
 <template>
   <div class="page text-pad-left about_widget">
-    <a :href="data.link">
+    <NuxtLink :to="data.link">
       <h2>
         {{ data.title }}
       </h2>
-    </a>
+    </NuxtLink>
     <div
       class="text"
       v-html="data.description"

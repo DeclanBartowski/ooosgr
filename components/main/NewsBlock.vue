@@ -32,12 +32,12 @@
   <div class="column w100">
     <div class="latest_news latest_news--widget">
       <div class="title">
-        <a
-            :href="data.title"
+        <NuxtLink
+            :to="data.title"
             :title="data.link"
         >
           {{ data.title }}
-        </a>
+        </NuxtLink>
       </div>
 
 
@@ -54,19 +54,19 @@
           </div>
           <div class="desc">
             <h2>
-              <a :href="item.link">
+              <NuxtLink :to="item.link">
                 {{ item.title }}
-              </a>
+              </NuxtLink>
             </h2>
             <p>{{ item.text }}</p>
           </div>
           <div class="right_align">
-            <a
-                :href="item.link"
+            <NuxtLink
+                :to="item.link"
                 title="Перейти на страницу статьи"
                 class="more"
             >
-              читать подробнее </a>
+              читать подробнее </NuxtLink>
           </div>
         </li>
       </ul>

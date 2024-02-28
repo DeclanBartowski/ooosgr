@@ -8,15 +8,25 @@ const filterCollection = calculator;
 <template>
   <div class="column w25" :class="wrapperClass">
     <div class="used_pipes widget vertical">
-      <a class="btn red icon-calculator fancybox_dialog" href="#pipe-calculator"> Калькулятор по трубам</a>
+      <FancyboxComponent
+          :options="{
+                    defaultType:'html'
+                  }"
+      >
+        <a
+            data-fancybox
+            class="btn red icon-calculator fancybox_dialog"
+            href="#pipe-calculator"
+        > Калькулятор по трубам</a>
+      </FancyboxComponent>
 
       <div class="title">Выберите диаметр</div>
       <div class="body">
-        <a v-for="filter in filterCollection" :href="filter.link"
+        <NuxtLink v-for="filter in filterCollection" :to="filter.link"
            title="Применить фильтр"
         >
           {{ filter.name }}
-        </a>
+        </NuxtLink>
         <SidebarBtn/>
       </div>
       <SidebarBanners/>

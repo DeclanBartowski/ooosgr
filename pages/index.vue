@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import AboutBlock from "~/components/main/AboutBlock.vue";
-import PipeModal from "~/components/modals/PipeModal.vue";
-
 const page =ref({
   title:'МЕТАЛЛОБАЗА ТРУБА БУ БАЛКА Б/У РАЗРАБОТКА КОТЛОВАНА – «СТРОЙГЕОРЕСУРС»',
 })
@@ -30,10 +27,6 @@ const page =ref({
       </div>
     </div>
   </div>
-
-  <PipeModal />
-
-
   <div class="push" />
 </template>
 

@@ -88,24 +88,24 @@ const items = ref([
               >
             </div>
             <div class="desc">
-              <a
-                :href="item.link"
+              <NuxtLink
+                :to="item.link"
                 title="Перейти на страницу"
               >
                 <h2>{{ item.name }}</h2>
-              </a>
+              </NuxtLink>
               <div
                 v-if="item.category"
                 class="category"
               >
                 <small>Категория</small>
                 :
-                <a
-                  :href="item.category.link"
+                <NuxtLink
+                  :to="item.category.link"
                   title="Перейти на страницу категории труб"
                 >
                   <small>{{ item.category.name }}</small>
-                </a>
+                </NuxtLink>
               </div>
               <p>{{ item.text }}</p>
             </div>

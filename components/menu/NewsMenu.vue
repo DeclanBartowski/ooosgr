@@ -9,14 +9,14 @@ defineProps(['className']);
       class="news__link"
       :class="className"
   >
-    <a
+    <NuxtLink
         v-for="menuItem in menu"
         class="title"
-        :href="menuItem.link"
+        :to="menuItem.link"
         :title="menuItem.title"
     >
       {{ menuItem.title }}
-    </a>
+    </NuxtLink>
   </div>
 </template>
 

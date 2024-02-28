@@ -5,21 +5,21 @@ let props = defineProps(['slides']);
 <template>
   <div class="gallery slider big">
     <template v-if="slides.length>1">
-      <a class="photo_thumb fancybox"
-         :href="slides[0].big"
+      <NuxtLink class="photo_thumb fancybox"
+         :to="slides[0].big"
          :rel="slides[0].rel"
          :title="slides[0].title">
         <img alt="" :src="slides[0].small">
-      </a>
+      </NuxtLink>
       <div class="hide">
-        <a v-for="(slide, index) in slides.slice(1)"
+        <NuxtLink v-for="(slide, index) in slides.slice(1)"
            :key="index"
            class="photo_thumb fancybox"
-           :href="slide.big"
+           :to="slide.big"
            :rel="slide.rel"
            :title="slide.title">
           <img alt="" :src="slide.small">
-        </a>
+        </NuxtLink>
       </div>
     </template>
     <template v-else>

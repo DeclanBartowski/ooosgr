@@ -8,7 +8,7 @@ const btnData = {
 
 <template>
   <div class="info_link" :class="className">
-    <a :href="btnData.link"><span>В наличии:</span>{{ btnData.text }}</a>
+    <NuxtLink :to="btnData.link"><span>В наличии:</span>{{ btnData.text }}</NuxtLink>
   </div>
 </template>
 

@@ -148,11 +148,12 @@
             class="text-pad-left is_inline_block"
             style="vertical-align: top;"
           >
-            <a :href="data.reqFile"><span
-              class="icon-pdf left_align c-white"
-              style="cursor: pointer"
-            ><span
-              style="text-decoration: underline;
+            <NuxtLink :to="data.reqFile">
+              <span
+                class="icon-pdf left_align c-white"
+                style="cursor: pointer"
+              ><span
+                style="text-decoration: underline;
     margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
@@ -161,8 +162,9 @@
     font-size: 12px;
     font-weight: bold;
     line-height: 1.4em;"
-            >Скачать реквизиты<br>
-              нашей организации</span> </span></a>
+              >Скачать реквизиты<br>
+                нашей организации</span> </span>
+            </NuxtLink>
           </div>
         </div>
       </div>

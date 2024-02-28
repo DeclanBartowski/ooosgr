@@ -3,9 +3,9 @@ defineProps(['link'])
 </script>
 
 <template>
-  <a class="icon-pdf--right left_align download_pdf"
-     :href="link"><span>Скачать прайс-лист</span>
-  </a>
+  <NuxtLink class="icon-pdf--right left_align download_pdf"
+     :to="link"><span>Скачать прайс-лист</span>
+  </NuxtLink>
 </template>
 
 <style scoped>

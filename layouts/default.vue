@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { $initializeParallax } = useNuxtApp();
+const { $initializeParallax,$variableTitle } = useNuxtApp();
 onMounted(() => {
   $initializeParallax();
+  $variableTitle();
 });
 </script>
 

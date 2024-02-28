@@ -17,11 +17,11 @@ defineProps(['head', 'items'])
         <td style="white-space: nowrap;">{{ item.priceFormated }}</td>
         <td class="pic">
           <!--noindex-->
-          <a v-if="item.img" class="fancybox photo_thumb" :rel="item.img.rel" :href="item.img.big"
+          <NuxtLink v-if="item.img" class="fancybox photo_thumb" :rel="item.img.rel" :to="item.img.big"
              :title="item.img.title" target="_blank"
           >
             <img alt="" :src="item.img.small"/>
-          </a>
+          </NuxtLink>
           <!--/noindex-->
           <div class="hide">
           </div>
@@ -57,15 +57,15 @@ defineProps(['head', 'items'])
           <div class="products-list__picture">
 
             <!--noindex-->
-            <a v-if="item.img"
+            <NuxtLink v-if="item.img"
                class="fancybox photo_thumb"
                :rel="item.img.rel"
-               :href="item.img.big"
+               :to="item.img.big"
                :title="item.img.title"
                target="_blank"
             >
               <img alt="" :src="item.img.small"/>
-            </a>
+            </NuxtLink>
             <!--/noindex-->
 
             <div class="hide">

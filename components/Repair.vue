@@ -180,13 +180,13 @@ const data = ref({
               class="text"
               v-html="data.previewBlock.previewTextHtml"
             />
-            <a
+            <NuxtLink
               class="pipe_category_more"
-              :href="data.previewBlock.link"
+              :to="data.previewBlock.link"
               :title="data.previewBlock.linkName"
             >{{
               data.previewBlock.linkName
-            }}</a>
+            }}</NuxtLink>
           </div>
 
           <div
@@ -222,25 +222,25 @@ const data = ref({
         <li class="archetype archetype--1280p">
           <div class="clearfix desc_cont">
             <div class="desc">
-              <a
-                :href="item.link"
+              <NuxtLink
+                :to="item.link"
                 :title="item.linkName"
                 class="title"
               >
                 <h2>{{ item.title }}</h2>
-              </a>
+              </NuxtLink>
 
               <div
                 class="text"
                 v-html="item.previewTextHtml"
               />
-              <a
-                :href="item.link"
+              <NuxtLink
+                :to="item.link"
                 :title="item.linkName"
                 class="pipe_category_more"
               >
                 {{ item.linkName }}
-              </a>
+              </NuxtLink>
             </div>
             <div
               class="img"
@@ -252,10 +252,10 @@ const data = ref({
             v-if="item.slider"
             class="gallery clearfix"
           >
-            <a
+            <NuxtLink
               v-for="slide in item.slider"
               class="photo_thumb fancybox"
-              :href="slide.big"
+              :to="slide.big"
               :title="slide.title"
               :rel="slide.rel"
             >
@@ -263,7 +263,7 @@ const data = ref({
                 :alt="slide.title"
                 :src="slide.small"
               >
-            </a>
+            </NuxtLink>
           </div>
         </li>
         <li

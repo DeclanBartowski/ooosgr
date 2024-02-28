@@ -63,7 +63,7 @@ const data = ref({
   <div
       id="pipe-calculator"
       class="widget pipe_calculator"
-      style="left: -465px; display: block;"
+      style="display: none;"
   >
     <div class="title">
       Основные параметры
@@ -311,5 +311,10 @@ const data = ref({
 </template>
 
 <style scoped>
-
+.pipe_calculator.widget {
+  position: relative;
+  left: 0;
+  top: 0;
+  background-color: rgba(221, 225, 235, 1);
+}
 </style>

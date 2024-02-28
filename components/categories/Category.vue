@@ -58,27 +58,27 @@ onMounted(() => {
           class="mobile mobile--720p"
           style="text-align: center;"
         >
-          <a
+          <NuxtLink
             class="photo_thumb fancybox"
-            :href="category.img.big"
+            :to="category.img.big"
             rel="insultation-mobile"
           ><img
             alt=""
             :src="category.img.small"
-          ></a>
+          ></NuxtLink>
         </p>
 
         <p v-if="category.img">
-          <a
+          <NuxtLink
             class="archetype archetype--720p photo_thumb fancybox"
-            :href="category.img.big"
+            :to="category.img.big"
             rel="insultation"
             style="float: right; margin: 0 0 20px 20px;"
           >
             <img
               alt=""
               :src="category.img.small"
-            ></a>
+            ></NuxtLink>
         </p>
         <span v-html="category.text" />
       </div>
