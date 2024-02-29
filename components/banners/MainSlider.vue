@@ -36,6 +36,7 @@
     <Carousel
       :model="currentSlide"
       :autoplay="4800"
+      :itemsToShow="1"
       :wrapAround="true"
     >
       <Slide
