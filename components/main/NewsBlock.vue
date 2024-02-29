@@ -33,8 +33,8 @@
     <div class="latest_news latest_news--widget">
       <div class="title">
         <NuxtLink
-            :to="data.title"
-            :title="data.link"
+            :to="data.link"
+            :title="data.title"
         >
           {{ data.title }}
         </NuxtLink>

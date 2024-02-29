@@ -1817,10 +1817,12 @@ div.b24-form-loader {
 
 .b24-form-field-agreement .b24-form-control-desc {
   font-size: 11px;
-  opacity: 1;
+  opacity: .5;
   line-height: 1
 }
-
+.b24-form-field-agreement .b24-form-control-desc:hover {
+  opacity: 1;
+}
 .b24-form-field-agreement .b24-form-field-agreement-link {
   font-size: 11px;
   line-height: 1;
