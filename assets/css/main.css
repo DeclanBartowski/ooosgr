@@ -2082,7 +2082,7 @@ header .header--fixed .main_menu li a,header .header--fixed .main_menu li span {
 }
 
 .slider .carousel__next {
-    background: url(/_nuxt/assets/images/sprite.png) no-repeat;
+    background: url(~/assets/images/sprite.png) no-repeat;
     background-position: -100px -50px;
     width: 38px;
     height: 50px;
@@ -2095,7 +2095,7 @@ header .header--fixed .main_menu li a,header .header--fixed .main_menu li span {
 }
 
 .slider .carousel__prev {
-    background: url(/_nuxt/assets/images/sprite.png) no-repeat;
+    background: url(~/assets/images/sprite.png) no-repeat;
     background-position: -50px -50px;
     width: 38px;
     height: 50px;
