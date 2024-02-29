@@ -26,8 +26,8 @@ onMounted(() => {
 })
 
 onUpdated(() => {
-  Fancybox.unbind(container.value)
-  Fancybox.close()
+  // Fancybox.unbind(container.value)
+  // Fancybox.close()
 
   Fancybox.bind(container.value, '[data-fancybox]', {
     ...(props.options || {})
