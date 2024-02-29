@@ -77,7 +77,7 @@ const items = ref([
               class="type"
               title="Тип результата"
             >
-              {{ item.position }}.{{ item.type }}
+              {{ item.position }}. {{ item.type }}
             </div>
 
             <div class="img">
@@ -114,8 +114,12 @@ const items = ref([
       </div>
       <Pagination v-if="countItems>0" />
     </div>
-    <BitrixForm />
-    <div class="push" />
+  </div>
+  <div class="wrap content">
+    <div class="wrap_cont">
+      <BitrixForm />
+      <div class="push" />
+    </div>
   </div>
 </template>
 

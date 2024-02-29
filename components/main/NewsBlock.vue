@@ -75,5 +75,20 @@
 </template>
 
 <style scoped>
-
+ .title{
+   font-size: 18px;
+   font-weight: bold;
+   text-align: left;
+   margin-bottom: 10px;
+   line-height: 1.4em;
+   position: relative;
+   z-index: 10;
+   font-family: 'RoadRadio',Verdana,sans-serif;
+ }
+ .latest_news--widget .title a {
+   color: #2d2f8e;
+ }
+ .latest_news ul li .desc h2 {
+   min-height: 33px;
+ }
 </style>

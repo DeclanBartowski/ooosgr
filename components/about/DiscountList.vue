@@ -29,10 +29,22 @@ const data = ref({
 
 <template>
   <div class="column">
-    <h2 class="big">{{ data.title }}</h2>
-    <div v-for="item in data.items" class="clearfix" style="margin-bottom: 0px;">
-      <img v-if="item.img" alt="" class="float_left" :src="item.img">
-      <span v-html="item.text"/>
+    <h2
+      class="big"
+      v-html="data.title"
+    />
+    <div
+      v-for="item in data.items"
+      class="clearfix"
+      style="margin-bottom: 0px;"
+    >
+      <img
+        v-if="item.img"
+        alt=""
+        class="float_left"
+        :src="item.img"
+      >
+      <span v-html="item.text" />
     </div>
   </div>
 </template>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
+defineProps(['title'])
 const { $openB24AgreementModal } = useNuxtApp();
+const bitrixFormName = ref('');
+const bitrixFormPhone = ref('');
 </script>
 
 <template>
@@ -13,10 +16,10 @@ const { $openB24AgreementModal } = useNuxtApp();
         <div class="b24-form-wrapper">
           <div class="b24-form-header b24-form-padding-side">
             <div class="b24-form-header-title">
-              Запрос на консультацию
+              {{title??'Запрос на консультацию'}}
             </div>
             <div class="b24-form-header-description">
-              Заполните поля, и наш менеджер свяжется с Вами в ближайшее время.
+              Заполните поля, и наш менеджер с Вами свяжется.
             </div>
           </div>
           <div class="b24-form-content b24-form-padding-side">
@@ -30,10 +33,12 @@ const { $openB24AgreementModal } = useNuxtApp();
                     <div>
                       <div class="b24-form-control-container b24-form-control-icon-after">
                         <input
+                          v-model="bitrixFormName"
                           name="name"
                           autocomplete="given-name"
                           type="string"
                           class="b24-form-control"
+                          :class="{ 'b24-form-control-not-empty': bitrixFormName !== '' }"
                         >
                         <div class="b24-form-control-label">
                           Ваше имя
@@ -55,10 +60,12 @@ const { $openB24AgreementModal } = useNuxtApp();
                     <div>
                       <div class="b24-form-control-container b24-form-control-icon-after">
                         <input
+                          v-model="bitrixFormPhone"
                           name="phone"
                           autocomplete="tel"
                           type="tel"
                           class="b24-form-control"
+                          :class="{ 'b24-form-control-not-empty': bitrixFormPhone !== '' }"
                         >
                         <div class="b24-form-control-label">
                           Телефон
@@ -630,8 +637,7 @@ a.b24-form-click-btn-font-modern {
 }
 
 .b24-form-header {
-  padding: 15px 31px 5px;
-  border-bottom: 1px solid rgba(82, 92, 105, 0.11);
+  padding: 15px 31px 0;
   text-align: center
 }
 
@@ -655,7 +661,7 @@ a.b24-form-click-btn-font-modern {
 }
 
 .b24-form-header-description {
-  margin: 0 0 15px 0;
+  margin: 0 0 10px 0;
   font: 15px/17px "Helvetica Neue", Helvetica, Arial, sans-serif;
   font: 15px/17px var(--b24-font-family);
   color: #000;
@@ -1811,14 +1817,15 @@ div.b24-form-loader {
 
 .b24-form-field-agreement .b24-form-control-desc {
   font-size: 11px;
-  opacity: .5;
+  opacity: 1;
   line-height: 1
 }
 
 .b24-form-field-agreement .b24-form-field-agreement-link {
   font-size: 11px;
   line-height: 1;
-  cursor: pointer
+  cursor: pointer;
+  margin-left: 3px;
 }
 
 .b24-form-field-agreement a.b24-form-field-agreement-link {
@@ -3701,5 +3708,13 @@ div.b24-form-loader {
     opacity: 1
   }
 }
-
+.b24-form-control-agreement .b24-form-control-container {
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 980px) {
+  .b24-form-control-agreement .b24-form-control-container {
+    display: block;
+  }
+}
 </style>

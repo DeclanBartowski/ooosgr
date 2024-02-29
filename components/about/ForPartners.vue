@@ -2,7 +2,7 @@
   const data =ref({
     img:'https://ooosgr.ru/upload/about_company3.jpg',
     title:'Партнерам',
-    text:'<p>В нашей организации действует программа для парнеров-демонтажников любых регионов, а также строительных компаний, на балансе которых после завершения строительства остались излишки стальной трубы, подлежащей реализации. Наши складские площади позволяют принять на ответственное хранение с возможностью реализации Вашу стальную трубу. Если Вас интересует оперативная продажа с нашего склада нашими специалистами, звоните, мы готовы оказать содействие. Если предлагаемая Вами позиция нам окажется интересной, мы готовы у Вас ее попросту выкупить сразу в деньги, не предлагая услуги хранения-реализации. Все вопросы по каждому Вашему предложению готовы обсуждать при личном контакте, звоните!</p><p>&nbsp;</p>',
+    text:'<p>В нашей организации действует программа для парнеров-демонтажников любых регионов, а также строительных компаний, на балансе которых после завершения строительства остались излишки стальной трубы, подлежащей реализации. Наши складские площади позволяют принять на ответственное хранение с возможностью реализации Вашу стальную трубу. Если Вас интересует оперативная продажа с нашего склада нашими специалистами, звоните, мы готовы оказать содействие. Если предлагаемая Вами позиция нам окажется интересной, мы готовы у Вас ее попросту выкупить сразу в деньги, не предлагая услуги хранения-реализации. Все вопросы по каждому Вашему предложению готовы обсуждать при личном контакте, звоните!</p>',
     reqTitle:'реквизиты нашей организации',
     reqItems:[
       {
@@ -100,11 +100,12 @@
             v-html="data.text"
           />
           <div class="text--center">
-            <p style="font-size: 30px; font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">
+            <p style="font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">
               Звоните: <span class="callibri_phone"><a :href="'tel:' + data.phone">
                 {{ data.phone }}</a></span>
             </p>
           </div>
+          <NewsMenu :class-name="'news__link-about'" />
         </div>
 
         <div class="column text-pad-left">
@@ -130,30 +131,19 @@
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
+          <div class="bottom-req">
+            <small style="display: inline-block;width: 350px;line-height: 1.8em">{{ data.warning }}</small>
 
-      <div
-        class="two columns"
-        style="margin-top:20px;"
-      >
-        <div class="column text--center">
-          <NewsMenu :class-name="'news__link-about'" />
-        </div>
-
-        <div class="column text-pad-left">
-          <small style="display: inline-block;width: 350px;line-height: 1.8em">{{ data.warning }}</small>
-
-          <div
-            class="text-pad-left is_inline_block"
-            style="vertical-align: top;"
-          >
-            <NuxtLink :to="data.reqFile">
+            <div
+                class="text-pad-left is_inline_block"
+                style="vertical-align: top;"
+            >
+              <NuxtLink :to="data.reqFile">
               <span
-                class="icon-pdf left_align c-white"
-                style="cursor: pointer"
+                  class="icon-pdf left_align c-white"
+                  style="cursor: pointer"
               ><span
-                style="text-decoration: underline;
+                  style="text-decoration: underline;
     margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
@@ -164,7 +154,8 @@
     line-height: 1.4em;"
               >Скачать реквизиты<br>
                 нашей организации</span> </span>
-            </NuxtLink>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
@@ -179,5 +170,27 @@
     height: 600px;
     margin: 0 -45px;
     padding: 50px 45px 50px 45px
+  }
+  .content .text p {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 140px;
+    margin-top: 140px;
+  }
+  .bottom-req {
+    margin-top: 10px;
+  }
+  @media only screen and (max-width: 980px) {
+    .content .text p {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .about_partner {
+      height: 100%;
+    }
+    .text-pad-left {
+      padding-left: 0px;
+      margin-top: 10px;
+    }
   }
 </style>

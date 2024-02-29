@@ -27,9 +27,6 @@ onMounted(()=>{
   handleScroll();
 
 });
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
 watch(() => route.name, (newName) => {
   hideShadow.value = $checkShadowByRouteName(newName);
 });
@@ -206,10 +203,6 @@ const header  = ref({
         href="mailto:info@ooosgr.ru"
         title="Написать письмо"
       />
-      <a
-        class="fancybox_dialog options__phone icon-phone"
-        href="#popup-callback"
-      />
     </div>
     <a
       class="callibri_phone-mobile"
@@ -291,7 +284,7 @@ const header  = ref({
     }
     .callibri_phone-mobile {
       color: #2d2f8e;
-      font-size: 18px;
+      font-size: 23px;
       font-weight: bold;
     }
     .options-mobile a {
@@ -306,6 +299,15 @@ const header  = ref({
     }
     .header__data-mobile .logo{
       margin:0;
+    }
+    .header--simple a.logo img {
+      max-height: 45px;
+    }
+    .header--simple .header__menu .menu-switcher {
+      background: transparent;
+    }
+    .header--simple .header__menu .menu-switcher .line{
+      background-color: rgba(203, 41, 18, 1);;
     }
   }
 </style>

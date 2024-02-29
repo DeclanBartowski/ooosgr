@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 import DownloadCalculatorBtn from "~/components/parts/downloadCalculatorBtn.vue";
 import {calculator} from "~/utils/calculator";
 

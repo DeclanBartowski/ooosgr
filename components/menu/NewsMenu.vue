@@ -23,9 +23,23 @@ defineProps(['className']);
 <style scoped>
 .news__link-about {
   top:0;
+  display: flex;
+  justify-content: space-between;
 }
 .news__link-about a {
-  font-size:30px;
-  font-weight:normal;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-right: 0;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'RoadRadio',Verdana,sans-serif;
+}
+.content .text.white a {
+  color: #b90700;
+}
+@media only screen and (max-width: 980px) {
+  .news__link-about{
+    margin: 30px 0;
+  }
 }
 </style>

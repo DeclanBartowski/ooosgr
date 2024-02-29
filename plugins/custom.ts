@@ -56,14 +56,20 @@ export default defineNuxtPlugin(nuxtApp => {
         const queryInput = document.querySelector("header .form .query");
 
         queryInput.addEventListener("focus", function () {
-            queryInput.style.width = "455px";
+            animateWidth(queryInput, 455, 500);
             fadeInAndOut(a, c);
         });
 
         queryInput.addEventListener("blur", function () {
-            queryInput.style.width = "250px";
+            animateWidth(queryInput, 250, 500);
             fadeInAndOut(c, a);
         });
+
+        function animateWidth(element, width, duration) {
+            element.style.transition = "width " + duration / 1000 + "s";
+            element.style.width = width + "px";
+        }
+
         function fadeInAndOut(fadeOutElement, fadeInElement) {
             fadeOutElement.style.transition = "opacity 0.25s";
             fadeOutElement.style.opacity = 0;

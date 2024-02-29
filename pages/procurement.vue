@@ -32,7 +32,6 @@
             </li>
           </ul>
         </div>
-        <p>&nbsp;</p>
         <ProcurementList />
       </div>
     </div>
@@ -42,5 +41,13 @@
 </template>
 
 <style scoped>
-
+.content.pipes .category_list li .desc {
+  padding: 20px 50px 34px 50px;
+}
+.zakupki-cont {
+  margin-bottom: 30px;
+}
+.content h2 {
+  margin-bottom: 30px;
+}
 </style>

@@ -4,7 +4,7 @@ defineProps(['link'])
 
 <template>
   <NuxtLink class="download icon-pdf"
-     :to="link" external><span>Скачать прайс-лист</span>
+     :to="link" external><span class="pdf-span">Скачать прайс-лист</span>
   </NuxtLink>
 </template>
 

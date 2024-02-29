@@ -20,12 +20,6 @@
         <ForPartners />
       </div>
     </div>
-
-    <div class="wrap content">
-      <div class="wrap_cont" />
-    </div>
-
-
     <BitrixForm />
     <div class="push" />
   </div>

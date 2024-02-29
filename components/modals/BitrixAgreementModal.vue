@@ -1,10 +1,4 @@
 <script setup lang="ts">
-const showScrollBtn =ref(true);
-const scrollBtn = () => {
-  const lastElement = document.querySelector('#b24-window-mount .b24-window-popup-body');
-  lastElement.scrollIntoView({behavior: 'smooth'});
-  showScrollBtn.value = false;
-}
 const hideModal = () => {
   const overlay = document.querySelector('#b24-window-mount .b24-window-overlay');
   const popup = document.querySelector('#b24-window-mount .b24-window-popup');
@@ -45,7 +39,7 @@ const hideModal = () => {
             <div>
               <!---->
               <div
-                  class="b24-window-scrollable"
+                  class=""
                   style="z-index: 199999;"
               >
                 <div class="b24-window-scroll-anchor" />
@@ -54,8 +48,8 @@ const hideModal = () => {
                     Согласие на обработку персональных данных
                   </div>
                 </div>
-                <div class="b24-window-popup-body">
-                  <div style="padding: 0px 12px 12px;">
+                <div class="b24-window-popup-body" style="padding: 0px 12px 12px;">
+                  <div class="b24-window-scrollable">
                     <div>
                       Настоящим в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006
                       года свободно, своей волей и в своем интересе выражаю свое безусловное согласие на обработку моих
@@ -84,21 +78,6 @@ const hideModal = () => {
                 </div>
                 <div class="b24-window-scroll-anchor" />
               </div> <!---->
-              <div
-                  v-if="showScrollBtn"
-                  class="b24-form-scroll-textable"
-                  style="z-index: 200009;"
-                  @click="scrollBtn"
-              >
-                <p class="b24-form-scroll-textable-text">
-                  Прочитайте до конца
-                </p>
-                <div class="b24-form-scroll-textable-arrow">
-                  <div class="b24-form-scroll-textable-arrow-item" />
-                  <div class="b24-form-scroll-textable-arrow-item" />
-                  <div class="b24-form-scroll-textable-arrow-item" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -1807,12 +1786,13 @@ div.b24-form-loader {
 .b24-window-popup-title {
   display: block;
   margin: 0;
-  font: 15px/24px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font: 15px/24px var(--b24-font-family);
+  font: 16px/24px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 16px/24px var(--b24-font-family);
   color: #000;
   color: var(--b24-text-color);
   overflow: hidden;
-  white-space: nowrap
+  white-space: nowrap;
+  font-weight:bold;
 }
 
 .b24-window-popup-body {
@@ -2046,7 +2026,8 @@ div.b24-form-loader {
 .b24-window-scrollable {
   overflow-x: hidden;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch
+  -webkit-overflow-scrolling: touch;
+  padding-right:3px;
 }
 
 @media (max-width: 512px) {
@@ -3490,5 +3471,11 @@ div.b24-form-loader {
     opacity: 1
   }
 }
-
+.b24-window-scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+.b24-window-scrollable::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(203, 41, 18, 0.5);
+}
 </style>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+
 defineProps(['head', 'items'])
 </script>
 
@@ -26,13 +28,20 @@ defineProps(['head', 'items'])
           <div class="hide">
           </div>
           <!--noindex-->
+          <FancyboxComponent
+              :options="{
+                    defaultType:'html'
+                  }"
+          >
           <a
               class="btn red fancybox_dialog js-fancyboxOrder"
               :data-message="`[ ${item.name} ] ${item.text} * ${item.priceFormated}`"
               href="#popup-order"
+              data-fancybox
           >
             Заказать
           </a>
+          </FancyboxComponent>
           <!--/noindex-->
         </td>
       </tr>

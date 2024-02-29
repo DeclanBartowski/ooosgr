@@ -39,7 +39,7 @@
 
 <style scoped>
 .paginator span {
-  border-radius: 2px;
+  border-radius: 5px;
   margin: 0 2px;
 }
 </style>

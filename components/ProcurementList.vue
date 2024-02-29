@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+
 const data = ref({
   title: 'Актуальный список закупок на весь период 2024 года',
   description: '<p style="text-align: justify;">В связи с этим, у многих может возникнуть вполне логичный вопрос: «А что делать с демонтированными стальными трубами?».</p>\n' +
@@ -94,10 +96,17 @@ const data = ref({
       <td>{{ item.date }}</td>
       <td>{{ item.price }}</td>
       <td>
+        <FancyboxComponent
+            :options="{
+                    defaultType:'html'
+                  }"
+        >
         <a
             class="is_block btn red fancybox_inline"
             href="#popup-procurement"
+            data-fancybox
         >ПРЕДЛОЖИТЬ</a>
+        </FancyboxComponent>
       </td>
     </tr>
     </tbody>
@@ -116,16 +125,26 @@ const data = ref({
       </div>
 
       <div>
+        <FancyboxComponent
+            :options="{
+                    defaultType:'html'
+                  }"
+        >
         <a
             class="is_block btn red fancybox_inline"
             href="#popup-procurement"
+            data-fancybox
         >ПРЕДЛОЖИТЬ</a>
+        </FancyboxComponent>
       </div>
     </li>
   </ul>
-  <span v-html="data.description"/>
+  <span class="procurement-description" v-html="data.description"/>
 </template>
 
 <style scoped>
-
+.procurement-description {
+  margin-top: 30px;
+  display: block;
+}
 </style>

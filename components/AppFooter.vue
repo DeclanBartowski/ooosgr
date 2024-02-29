@@ -27,9 +27,13 @@ const footerText  = ref({
       <social-footer />
     </div>
   </footer>
-  <BitrixModal />
+  <div class="popup" id="popup-callback">
+    <BitrixForm :title="'Мы вам перезвоним'"/>
+  </div>
   <BitrixAgreementModal />
   <PipeModal />
+  <OrderModal />
+  <ProcurementModal />
 </template>
 
 <style scoped>

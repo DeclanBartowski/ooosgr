@@ -9,6 +9,7 @@ const props = defineProps<{
 }>()
 
 const container = ref(null)
+const route = useRoute();
 
 onMounted(() => {
   Fancybox.bind(container.value, '[data-fancybox]', {
@@ -33,7 +34,16 @@ onUpdated(() => {
   })
 })
 
-onUnmounted(() => Fancybox.destroy())
+onUnmounted(() => Fancybox.destroy());
+
+watch(() => route.name, () => {
+  Fancybox.unbind(container.value)
+  Fancybox.close()
+
+  Fancybox.bind(container.value, '[data-fancybox]', {
+    ...(props.options || {})
+  })
+});
 </script>
 
 <template>

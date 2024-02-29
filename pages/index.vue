@@ -22,6 +22,7 @@ const page =ref({
         <div class="column w35 text-pad-left">
           <AboutBlock />
         </div>
+        <AboutBlockSub />
         <BitrixForm />
         <NewsBlock />
       </div>
