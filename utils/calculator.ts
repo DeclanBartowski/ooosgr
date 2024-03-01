@@ -46,6 +46,10 @@ export const calculator = ref<calculatorValue[]>([
         link: '/truby-b-u/truba-b-u-530',
     },
     {
+        name: '630',
+        link: '/truby-b-u/truba-b-u-530',
+    },
+    {
         name: '720',
         link: '/truby-b-u/truba-b-u-720',
     },

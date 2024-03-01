@@ -54,6 +54,6 @@ const calculatorData = ref({
   .icon-pdf {
     position: absolute;
     bottom: 0;
-    right: 10px;
+    right: 37px;
   }
 </style>

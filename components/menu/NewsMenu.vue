@@ -24,7 +24,7 @@ defineProps(['className']);
 .news__link-about {
   top:0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .news__link-about a {
   text-transform: uppercase;

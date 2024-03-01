@@ -57,12 +57,12 @@ export default defineNuxtPlugin(nuxtApp => {
 
         queryInput.addEventListener("focus", function () {
             animateWidth(queryInput, 455, 500);
-            fadeInAndOut(a, c);
+            fadeInAndOut(a, c,250);
         });
 
         queryInput.addEventListener("blur", function () {
             animateWidth(queryInput, 250, 500);
-            fadeInAndOut(c, a);
+            fadeInAndOut(c, a,250);
         });
 
         function animateWidth(element, width, duration) {
@@ -70,18 +70,32 @@ export default defineNuxtPlugin(nuxtApp => {
             element.style.width = width + "px";
         }
 
-        function fadeInAndOut(fadeOutElement, fadeInElement) {
-            fadeOutElement.style.transition = "opacity 0.25s";
+        function fadeInAndOut(fadeOutElement, fadeInElement, duration) {
+            // Устанавливаем transition для затухания
+            fadeOutElement.style.transition = "opacity " + duration / 1000 + "s";
             fadeOutElement.style.opacity = 0;
 
+            // Используем requestAnimationFrame для более плавного появления
+            var start = null;
+            function fadeInStep(timestamp) {
+                if (!start) start = timestamp;
+                var progress = timestamp - start;
+
+                fadeInElement.style.opacity = (progress / duration);
+
+                if (progress < duration) {
+                    requestAnimationFrame(fadeInStep);
+                }
+            }
+
             setTimeout(function () {
+                // Скрываем fadeOutElement и показываем fadeInElement
                 fadeOutElement.style.display = "none";
                 fadeInElement.style.display = "block";
 
-                setTimeout(function () {
-                    fadeInElement.style.opacity = 1;
-                }, 0);
-            }, 250);
+                // Запускаем анимацию появления
+                requestAnimationFrame(fadeInStep);
+            }, duration);
         }
     });
     nuxtApp.provide('initSlidingMenus', (target) => {

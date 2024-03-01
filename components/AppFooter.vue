@@ -37,5 +37,7 @@ const footerText  = ref({
 </template>
 
 <style scoped>
-
+ .wrap_cont.clearfix {
+   line-height: 20px;
+ }
 </style>

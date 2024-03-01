@@ -147,4 +147,7 @@ const data = ref({
   margin-top: 30px;
   display: block;
 }
+.table_procurement {
+  margin-top: 35px;
+}
 </style>

@@ -45,9 +45,9 @@
   padding: 20px 50px 34px 50px;
 }
 .zakupki-cont {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 .content h2 {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 </style>

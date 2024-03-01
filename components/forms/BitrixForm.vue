@@ -1220,7 +1220,7 @@ div.b24-form-loader {
   color: #000;
   color: var(--b24-text-color);
   width: 100%;
-  padding: 17px 10px 0;
+  padding: 20px 10px 0;
   font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
   font: 16px var(--b24-font-family);
   letter-spacing: -0.3px

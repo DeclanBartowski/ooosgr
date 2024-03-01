@@ -2183,7 +2183,7 @@ header .header--fixed .main_menu li a,header .header--fixed .main_menu li span {
 }
 
 .latest_news ul {
-    background: rgba(241,241,242,0.5);
+    background: transparent;
     border-radius: 5px;
     font-size: 0;
     line-height: 0
@@ -5362,4 +5362,5 @@ a.c-white span,.c-white {
 body .fancybox__content {
     background: rgba(221, 225, 235, 1);
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border-radius: 6px;
 }
