@@ -5362,5 +5362,5 @@ a.c-white span,.c-white {
 body .fancybox__content {
     background: rgba(221, 225, 235, 1);
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    border-radius: 6px;
+    border-radius: 10px;
 }

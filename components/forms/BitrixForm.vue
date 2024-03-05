@@ -608,7 +608,7 @@ a.b24-form-click-btn-font-modern {
   -o-transition: min-height 180ms ease;
   transition: min-height 180ms ease;
   word-break: break-word;
-  border-radius: var(--ui-border-radius-md)
+  border-radius: 10px;
 }
 
 .b24-form-wrapper.b24-from-state-on {
