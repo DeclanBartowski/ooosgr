@@ -196,14 +196,6 @@ const header  = ref({
         >
       </NuxtLink>
     </div>
-
-    <div class="options-mobile">
-      <a
-        class="options__email icon-email"
-        href="mailto:info@ooosgr.ru"
-        title="Написать письмо"
-      />
-    </div>
     <a
       class="callibri_phone-mobile"
       href="tel:+74957773646"
@@ -275,20 +267,10 @@ const header  = ref({
       position: relative;
       width: 27px
     }
-    .options-mobile {
-      align-items: center;
-      display: flex;
-      font-size: 18px;
-      font-weight: bold;
-      justify-content: center;
-    }
     .callibri_phone-mobile {
       color: #2d2f8e;
       font-size: 23px;
       font-weight: bold;
-    }
-    .options-mobile a {
-      margin:0 5px;
     }
     .wrap_cont-mobile .header__menu {
       font-size: 13px;
@@ -307,7 +289,7 @@ const header  = ref({
       background: transparent;
     }
     .header--simple .header__menu .menu-switcher .line{
-      background-color: rgba(203, 41, 18, 1);;
+      background-color: #2d2f8e;
     }
   }
 </style>

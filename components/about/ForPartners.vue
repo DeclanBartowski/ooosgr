@@ -180,6 +180,9 @@
   .bottom-req {
     margin-top: 10px;
   }
+  .about_partner p .callibri_phone {
+    margin-left: 10px;
+  }
   @media only screen and (max-width: 980px) {
     .content .text p {
       margin-bottom: 0;

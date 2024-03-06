@@ -57,23 +57,10 @@
         </div>
       </Slide>
       <template #addons>
-        <Navigation />
+<!--        <Navigation />-->
         <Pagination />
       </template>
     </Carousel>
-<!--    <div class="owl-dots">
-      <button role="button" class="owl-dot"><span></span></button>
-      <button role="button" class="owl-dot"><span></span></button>
-      <button role="button" class="owl-dot active"><span></span></button>
-      <button role="button" class="owl-dot"><span></span></button>
-      <button role="button" class="owl-dot"><span></span></button>
-      <button role="button" class="owl-dot"><span></span></button>
-      <button role="button" class="owl-dot"><span></span></button>
-    </div>
-    <div class="owl-nav">
-      <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
-      <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
-    </div>-->
   </div>
 </template>
 
@@ -100,6 +87,11 @@
 @media only screen and (max-width: 1280px){
   .main.slider, .main.slider ol li, .slide-wrapper {
     height: 30vw;
+  }
+  .main.slider {
+    box-shadow: none;
+    margin: 0 0 30px 0;
+    overflow: visible
   }
 }
 </style>
