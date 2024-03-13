@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import TrenchBitrixForm from "~/components/forms/TrenchBitrixForm.vue";
 import { Carousel, Slide } from 'vue3-carousel'
 
@@ -7,13 +7,15 @@ const mobileCarousel = ref(null);
 
 import 'vue3-carousel/dist/carousel.css'
 
+const computerWidth = computed(() => {
+  return window?.innerWidth > 576
+})
+
 </script>
 
 <template>
   <div class="trench-preview">
-    <h1 class="trench-preview__title">
-      Разработка котлованов в Москве и Московской области
-    </h1>
+    <img src="~/assets/images/trench/banner.png" class="trench-preview__img" alt="">
   </div>
   <h2 class="excavation-block__title">
     Земляные работы
@@ -45,7 +47,7 @@ import 'vue3-carousel/dist/carousel.css'
     <div class="excavation-block-part">
       <img src="~/assets/images/trench/excavation2.png" alt="excavation">
     </div>
-    <div class="excavation-block-part blue">
+    <div class="excavation-block-part blue excavation-block-part-padding">
       <h2 class="excavation-block__title in-block no-visible">
         Высокие требования
       </h2>
@@ -146,7 +148,9 @@ import 'vue3-carousel/dist/carousel.css'
         </span>
     </p>
   </div>
-  <TrenchBitrixForm />
+  <div class="feedback-form">
+    <BitrixForm />
+  </div>
   <h2 class="excavation-block__title">
     Спецтехника нашей компании
   </h2>
@@ -173,14 +177,14 @@ import 'vue3-carousel/dist/carousel.css'
         Компания СТРОЙГЕОРЕСУРС имеет в распоряжении достаточное количество спецтехники для выполнения работ нулевого цикла
       </p>
       <ul class="tech-list">
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Экскаваторы</span> <span>2 ед</span> <span class="bold">Komatsu pc400, XCMG XE225DN</span></div></li>
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Самосвалы</span> <span>5 ед</span> <span class="bold">Scania p440, Камаз 6520</span></div></li>
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Длинномеры</span> <span>2 ед</span> <span class="bold">Scania r440</span></div></li>
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Вибропогружатель</span> <span>1 ед</span> <span class="bold">Мuller MS 24 HFV</span></div></li>
+        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Экскаваторы</span> <span>2 {{ computerWidth ? 'единицы' : 'ед' }}</span> <span class="bold">Komatsu pc400, XCMG XE225DN</span></div></li>
+        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Самосвалы</span> <span>5 {{ computerWidth ? 'единиц' : 'ед' }}</span> <span class="bold">Scania p440, Камаз 6520</span></div></li>
+        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Длинномеры</span> <span>2 {{ computerWidth ? 'единицы' : 'ед' }}</span> <span class="bold">Scania r440</span></div></li>
+        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Вибропогружатель</span> <span>1 {{ computerWidth ? 'единица' : 'ед' }}</span> <span class="bold">Мuller MS 24 HFV</span></div></li>
       </ul>
     </div>
   </div>
-  <div class=title-block>
+  <div class="title-block">
     <h2 class="excavation-block__title center">
       Для каждого проекта мы подбираем оптимальный состав землеройной техники по мощности и производительности, в том числе привлекаем подрядную. На данной технике работают опытные водители и операторы с необходимой квалификацией
     </h2>
@@ -384,7 +388,9 @@ import 'vue3-carousel/dist/carousel.css'
       <img src="~/assets/images/trench/next.png" alt="">
     </button>
   </div>
-  <TrenchBitrixForm />
+  <div class="feedback-form">
+    <BitrixForm />
+  </div>
   <div style="height: 20vh"></div>
 </template>
 
@@ -392,17 +398,20 @@ import 'vue3-carousel/dist/carousel.css'
 
 .trench-preview {
   width: 100%;
-  background:  url(~/assets/images/trench/preview.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  max-width: 1260px;
 
+  margin: auto;
+}
+
+.trench-preview__img {
+  width: 100%;
+  box-shadow: 0 25px 20px -20px rgba(0,0,0,0.75);
 }
 
 .trench-preview__title {
   font-family: 'RoadRadio', sans-serif;
   font-weight: 300;
-  font-size: calc(22px + (72 + 72 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(22px + (48 + 48 * 0.2) * ((100vw - 392px) / 1920));
   color: #ffffff;
   line-height: normal;
   width: 60%;
@@ -419,28 +428,39 @@ import 'vue3-carousel/dist/carousel.css'
 }
 
 .excavation-block {
-  width: 90%;
+  width: 100%;
+  max-width: 1260px;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto 150px;
+  margin: 0 auto 100px;
 }
 
 .excavation-block-part {
   width: 50%;
 }
 
+.excavation-block-part .in-block {
+  width: 100%;
+  margin-top: 0;
+}
+
 .excavation-block .desc {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  font-size: calc(16px + (8 + 8 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(14px + (2 + 2 * 0.2) * ((100vw - 392px) / 1920));
   line-height: normal;
-  width: 90%;
+  width: 98%;
+  margin: auto;
 }
 
 
 .excavation-block-part img {
   width: 100%;
   height: 100%;
+}
+
+.excavation-block-part-padding {
+  padding: 3% 3%;
 }
 
 .excavation-block-part + .full-width img {
@@ -451,12 +471,13 @@ import 'vue3-carousel/dist/carousel.css'
 .excavation-block__title {
   font-family: 'RoadRadio', sans-serif;
   font-weight: 700;
-  font-size: calc(32px + (16 + 16 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: 30px;
   color: #292B7C;
   line-height: normal;
   text-transform: uppercase;
   width: 90%;
-  margin: 100px auto 40px;
+  max-width: 1260px;
+  margin: 60px auto 40px;
 }
 
 @media(max-width: 576px) {
@@ -473,13 +494,17 @@ import 'vue3-carousel/dist/carousel.css'
   margin-bottom: 50px;
 }
 
-@media(max-width: 1400px) {
+@media(max-width: 1260px) {
   .excavation-block {
     flex-direction: column-reverse;
   }
 
+  .excavation-block-part-padding {
+    padding: 0;
+  }
+
   .excavation-block  p {
-    width: 100%;
+    width: 95%;
   }
 
   .excavation-block .no-visible {
@@ -517,26 +542,19 @@ import 'vue3-carousel/dist/carousel.css'
   }
 
   .excavation-block p {
-    width: 90%;
+    width: 95%;
     margin: auto;
+    padding: 0;
   }
-}
-
-.excavation-block .center {
-  width: 90%;
-  margin: auto;
 }
 
 .excavation-block .blue {
   background-color: #DFE8F1;
 }
 
-.excavation-block-part .in-block {
-  margin: 60px auto 40px;
-}
-
 .stages-block {
-  width: 90%;
+  width: 95%;
+  max-width: 1260px;
   margin: auto;
   display: grid;
   grid-template-rows: repeat(auto-fill, min-content);
@@ -561,7 +579,7 @@ import 'vue3-carousel/dist/carousel.css'
 .step-number {
   font-family: 'RoadRadio', sans-serif;
   font-weight: 700;
-  font-size: calc(36px + (26 + 26 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(36px + (22 + 22 * 0.2) * ((100vw - 392px) / 1920));
   color: #8A8C8B;
 }
 
@@ -570,7 +588,7 @@ import 'vue3-carousel/dist/carousel.css'
   width: 100%;
   line-height: normal;
   font-weight: 700;
-  font-size: calc(20px + (8 + 8 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(20px + (4 + 4 * 0.2) * ((100vw - 392px) / 1920));
   display: flex;
   align-content: start;
   height: min-content;
@@ -579,7 +597,7 @@ import 'vue3-carousel/dist/carousel.css'
 .tech-description {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: calc(18px + (16 + 16 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(16px + (8 + 8 * 0.2) * ((100vw - 392px) / 1920));
   line-height: normal;
   margin-bottom: 65px!important;
 }
@@ -594,7 +612,7 @@ import 'vue3-carousel/dist/carousel.css'
   width: 100%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: calc(14px + (8 + 8 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(14px + (4 + 4 * 0.2) * ((100vw - 392px) / 1920));
   line-height: normal;
 }
 
@@ -614,7 +632,8 @@ import 'vue3-carousel/dist/carousel.css'
 }
 
 .title-block {
-  width: 90%;
+  width: 100%;
+  max-width: 1620px;
   background-color: #DFE8F1;
   margin: auto;
   text-align: center;
@@ -622,7 +641,7 @@ import 'vue3-carousel/dist/carousel.css'
 
 .title-block .excavation-block__title {
   padding: 75px 30px;
-  font-size: calc(24px + (24 + 24 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(20px + (20 + 20 * 0.2) * ((100vw - 392px) / 1920));
 }
 
 @media(max-width: 576px) {
@@ -633,19 +652,29 @@ import 'vue3-carousel/dist/carousel.css'
 
 .tech-cards-block {
   width: 85%;
+  max-width: 1260px;
   margin: 0 auto 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 650px));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 500px));
   grid-template-rows: repeat(auto-fill, minmax(auto, auto));
   row-gap: 65px;
   justify-content: space-between;
 }
 
-@media (max-width: 1400px) {
+@media(max-width: 1200px) {
   .tech-cards-block {
+    grid-template-columns: repeat(auto-fill, minmax(auto, 400px));
+    justify-content: space-between;
+  }
+}
+
+@media(max-width: 992px) {
+  .tech-cards-block {
+    grid-template-columns: repeat(auto-fill, minmax(auto, 450px));
     justify-content: center;
   }
 }
+
 .tech-card {
   display: flex;
   flex-direction: column;
@@ -661,6 +690,10 @@ import 'vue3-carousel/dist/carousel.css'
   line-height: 1.3;
 }
 
+.tech-card img {
+  width: 100%;
+}
+
 .advantages-block {
   margin-top: 150px;
   width: 100%;
@@ -674,7 +707,7 @@ import 'vue3-carousel/dist/carousel.css'
 .advantages-block__title {
   font-family: 'RoadRadio', sans-serif;
   font-weight: 700;
-  font-size: calc(32px + (16 + 16 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: 30px;
   color: #ffffff;
   line-height: normal;
   text-transform: uppercase;
@@ -690,10 +723,10 @@ import 'vue3-carousel/dist/carousel.css'
 .advantages-block__list-item {
   list-style-type: disc;
   font-family: 'Open Sans', sans-serif;
-  font-size: calc(16px + (12 + 12 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(14px + (8 + 8 * 0.2) * ((100vw - 392px) / 1920));
+  line-height: 1.5;
   font-weight: 400;
   color: #ffffff;
-  line-height: normal;
   word-wrap: normal;
   height: min-content;
 }
@@ -748,6 +781,43 @@ import 'vue3-carousel/dist/carousel.css'
   display: none;
 }
 
+.carousel__track {
+  transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+  transition: 0.5s;
+}
+
+.carousel__slide {
+  opacity: 0.9;
+  transform: rotateY(-20deg) scale(0.85);
+}
+
+.carousel__slide--active ~ .carousel__slide {
+  transform: rotateY(20deg) scale(0.9);
+}
+
+.carousel__slide--visible {
+  opacity: 1;
+  transform: rotateY(-10deg) scale(0.85);
+}
+
+.carousel__slide--prev {
+  opacity: 1;
+  transform: rotateY(-10deg) scale(0.85);
+}
+
+.carousel__slide--next {
+  opacity: 1;
+  transform: rotateY(10deg) scale(0.85);
+}
+
+.carousel__slide--active {
+  opacity: 1;
+  transform: rotateY(0) scale(1);
+}
+
 @media(max-width: 576px) {
   .slider-btn {
     width: 36px;
@@ -777,22 +847,13 @@ import 'vue3-carousel/dist/carousel.css'
     justify-content: center;
   }
 
-
-  .carousel__track {
-    transform-style: preserve-3d;
-  }
-
-  .carousel__slide--sliding {
-    transition: 0.5s;
-  }
-
   .carousel__slide {
     opacity: 0.9;
     transform: rotateY(-20deg) scale(0.9);
   }
 
   .carousel__slide--active ~ .carousel__slide {
-    transform: rotateY(20deg) scale(0.9);
+    transform: rotateY(20deg) scale(0.75);
   }
 
   .carousel__slide--prev {
@@ -808,6 +869,18 @@ import 'vue3-carousel/dist/carousel.css'
   .carousel__slide--active {
     opacity: 1;
     transform: rotateY(0) scale(1);
+  }
+}
+
+.feedback-form {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+@media(max-width: 576px) {
+  .feedback-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 
