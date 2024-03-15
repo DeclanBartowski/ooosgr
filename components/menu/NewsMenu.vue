@@ -30,7 +30,6 @@ defineProps(['className']);
 .news__link-about a {
   text-transform: uppercase;
   font-size: 16px;
-  margin-right: 21%;
   font-weight: bold;
   text-decoration: none;
   font-family: 'RoadRadio',Verdana,sans-serif;
@@ -40,13 +39,16 @@ defineProps(['className']);
 }
 .content .text.white a {
   color: white;
+  min-width: 100px;
+  border-radius: 2px;
 }
 @media only screen and (max-width: 980px) {
   .news__link-about{
     margin: 30px 0;
   }
   .news__link-about a {
-    margin-right: 13%;
+    margin-right: 0;
+    min-width: 90px!important;
   }
 }
 </style>
