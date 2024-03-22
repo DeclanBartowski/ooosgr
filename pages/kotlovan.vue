@@ -21,7 +21,7 @@ const computerWidth = computed(() => {
   <h2 class="excavation-block__title">
     Земляные работы
   </h2>
-  <div class="excavation-block">
+  <div class="excavation-block margin-50">
     <div class="excavation-block-part">
       <p class="desc">
         Одно из основных направлений компании СТРОЙГЕОРЕСУРС является разработка котлованов для строительства зданий,
@@ -44,22 +44,24 @@ const computerWidth = computed(() => {
   <h2 class="excavation-block__title visible">
     Высокие требования
   </h2>
-  <div class="excavation-block excavation-block-part-no-reverse">
+  <div class="excavation-block excavation-block-part-no-reverse margin-80">
     <div class="excavation-block-part">
       <img src="~/assets/images/trench/excavation2.png" alt="excavation">
     </div>
-    <div class="excavation-block-part blue excavation-block-part-padding">
-      <h2 class="excavation-block__title in-block no-visible">
-        Высокие требования
-      </h2>
-      <p class="desc">
-        Рытье котлована – очень важный подготовительный этап строительства.
-        От качества котлованных работ зависит надежность фундамента и всего последующего сооружения.
-        <br>
-        <br>
-        Компания СТРОЙГЕОРЕСУРС предлагает услуги по механизированной и ручной разработке грунта для организаций и частных заказчиков.
-        Мы обеспечиваем высокое качество земляных работ, используя парк профессиональной спецтехники, даже в стесненных городских условиях.
-      </p>
+    <div class="excavation-block-part blue">
+      <div class="excavation-block-part-padding">
+        <h2 class="excavation-block__title in-block no-visible">
+          Высокие требования
+        </h2>
+        <p class="desc">
+          Рытье котлована – очень важный подготовительный этап строительства.
+          От качества котлованных работ зависит надежность фундамента и всего последующего сооружения.
+          <br>
+          <br>
+          Компания СТРОЙГЕОРЕСУРС предлагает услуги по механизированной и ручной разработке грунта для организаций и частных заказчиков.
+          Мы обеспечиваем высокое качество земляных работ, используя парк профессиональной спецтехники, даже в стесненных городских условиях.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -155,7 +157,7 @@ const computerWidth = computed(() => {
   <h2 class="excavation-block__title">
     Спецтехника нашей компании
   </h2>
-  <div class="excavation-block excavation-block-part-no-reverse">
+  <div class="excavation-block excavation-block-part-no-reverse margin-50">
     <div class="excavation-block-part excavation-block-part-left">
       <p class="desc">
         Разработка и последующее устройство котлованов осуществляется с привлечением специализированной техники высокой производительности.
@@ -166,11 +168,13 @@ const computerWidth = computed(() => {
         требуются другие машины: бульдозеры, погрузчики, грейдеры, манипуляторы, ямобуры, гидромолоты.
       </p>
     </div>
-    <div class="excavation-block-part full-width excavation-block-part-right">
-      <img src="~/assets/images/trench/technique.png" alt="excavation">
+    <div class="excavation-block-part full-width w-57">
+      <div class="technique-wrapper">
+        <img src="~/assets/images/trench/technique.png" class="technique-wrapper__img" alt="excavation">
+      </div>
     </div>
   </div>
-  <div class="excavation-block excavation-block-part-no-reverse">
+  <div class="excavation-block excavation-block-part-no-reverse margin-80">
     <div class="excavation-block-part">
       <div class="arrow-icon-wrapper">
         <img src="/images/site/arrow.png" class="arrow-icon" alt="arrow">
@@ -357,7 +361,7 @@ const computerWidth = computed(() => {
       </li>
     </ul>
   </div>
-  <h2 class="excavation-block__title big-margin">
+  <h2 class="excavation-block__title big-margin margin-80">
     Примеры работ
   </h2>
   <Carousel class="full-carousel" ref="carousel" :wrap-around="true" :items-to-show="3">
@@ -405,6 +409,10 @@ const computerWidth = computed(() => {
 </template>
 
 <style>
+header:not(.hide-shadow):after {
+  display: none;
+}
+
 .trench-preview {
   width: 100%;
   max-width: 1260px;
@@ -415,25 +423,6 @@ const computerWidth = computed(() => {
 .trench-preview__img {
   width: 100%;
   box-shadow: 0 25px 20px -20px rgba(0,0,0,0.75);
-}
-
-.trench-preview__title {
-  font-family: 'RoadRadio', sans-serif;
-  font-weight: 300;
-  font-size: calc(22px + (48 + 48 * 0.2) * ((100vw - 392px) / 1920));
-  color: #ffffff;
-  line-height: normal;
-  width: 60%;
-  padding: 5% 5%;
-  text-transform: uppercase;
-}
-
-@media(max-width: 576px) {
-
-  .trench-preview__title {
-    width: 70%;
-    padding: 10% 5%;
-  }
 }
 
 .excavation-block {
@@ -449,11 +438,15 @@ const computerWidth = computed(() => {
 }
 
 .excavation-block-part-left {
-  width: 41%;
+  width: 43%;
 }
 
 .excavation-block-part-right {
-  width: 58%;
+  width: 64%;
+}
+
+.w-57 {
+  width: 57%;
 }
 
 .excavation-block-part .in-block {
@@ -466,17 +459,24 @@ const computerWidth = computed(() => {
   font-weight: 300;
   font-size: calc(16px + 2 * (100vw / 1920));
   width: 96%;
-  line-height: 30px;
+  line-height: 1.45;
 }
-
 
 .excavation-block-part img {
   width: 100%;
   height: 100%;
 }
 
+.margin-50 {
+  margin-bottom: 50px;
+}
+
+.margin-80 {
+  margin-bottom: 80px;
+}
+
 .excavation-block-part-padding {
-  padding: 3% 3%;
+  padding: 35px 40px;
 }
 
 .excavation-block-part + .full-width img {
@@ -493,7 +493,7 @@ const computerWidth = computed(() => {
   text-transform: uppercase;
   width: 90%;
   max-width: 1180px;
-  margin: 60px auto 40px;
+  margin: 80px auto 40px;
 }
 
 @media(max-width: 576px) {
@@ -565,10 +565,10 @@ const computerWidth = computed(() => {
 
 .arrow-icon {
   position: absolute;
-  right: 15%;
-  top: 3%;
-  max-height: 90%;
+  right: 10%;
+  top: 15%;
   max-width: 70px;
+  max-height: 240px;
 }
 
 @media (max-width: 1260px) {
@@ -601,6 +601,33 @@ const computerWidth = computed(() => {
 
 .excavation-block .blue {
   background-color: #DFE8F1;
+}
+
+.technique-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: end;
+}
+
+.technique-wrapper__img {
+  max-width: 670px;
+  max-height: 200px;
+  margin-bottom: 35px;
+}
+
+@media(max-width: 1260px) {
+  .technique-wrapper {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+  }
+  .technique-wrapper__img {
+    max-width: 100%;
+    max-height: 10%;
+    margin-bottom: 0;
+  }
 }
 
 .stages-block {
@@ -660,7 +687,7 @@ const computerWidth = computed(() => {
 
 .tech-list__item {
   list-style-type: disc!important;
-  margin-left: 15px;
+  margin-left: 30px;
   width: 100%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -670,7 +697,7 @@ const computerWidth = computed(() => {
 
 .tech-list_item-block {
   display: grid;
-  grid-template-columns: 30% minmax(auto, 30%) minmax(auto, 40%);
+  grid-template-columns: 30% minmax(auto, 20%) minmax(auto, 45%);
   margin-bottom: 18px;
 }
 
@@ -688,7 +715,7 @@ const computerWidth = computed(() => {
   width: 100%;
   max-width: 1260px;
   background-color: #DFE8F1;
-  margin: auto;
+  margin: 0 auto 90px;
   text-align: center;
 }
 
@@ -709,7 +736,7 @@ const computerWidth = computed(() => {
 .tech-cards-block {
   width: 85%;
   max-width: 1180px;
-  margin: 0 auto 90px;
+  margin: 0 auto 130px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(auto, 390px));
   grid-template-rows: repeat(auto-fill, minmax(auto, auto));
@@ -760,7 +787,7 @@ const computerWidth = computed(() => {
 }
 
 .advantages-block {
-  margin: 150px auto 0;
+  margin: 80px auto 0;
   width: 100%;
   max-width: 1260px;
   background:  url(~/assets/images/trench/advantages-bg.png);
@@ -979,7 +1006,7 @@ const computerWidth = computed(() => {
 }
 
 .feedback-form {
-  margin-top: 100px;
+  margin-top: 80px;
   margin-bottom: 100px;
 }
 
