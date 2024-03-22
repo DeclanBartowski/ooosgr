@@ -363,7 +363,7 @@ const computerWidth = computed(() => {
   <Carousel class="full-carousel" ref="carousel" :wrap-around="true" :items-to-show="3">
     <Slide v-for="slide in 4" :key="slide">
       <div class="carousel__item">
-        <img :src="'/_nuxt/assets/images/trench/slider/'+slide+'.png'" alt="">
+        <img :src="'/images/slider/'+slide+'.png'" alt="">
       </div>
       <div class="slider-blur"></div>
     </Slide>
@@ -385,7 +385,7 @@ const computerWidth = computed(() => {
   <Carousel class="mobile-carousel" ref="mobileCarousel" :wrap-around="true" :items-to-show="2.5">
     <Slide v-for="slide in 4" :key="slide">
       <div class="carousel__item">
-        <img :src="'/_nuxt/assets/images/trench/slider/'+slide+'.png'" alt="">
+        <img :src="'/images/slider/'+slide+'.png'" alt="">
       </div>
     </Slide>
   </Carousel>
