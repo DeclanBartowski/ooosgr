@@ -66,7 +66,7 @@ const computerWidth = computed(() => {
   </div>
 
   <h2 class="excavation-block__title big-margin">
-    Этапы разработки проекта
+    ЭТАПЫ РАЗРАБОТКИ КОТЛОВАНА
   </h2>
 
   <div class="stages-block">
@@ -212,7 +212,7 @@ const computerWidth = computed(() => {
     </div>
     <div class="tech-card">
       <img src="../assets/images/trench/tech/excavator2.png" alt="excavator2">
-      <p>Гусеничный экскаватор</p>
+      <p>ЭКСКАВАТОР-ПОГРУЗЧИК</p>
     </div>
     <div class="tech-card">
       <img src="../assets/images/trench/tech/hydraulic-hammer.png" alt="hydraulic">
@@ -405,7 +405,7 @@ const computerWidth = computed(() => {
   <div class="feedback-form">
     <BitrixForm />
   </div>
-  <div style="height: 20vh"></div>
+  <div style="height: 10vh"></div>
 </template>
 
 <style>
@@ -872,7 +872,7 @@ header:not(.hide-shadow):after {
 
 .full-carousel {
   display: block;
-  max-width: 1180px;
+  max-width: 1230px;
   margin: auto;
 }
 
