@@ -259,7 +259,7 @@ const header  = ref({
     .mobile--980p {
       display: flex !important;
       justify-content:space-around;
-      align-items:flex-end;
+      align-items:center;
     }
     .header--simple .header__menu .menu-switcher .lines {
       height: 27px;
