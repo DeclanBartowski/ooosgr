@@ -1,6 +1,7 @@
 <script setup>
-import TrenchBitrixForm from "~/components/forms/TrenchBitrixForm.vue";
-import { Carousel, Slide } from 'vue3-carousel'
+import { Carousel, Slide, Navigation} from 'vue3-carousel'
+//import 'vue3-carousel/dist/carousel.css'
+
 
 const carousel = ref(null);
 const mobileCarousel = ref(null);
@@ -51,7 +52,7 @@ const computerWidth = computed(() => {
       <h2 class="excavation-block__title in-block no-visible">
         Высокие требования
       </h2>
-      <p class="center desc">
+      <p class="desc">
         Рытье котлована – очень важный подготовительный этап строительства.
         От качества котлованных работ зависит надежность фундамента и всего последующего сооружения.
         <br>
@@ -155,7 +156,7 @@ const computerWidth = computed(() => {
     Спецтехника нашей компании
   </h2>
   <div class="excavation-block excavation-block-part-no-reverse">
-    <div class="excavation-block-part">
+    <div class="excavation-block-part excavation-block-part-left">
       <p class="desc">
         Разработка и последующее устройство котлованов осуществляется с привлечением специализированной техники высокой производительности.
         Основная спецтехника на объекте – экскаваторы, самосвалы, буровые установки, вибропогружатели и краны.
@@ -165,14 +166,17 @@ const computerWidth = computed(() => {
         требуются другие машины: бульдозеры, погрузчики, грейдеры, манипуляторы, ямобуры, гидромолоты.
       </p>
     </div>
-    <div class="excavation-block-part full-width">
+    <div class="excavation-block-part full-width excavation-block-part-right">
       <img src="~/assets/images/trench/technique.png" alt="excavation">
     </div>
   </div>
   <div class="excavation-block excavation-block-part-no-reverse">
     <div class="excavation-block-part">
+      <div class="arrow-icon-wrapper">
+        <img src="/images/site/arrow.png" class="arrow-icon" alt="arrow">
+      </div>
     </div>
-    <div class="excavation-block-part no-full">
+    <div class="excavation-block-part no-full excavation-block-part-right">
       <p class="tech-description">
         Компания СТРОЙГЕОРЕСУРС имеет в распоряжении достаточное количество спецтехники для выполнения работ нулевого цикла
       </p>
@@ -356,12 +360,26 @@ const computerWidth = computed(() => {
   <h2 class="excavation-block__title big-margin">
     Примеры работ
   </h2>
-  <Carousel class="full-carousel" ref="carousel" :wrap-around="true" :items-to-show="3.4">
+  <Carousel class="full-carousel" ref="carousel" :wrap-around="true" :items-to-show="3">
     <Slide v-for="slide in 4" :key="slide">
       <div class="carousel__item">
         <img :src="'/_nuxt/assets/images/trench/slider/'+slide+'.png'" alt="">
       </div>
+      <div class="slider-blur"></div>
     </Slide>
+
+    <template #addons>
+      <navigation>
+        <template #next>
+          <span class="slider-next-icon">
+            <img src="/images/slider/next-btn.png" alt="next">
+          </span>
+        </template>
+        <template #prev>
+          <img class="slider-prev-icon" src="/images/slider/prev-btn.png" alt="prev">
+        </template>
+      </navigation>
+    </template>
   </Carousel>
 
   <Carousel class="mobile-carousel" ref="mobileCarousel" :wrap-around="true" :items-to-show="2.5">
@@ -380,22 +398,13 @@ const computerWidth = computed(() => {
     </button>
   </div>
 
-  <div class="slider-buttons-full">
-    <button class="slider-btn" @click="carousel.prev()">
-      <img src="~/assets/images/trench/prev.png" alt="">
-    </button>
-    <button class="slider-btn" @click="carousel.next()">
-      <img src="~/assets/images/trench/next.png" alt="">
-    </button>
-  </div>
   <div class="feedback-form">
     <BitrixForm />
   </div>
   <div style="height: 20vh"></div>
 </template>
 
-<style scoped>
-
+<style>
 .trench-preview {
   width: 100%;
   max-width: 1260px;
@@ -429,7 +438,7 @@ const computerWidth = computed(() => {
 
 .excavation-block {
   width: 100%;
-  max-width: 1260px;
+  max-width: 1180px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto 100px;
@@ -437,6 +446,14 @@ const computerWidth = computed(() => {
 
 .excavation-block-part {
   width: 50%;
+}
+
+.excavation-block-part-left {
+  width: 41%;
+}
+
+.excavation-block-part-right {
+  width: 58%;
 }
 
 .excavation-block-part .in-block {
@@ -447,10 +464,9 @@ const computerWidth = computed(() => {
 .excavation-block .desc {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  font-size: calc(14px + (2 + 2 * 0.2) * ((100vw - 392px) / 1920));
-  line-height: normal;
-  width: 98%;
-  margin: auto;
+  font-size: calc(16px + 2 * (100vw / 1920));
+  width: 96%;
+  line-height: 30px;
 }
 
 
@@ -476,7 +492,7 @@ const computerWidth = computed(() => {
   line-height: normal;
   text-transform: uppercase;
   width: 90%;
-  max-width: 1260px;
+  max-width: 1180px;
   margin: 60px auto 40px;
 }
 
@@ -497,6 +513,10 @@ const computerWidth = computed(() => {
 @media(max-width: 1260px) {
   .excavation-block {
     flex-direction: column-reverse;
+  }
+
+  .excavation-block .desc {
+    margin: auto;
   }
 
   .excavation-block-part-padding {
@@ -535,11 +555,42 @@ const computerWidth = computed(() => {
 
 }
 
+.arrow-icon-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  justify-content: end;
+  align-items: center;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 15%;
+  top: 3%;
+  max-height: 90%;
+  max-width: 70px;
+}
+
+@media (max-width: 1260px) {
+  .arrow-icon {
+    display: none;
+  }
+}
+
 @media(max-width: 576px) {
   .excavation-block {
     width: 100%;
     margin: 0 auto 50px;
   }
+
+
+  .excavation-block .desc {
+    font-size: calc(16px + (2 + 2 * 0.5) * ((100vw - 576px) / 1920));
+    line-height: normal;
+    width: 90%;
+    margin: auto;
+  }
+
 
   .excavation-block p {
     width: 95%;
@@ -554,11 +605,11 @@ const computerWidth = computed(() => {
 
 .stages-block {
   width: 95%;
-  max-width: 1260px;
+  max-width: 1180px;
   margin: auto;
   display: grid;
   grid-template-rows: repeat(auto-fill, min-content);
-  grid-template-columns: repeat(auto-fill, minmax(300px, 500px));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 360px));
   justify-content: space-between;
   grid-row-gap: 60px;
 }
@@ -579,19 +630,20 @@ const computerWidth = computed(() => {
 .step-number {
   font-family: 'RoadRadio', sans-serif;
   font-weight: 700;
-  font-size: calc(36px + (22 + 22 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(36px + (16 + 16 * 0.2) * ((100vw - 392px) / 1920));
   color: #8A8C8B;
+  line-height: 52px;
 }
 
 .step-description {
   font-family: 'RoadRadio', sans-serif;
   width: 100%;
-  line-height: normal;
   font-weight: 700;
-  font-size: calc(20px + (4 + 4 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(16px + (2 + 2 * 0.2) * ((100vw - 392px) / 1920));
   display: flex;
   align-content: start;
   height: min-content;
+  line-height: 21px;
 }
 
 .tech-description {
@@ -619,6 +671,7 @@ const computerWidth = computed(() => {
 .tech-list_item-block {
   display: grid;
   grid-template-columns: 30% minmax(auto, 30%) minmax(auto, 40%);
+  margin-bottom: 18px;
 }
 
 .tech-list_item-block .bold {
@@ -633,7 +686,7 @@ const computerWidth = computed(() => {
 
 .title-block {
   width: 100%;
-  max-width: 1620px;
+  max-width: 1260px;
   background-color: #DFE8F1;
   margin: auto;
   text-align: center;
@@ -641,24 +694,27 @@ const computerWidth = computed(() => {
 
 .title-block .excavation-block__title {
   padding: 75px 30px;
-  font-size: calc(20px + (20 + 20 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(22px + 4 * (100vw / 1920));
+  line-height: 32px;
 }
 
 @media(max-width: 576px) {
   .title-block .excavation-block__title {
     padding: 75px 15px;
+    font-size: calc(22px + (4 + 4 *0.7) * ((100vw - 1920) / 576));
+    line-height: normal;
   }
 }
 
 .tech-cards-block {
   width: 85%;
-  max-width: 1260px;
-  margin: 0 auto 50px;
+  max-width: 1180px;
+  margin: 0 auto 90px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 500px));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 390px));
   grid-template-rows: repeat(auto-fill, minmax(auto, auto));
-  row-gap: 65px;
   justify-content: space-between;
+  grid-row-gap: 90px;
 }
 
 @media(max-width: 1200px) {
@@ -679,29 +735,39 @@ const computerWidth = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .tech-card p {
   font-family: 'RoadRadio', sans-serif;
-  font-size: calc(24px + (12 + 12 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: 21px;
   font-weight: 700;
   text-align: center;
   margin-top: 10px;
   line-height: 1.3;
 }
 
+@media(max-width: 576px) {
+  .tech-card p {
+    font-size: 24px;
+  }
+}
+
 .tech-card img {
   width: 100%;
+  max-width: 315px;
+  margin-bottom: 20px;
 }
 
 .advantages-block {
-  margin-top: 150px;
+  margin: 150px auto 0;
   width: 100%;
+  max-width: 1260px;
   background:  url(~/assets/images/trench/advantages-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 85px 0;
+  padding: 50px 0 85px;
 }
 
 .advantages-block__title {
@@ -711,19 +777,19 @@ const computerWidth = computed(() => {
   color: #ffffff;
   line-height: normal;
   text-transform: uppercase;
-  width: 80%;
+  width: 90%;
   margin: 0 auto 40px;
 }
 
 .advantages-block__list {
-  width: 75%;
+  width: 85%;
   margin: auto;
 }
 
 .advantages-block__list-item {
   list-style-type: disc;
   font-family: 'Open Sans', sans-serif;
-  font-size: calc(14px + (8 + 8 * 0.2) * ((100vw - 392px) / 1920));
+  font-size: calc(16px + 2 * (100vw / 1920));
   line-height: 1.5;
   font-weight: 400;
   color: #ffffff;
@@ -740,10 +806,14 @@ const computerWidth = computed(() => {
     margin-top: 100px;
     padding: 30px 0 40px;
   }
+
+  .advantages-block__list-item {
+    font-size: calc(16px + (2 + 2 * 0.7) * ((100vw - 576px) / 1920));
+  }
 }
 
 .carousel__item {
-  width: 90%;
+  width: 100%;
   border-radius: 5%;
 }
 
@@ -775,6 +845,8 @@ const computerWidth = computed(() => {
 
 .full-carousel {
   display: block;
+  max-width: 1180px;
+  margin: auto;
 }
 
 .slider-buttons-mobile {
@@ -791,7 +863,7 @@ const computerWidth = computed(() => {
 
 .carousel__slide {
   opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.85);
+  transform: rotateY(-20deg) scale(0.9);
 }
 
 .carousel__slide--active ~ .carousel__slide {
@@ -800,22 +872,56 @@ const computerWidth = computed(() => {
 
 .carousel__slide--visible {
   opacity: 1;
-  transform: rotateY(-10deg) scale(0.85);
+  transform: rotateY(-10deg) scale(0.9);
 }
 
 .carousel__slide--prev {
   opacity: 1;
-  transform: rotateY(-10deg) scale(0.85);
+  transform: rotateY(-10deg) scale(0.9);
 }
 
 .carousel__slide--next {
   opacity: 1;
-  transform: rotateY(10deg) scale(0.85);
+  transform: rotateY(10deg) scale(0.9);
 }
 
 .carousel__slide--active {
   opacity: 1;
   transform: rotateY(0) scale(1);
+}
+
+.slider-blur {
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 63, 84, 0.5);
+  position: absolute;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.carousel__slide--active .slider-blur {
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 63, 84, 0);
+  position: absolute;
+  border-radius: 10px;
+}
+
+.carousel__next {
+  margin-right: 5%;
+  border: none;
+  transition: .3s;
+}
+
+.carousel__prev {
+  margin-left: 4%;
+  border: none;
+  transition: .3s;
+}
+
+.carousel__prev:hover,
+.carousel__next:hover {
+  transform: translate(0, -15px) scale(0.9);
 }
 
 @media(max-width: 576px) {

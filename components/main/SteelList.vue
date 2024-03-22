@@ -11,7 +11,7 @@ const data = ref({
       name: 'Собственный склад<br>в Москве',
     },
     {
-      img: '/images/site/иконка котлованных работ.jpg',
+      img: '/images/site/trench-works-icon.png',
       name: 'РАЗРАБОТКА КОТЛОВАНОВ<br> В МОСКВЕ И МОСКОВСКОЙ<br> ОБЛАСТИ',
     },
   ]

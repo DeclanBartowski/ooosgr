@@ -2,7 +2,6 @@
   const data = ref({
     name:'О компании',
     img:'https://ooosgr.ru/upload/about_company1.jpg',
-    imgList:'https://ooosgr.ru/upload/about_company2.png',
   })
 </script>
 
@@ -22,7 +21,7 @@
       </h1>
       <img
         :alt="data.name"
-        :src="data.imgList"
+        src="~/assets/images/about/about-company.png"
         style="width: 1097px; height: 240px;"
       >
     </div>
