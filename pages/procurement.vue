@@ -16,14 +16,14 @@
         <div class="content pipes zakupki-cont">
           <ul class="category_list">
             <li style="list-style: none;">
-              <div class="desc">
+              <div class="desc block-shadow">
                 <h1>{{ page.title }}</h1>
                 <div
                   class="text"
                   v-html="page.description"
                 />
               </div>
-              <div class="img">
+              <div class="img block-shadow">
                 <img
                   :alt="page.title"
                   :src="page.img"

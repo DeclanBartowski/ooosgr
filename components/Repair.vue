@@ -170,10 +170,10 @@ const data = ref({
 
 <template>
   <div class="text">
-    <div class="content pipes pipes--vosstanovlenie vosstanovlenie-cont">
+    <div class="content pipes block-shadow pipes--vosstanovlenie vosstanovlenie-cont">
       <ul class="category_list">
         <li style="list-style: none;">
-          <div class="desc">
+          <div class="desc block-shadow">
             <h1>{{ data.previewBlock.title }}</h1>
 
             <div
@@ -190,7 +190,7 @@ const data = ref({
           </div>
 
           <div
-            class="img"
+            class="img block-shadow"
             style="height: 390px;"
           >
             <img

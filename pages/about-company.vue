@@ -20,11 +20,18 @@
         <ForPartners />
       </div>
     </div>
-    <BitrixForm />
+    <div class="mt-70 mb-70">
+      <BitrixForm />
+    </div>
     <div class="push" />
   </div>
 </template>
 
 <style scoped>
-
+.mt-70 {
+  margin-top: 70px;
+}
+.mb-70 {
+  margin-bottom: 70px;
+}
 </style>

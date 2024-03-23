@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="parallax_cont about_cont">
+  <div class="parallax_cont block-shadow about_cont">
     <div class="parallax">
       <img
         :alt="data.name"

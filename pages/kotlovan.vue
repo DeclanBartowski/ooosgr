@@ -16,7 +16,7 @@ const computerWidth = computed(() => {
 
 <template>
   <div class="trench-preview">
-    <img src="~/assets/images/trench/banner.png" class="trench-preview__img" alt="">
+    <img src="../public/images/site/trench/banner.png" class="trench-preview__img block-shadow" alt="">
   </div>
   <h2 class="excavation-block__title">
     Земляные работы
@@ -408,11 +408,7 @@ const computerWidth = computed(() => {
   <div style="height: 10vh"></div>
 </template>
 
-<style>
-header:not(.hide-shadow):after {
-  display: none;
-}
-
+<style scoped>
 .trench-preview {
   width: 100%;
   max-width: 1260px;
@@ -422,7 +418,6 @@ header:not(.hide-shadow):after {
 
 .trench-preview__img {
   width: 100%;
-  box-shadow: 0 25px 20px -20px rgba(0,0,0,0.75);
 }
 
 .excavation-block {
@@ -932,23 +927,6 @@ header:not(.hide-shadow):after {
   background: rgba(52, 63, 84, 0);
   position: absolute;
   border-radius: 10px;
-}
-
-.carousel__next {
-  margin-right: 5%;
-  border: none;
-  transition: .3s;
-}
-
-.carousel__prev {
-  margin-left: 4%;
-  border: none;
-  transition: .3s;
-}
-
-.carousel__prev:hover,
-.carousel__next:hover {
-  transform: translate(0, -15px) scale(0.9);
 }
 
 @media(max-width: 576px) {

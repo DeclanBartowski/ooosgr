@@ -19,7 +19,7 @@ const data = ref({
 </script>
 
 <template>
-  <div class="three columns banners t-align-center">
+  <div class="three columns banners">
     <div
       v-for="item in data.items"
       class="column"

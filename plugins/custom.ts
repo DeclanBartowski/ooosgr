@@ -1,6 +1,6 @@
 export default defineNuxtPlugin(nuxtApp => {
     nuxtApp.provide('checkShadowByRouteName', (routeName: string): boolean => {
-        return routeName == 'index' || routeName == 'vosstanovlenie-trub' || routeName == 'procurement' || routeName == 'about-company' || routeName == 'kontakty';
+        return routeName == 'index' || routeName == 'vosstanovlenie-trub' || routeName == 'kotlovan' || routeName == 'procurement' || routeName == 'about-company' || routeName == 'kontakty';
     });
     nuxtApp.provide('initializeParallax', () => {
         const parallaxElements = document.querySelectorAll(".parallax");

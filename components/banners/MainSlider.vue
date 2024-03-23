@@ -12,6 +12,10 @@
         detailImg:'https://ooosgr.ru/cache/slide_text/files/slide/c57f4c97bc25d9a26ccca50864c373200f2ebdd9.png',
       },
       {
+        previewImg:'/images/site/trench/banner.png',
+        detailImg:'/images/site/trench/banner.png',
+      },
+      {
         previewImg:'https://ooosgr.ru/cache/slide/files/slide/46b4761dce1874adae94b8a0c7851679e3c6118ed.jpeg',
         detailImg:'https://ooosgr.ru/cache/slide_text/files/slide/4ab81b8629d0458d81a626df365653cc592dab32.png',
       },

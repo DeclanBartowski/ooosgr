@@ -8,7 +8,7 @@ const page =ref({
   <MainSlider />
   <div class="wrap content home">
     <div class="wrap_cont">
-      <h1 class="t-align-center">{{ page.title }}</h1>
+      <h1>{{ page.title }}</h1>
       <div class="archetype archetype--720p">
         <SteelList />
       </div>
