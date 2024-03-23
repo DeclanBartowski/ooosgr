@@ -19,7 +19,7 @@ const bitrixFormPhone = ref('');
               {{title??'Консультация специалиста по разработке котлована'}}
             </div>
             <div class="b24-form-header-description">
-              Заполните поля, и наш менеджер с Вами свяжется.
+              Заполните поля и наш менеджер с Вами свяжется
             </div>
           </div>
           <div class="b24-form-content">

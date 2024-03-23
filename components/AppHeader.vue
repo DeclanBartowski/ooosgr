@@ -90,7 +90,7 @@ const header  = ref({
           <img
               class="logo_image"
               alt="СТРОЙГЕОРЕСУРС"
-              src="https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a"
+              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
           >
           <img
               class="logo_image_alt"

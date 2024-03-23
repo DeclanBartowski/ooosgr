@@ -1598,7 +1598,7 @@ a[href^="tel"] {
 }
 
 header {
-    padding-top: 25px;
+    padding-top: 20px;
     z-index: 10
 }
 
@@ -1614,7 +1614,12 @@ header .header--fixed:after,header:not(.hide-shadow):after {
 }
 
 header .logo {
-    float: left
+    float: left;
+    padding-top: 2%;
+}
+
+header .logo img {
+    height: 100%;
 }
 
 header .title,.header--simple .title {
@@ -1740,6 +1745,11 @@ header .header--fixed {
     right: 0;
     padding-top: 10px;
     z-index: 100
+}
+
+
+header .header--fixed .logo {
+    padding-top: 0;
 }
 
 header .header--fixed .right {
@@ -3106,7 +3116,7 @@ footer.wrap .social_icons {
 }
 
 .page .wrap_cont {
-    margin-top: 50px
+    margin-top: 48px;
 }
 
 .content.pipes .category_list li {
@@ -3668,20 +3678,6 @@ a.download_pdf span:hover {
 .content .pipes {
     position: relative
 }
-
-.content .pipes:after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: -30px;
-    right: -17px;
-    margin-top: -23px;
-    height: 42px;
-    background: url(~/assets/images/sliders/main/shadow.png) center center no-repeat;
-    background-size: contain;
-    z-index: -1
-}
-
 .content .page.pipes:after {
     content: none
 }
@@ -4108,6 +4104,14 @@ a.c-white span,.c-white {
 
 .block-shadow {
     box-shadow: 0 25px 20px -20px rgba(0,0,0,0.75);
+}
+
+.main .carousel .carousel__next {
+    margin-right: 30px;
+}
+
+.main .carousel .carousel__prev {
+    margin-left: 30px;
 }
 
 @keyframes fadeInUp {

@@ -19,7 +19,7 @@ const bitrixFormPhone = ref('');
               {{title??'Запрос на консультацию'}}
             </div>
             <div class="b24-form-header-description">
-              Заполните поля, и наш менеджер с Вами свяжется.
+              Заполните поля и наш менеджер с Вами свяжется
             </div>
           </div>
           <div class="b24-form-content b24-form-padding-side">
