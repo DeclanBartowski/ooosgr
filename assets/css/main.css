@@ -2337,7 +2337,7 @@ header .header--fixed .main_menu li a,header .header--fixed .main_menu li span {
     justify-content: center;
     font-weight: bold;
     padding: 30px 15px;
-    width: 55px;
+    width: 50px;
     text-align: center;
     vertical-align: top;
     height: 24px
@@ -2345,14 +2345,14 @@ header .header--fixed .main_menu li a,header .header--fixed .main_menu li span {
 
 .used_pipes.widget>.body a:hover {
     font-size: 24px;
-    line-height: 24px
+    line-height: 24px;
 }
 
 .used_pipes.widget>.body a:before {
     content: url(~/assets/images/used_pipes_lupa.png);
     position: absolute;
-    width: 118px;
-    height: 118px;
+    width: 100px;
+    height: 100px;
     top: 50%;
     left: 50%;
     margin: -55px 0 0 -59px;
@@ -3262,8 +3262,8 @@ a.photo_thumb {
 }
 
 .content.pipes .used_pipes.widget>.body {
+    border-radius: 10px;
     background-size: cover;
-    border-radius: 0;
     padding: 110px 30px;
     margin: 0 -60px 0 -40px
 }
