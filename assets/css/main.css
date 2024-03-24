@@ -4114,6 +4114,10 @@ a.c-white span,.c-white {
     margin-left: 30px;
 }
 
+.mb-10 {
+    margin-bottom: 65px!important;
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;

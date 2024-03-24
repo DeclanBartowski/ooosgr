@@ -268,7 +268,7 @@ const data = ref({
         </li>
         <li
           v-if="item.showCalculator"
-          class="archetype archetype--1280p"
+          class="archetype archetype--1280p mb-10"
         >
           <Calculator />
         </li>
