@@ -15,6 +15,12 @@ export default defineNuxtConfig({
     '~/plugins/alignCatText.ts',
     '~/plugins/custom.ts',
   ],
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL,
+      baseAPI: process.env.BASE_API
+    },
+  },
   postcss: {
     plugins: {
       autoprefixer: {},

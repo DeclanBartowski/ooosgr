@@ -1,48 +1,29 @@
 <script setup lang="ts">
-const data = ref({
-  title: 'ВЫ ВСЕГДА ПОЛУЧИТЕ<br>\n' +
-      '      ДОПОЛНИТЕЛЬНУЮ СКИДКУ',
-  items: [
-    {
-      img: 'https://ooosgr.ru/upload/icon_car-2x.png',
-      text: '<p style="margin-left: 85px;">Если вы заказываете продукцию<br>\n' +
-          '        от двух машин и более.</p>',
-    },
-    {
-      img: 'https://ooosgr.ru/upload/icon_AB.png',
-      text: '<p style="margin-left: 85px;">Если вы заказываете транзитом б/у трубу с места демонтажа,<br>\n' +
-          '        минуя наш склад.</p>',
-    },
-    {
-      img: 'https://ooosgr.ru/upload/icon_paper.png',
-      text: '<p style="margin-left: 85px;margin-top: 5px;">Если вы предоставите счет иной компании<br>\n' +
-          '        с ценой ниже нашей на аналогичную позицию.</p>',
-    },
-    {
-      img: 'https://ooosgr.ru/upload/icon_infinite.png',
-      text: '<p style="margin-left: 85px;">Вы уверенно получаете дополнительные скидки,<br>\n' +
-          '        являясь нашим постоянным партнером.</p>',
-    },
-  ]
-})
+import type { AboutDiscount } from '~/types/about'
+
+defineProps<{
+  discount: AboutDiscount
+}>()
+
+const config = useRuntimeConfig()
 </script>
 
 <template>
   <div class="column">
     <h2
       class="big"
-      v-html="data.title"
+      v-html="discount.title"
     />
     <div
-      v-for="item in data.items"
+      v-for="item in discount.items"
+      :key="item.text"
       class="clearfix"
       style="margin-bottom: 0px;"
     >
       <img
-        v-if="item.img"
-        alt=""
+        :alt="item.img.alt"
         class="float_left"
-        :src="item.img"
+        :src="`${config.public.baseURL}${item.img.src}`"
       >
       <span v-html="item.text" />
     </div>
