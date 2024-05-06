@@ -28,6 +28,8 @@ export interface NameTypeValue {
     value: string
 }
 
+export type NameValue = Omit<NameTypeValue, 'type'>
+
 export interface Seo {
     canonical: string
     description: string

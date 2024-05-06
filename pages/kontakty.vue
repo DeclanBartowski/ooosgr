@@ -1,12 +1,30 @@
 <script setup lang="ts">
-const page = {
-  banner: 'https://ooosgr.ru/bundles/app/images/sliders/main/slide6.jpg?51080781afe3f2dcd50bc049a8d5083a'
-}
+import type { ContactDto } from '~/types/contact'
+
+const { data: contact } = await useContentFetch<ContactDto>('contact', {
+  method: 'GET'
+})
+
+useServerSeoMeta({
+  ogTitle: () => contact.value!.data.seo.title,
+  title: () => contact.value!.data.seo.title,
+  description: () => contact.value!.data.seo.description,
+  ogDescription: () => contact.value!.data.seo.description,
+  keywords: () => contact.value!.data.seo.keywords
+})
+
+const config = useRuntimeConfig()
 </script>
 
 <template>
-  <SingleBanner :img="page.banner" />
-  <Contacts />
+  <SingleBanner
+    v-if="contact"
+    :img="`${config.public.baseURL}${contact.data.banner.src}`"
+  />
+  <Contacts
+    v-if="contact"
+    :contact="contact.data.list"
+  />
 </template>
 
 <style scoped>
