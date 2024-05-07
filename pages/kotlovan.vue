@@ -1,362 +1,245 @@
-<script setup>
+<script setup lang="ts">
 import { Carousel, Slide, Navigation} from 'vue3-carousel'
 //import 'vue3-carousel/dist/carousel.css'
-
 
 const carousel = ref(null);
 const mobileCarousel = ref(null);
 
 import 'vue3-carousel/dist/carousel.css'
+import type { KotlovanDto } from '~/types/kotlovan'
 
-const computerWidth = computed(() => {
-  return window?.innerWidth > 576
+const { data: kotlovan } = await useContentFetch<KotlovanDto>('kotlovan', {
+  method: 'GET'
 })
 
+useServerSeoMeta({
+  ogTitle: () => kotlovan.value!.data.seo.title,
+  title: () => kotlovan.value!.data.seo.title,
+  description: () => kotlovan.value!.data.seo.description,
+  ogDescription: () => kotlovan.value!.data.seo.description,
+  keywords: () => kotlovan.value!.data.seo.keywords
+})
+
+const config = useRuntimeConfig()
 </script>
 
 <template>
-  <div class="trench-preview">
-    <img src="../public/images/site/trench/banner.png" class="trench-preview__img block-shadow" alt="">
+  <div
+    v-if="kotlovan"
+    class="trench-preview"
+  >
+    <img
+      :src="`${config.public.baseURL}${kotlovan.data.banner.preview_picture.src}`"
+      class="trench-preview__img block-shadow"
+      :alt="kotlovan.data.banner.preview_picture.alt"
+    >
   </div>
-  <h2 class="excavation-block__title">
-    Земляные работы
+  <h2
+    v-if="kotlovan"
+    class="excavation-block__title"
+  >
+    {{ kotlovan.data.banner.name }}
   </h2>
   <div class="excavation-block margin-50">
-    <div class="excavation-block-part">
-      <p class="desc">
-        Одно из основных направлений компании СТРОЙГЕОРЕСУРС является разработка котлованов для строительства зданий,
-        дорог и других инженерных сооружений.
-        Наша команда профессионалов специализируется на проектировании и строительстве котлованов любой
-        обеспечивая высокое качество работ и соблюдение всех технических требований.
-        <br>
-        <br>
-        Мы предлагаем комплексный подход к выполнению проектов, начиная с тщательного анализа местности,
-        геологических условий, проектирования оптимальной конструкции котлована и заканчивая контролем исполнения работ.
-        Наш профессиональный опыт позволяет обеспечить заказчиков надежными и эффективными решениями для разработки котлованов,
-        соответствующими необходимым стандартам качества и безопасности.
-      </p>
+    <div
+      v-if="kotlovan"
+      class="excavation-block-part"
+    >
+      <p
+        class="desc"
+        v-html="kotlovan.data.banner.preview_text"
+      />
     </div>
-    <div class="excavation-block-part">
-      <img src="~/assets/images/trench/excavation1.png" alt="excavation">
+    <div
+      v-if="kotlovan"
+      class="excavation-block-part"
+    >
+      <img
+        :src="`${config.public.baseURL}${kotlovan.data.banner.detail_picture.src}`"
+        :alt="kotlovan.data.banner.detail_picture.alt"
+      >
     </div>
   </div>
 
-  <h2 class="excavation-block__title visible">
-    Высокие требования
+  <h2
+    v-if="kotlovan"
+    class="excavation-block__title visible"
+  >
+    {{ kotlovan.data.text_block.name }}
   </h2>
-  <div class="excavation-block excavation-block-part-no-reverse margin-80">
+  <div
+    v-if="kotlovan"
+    class="excavation-block excavation-block-part-no-reverse margin-80"
+  >
     <div class="excavation-block-part">
-      <img src="~/assets/images/trench/excavation2.png" alt="excavation">
+      <img
+        :src="`${config.public.baseURL}${kotlovan.data.text_block.preview_picture.src}`"
+        :alt="kotlovan.data.text_block.preview_picture.alt"
+      >
     </div>
     <div class="excavation-block-part blue">
       <div class="excavation-block-part-padding">
         <h2 class="excavation-block__title in-block no-visible">
-          Высокие требования
+          {{ kotlovan.data.text_block.name }}
         </h2>
-        <p class="desc">
-          Рытье котлована – очень важный подготовительный этап строительства.
-          От качества котлованных работ зависит надежность фундамента и всего последующего сооружения.
-          <br>
-          <br>
-          Компания СТРОЙГЕОРЕСУРС предлагает услуги по механизированной и ручной разработке грунта для организаций и частных заказчиков.
-          Мы обеспечиваем высокое качество земляных работ, используя парк профессиональной спецтехники, даже в стесненных городских условиях.
-        </p>
+        <p
+          class="desc"
+          v-html="kotlovan.data.text_block.preview_text"
+        />
       </div>
     </div>
   </div>
 
-  <h2 class="excavation-block__title big-margin">
-    ЭТАПЫ РАЗРАБОТКИ КОТЛОВАНА
+  <h2
+    v-if="kotlovan"
+    class="excavation-block__title big-margin"
+  >
+    {{ kotlovan.data.steps.title }}
   </h2>
 
-  <div class="stages-block">
-    <p class="step-description">
+  <div
+    v-if="kotlovan"
+    class="stages-block"
+  >
+    <p
+      v-for="item in kotlovan.data.steps.items"
+      :key="item.name"
+      class="step-description"
+    >
       <span class="step-number">
-        01
+        {{ item.name }}
       </span>
       <span>
         <br>
         &emsp;
-        Выполнение проектных работ с установлением параметров выемки
+        {{ item.text }}
       </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          02
-        </span>
-      <span>
-          <br>
-          &emsp;
-          Монтаж шпунтового ограждения стенок, забирки, обвязок и распорной системы
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          03
-        </span>
-      <span>
-          <br>
-          &emsp;
-          Выбор грунта по проектным отметкам
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          04
-        </span>
-      <span>
-          <br>
-          &emsp;
-         Погрузка, транспортировка, складирование грунта
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          05
-        </span>
-      <span>
-          <br>
-          &emsp;
-          Утилизация грунта на специализированных полигонах
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          06
-        </span>
-      <span>
-          <br>
-          &emsp;
-          Выполнение, выравнивание и укрепление откосов, берм
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          07
-        </span>
-      <span>
-          <br>
-          &emsp;
-          планировка днища с уплотнением
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          08
-        </span>
-      <span>
-          <br>
-          &emsp;
-          Обратная засыпка пазух с послойным трамбованием
-        </span>
     </p>
   </div>
   <div class="feedback-form">
     <BitrixForm />
   </div>
-  <h2 class="excavation-block__title">
-    Спецтехника нашей компании
+  <h2
+    v-if="kotlovan"
+    class="excavation-block__title"
+  >
+    {{ kotlovan.data.spec.title }}
   </h2>
-  <div class="excavation-block excavation-block-part-no-reverse margin-50">
+  <div
+    v-if="kotlovan"
+    class="excavation-block excavation-block-part-no-reverse margin-50"
+  >
     <div class="excavation-block-part excavation-block-part-left">
-      <p class="desc">
-        Разработка и последующее устройство котлованов осуществляется с привлечением специализированной техники высокой производительности.
-        Основная спецтехника на объекте – экскаваторы, самосвалы, буровые установки, вибропогружатели и краны.
-        <br>
-        <br>
-        Но помимо них для оперативной и качественной работы, в зависимости от их характера,
-        требуются другие машины: бульдозеры, погрузчики, грейдеры, манипуляторы, ямобуры, гидромолоты.
-      </p>
+      <p
+        class="desc"
+        v-html="kotlovan.data.spec.items.first.text"
+      />
     </div>
     <div class="excavation-block-part full-width w-57">
       <div class="technique-wrapper">
-        <img src="~/assets/images/trench/technique.png" class="technique-wrapper__img" alt="excavation">
+        <img
+          :src="`${config.public.baseURL}${kotlovan.data.spec.items.first.picture.src}`"
+          class="technique-wrapper__img"
+          :alt="kotlovan.data.spec.items.first.picture.alt"
+        >
       </div>
     </div>
   </div>
   <div class="excavation-block excavation-block-part-no-reverse margin-80">
     <div class="excavation-block-part">
       <div class="arrow-icon-wrapper">
-        <img src="/images/site/arrow.png" class="arrow-icon" alt="arrow">
+        <img
+          src="/images/site/arrow.png"
+          class="arrow-icon"
+          alt="arrow"
+        >
       </div>
     </div>
-    <div class="excavation-block-part no-full excavation-block-part-right">
+    <div
+      v-if="kotlovan"
+      class="excavation-block-part no-full excavation-block-part-right"
+    >
       <p class="tech-description">
-        Компания СТРОЙГЕОРЕСУРС имеет в распоряжении достаточное количество спецтехники для выполнения работ нулевого цикла
+        {{ kotlovan.data.spec.items.second.text }}
       </p>
       <ul class="tech-list">
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Экскаваторы</span> <span>2 {{ computerWidth ? 'единицы' : 'ед' }}</span> <span class="bold">Komatsu pc400, XCMG XE225DN</span></div></li>
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Самосвалы</span> <span>5 {{ computerWidth ? 'единиц' : 'ед' }}</span> <span class="bold">Scania p440, Камаз 6520</span></div></li>
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Длинномеры</span> <span>2 {{ computerWidth ? 'единицы' : 'ед' }}</span> <span class="bold">Scania r440</span></div></li>
-        <li class="tech-list__item"><div class="tech-list_item-block"><span class="bold">Вибропогружатель</span> <span>1 {{ computerWidth ? 'единица' : 'ед' }}</span> <span class="bold">Мuller MS 24 HFV</span></div></li>
+        <li
+          v-for="item in kotlovan.data.spec.items.second.value"
+          :key="item.name"
+          class="tech-list__item"
+        >
+          <div class="tech-list_item-block">
+            <span class="bold">{{ item.name }}</span> <span>{{ item.measure }}</span> <span class="bold">{{ item.product }}</span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
-  <div class="title-block">
+  <div
+    v-if="kotlovan"
+    class="title-block"
+  >
     <h2 class="excavation-block__title center">
-      Для каждого проекта мы подбираем оптимальный состав землеройной техники по мощности и производительности, в том числе привлекаем подрядную. На данной технике работают опытные водители и операторы с необходимой квалификацией
+      {{ kotlovan.data.text_block_2.name }}
     </h2>
   </div>
-  <div class="tech-cards-block">
-    <div class="tech-card">
-      <img src="../assets/images/trench/tech/bulldozer.png" alt="bulldozer">
-      <p>Бульдозер</p>
-    </div>
-    <div class="tech-card">
-      <img src="../assets/images/trench/tech/tipper.png" alt="tipper">
-      <p>Самосвал</p>
-    </div>
-    <div class="tech-card">
-      <img src="../assets/images/trench/tech/excavator1.png" alt="excavator1">
-      <p>Гусеничный экскаватор</p>
-    </div>
-    <div class="tech-card">
-      <img src="../assets/images/trench/tech/excavator2.png" alt="excavator2">
-      <p>ЭКСКАВАТОР-ПОГРУЗЧИК</p>
-    </div>
-    <div class="tech-card">
-      <img src="../assets/images/trench/tech/hydraulic-hammer.png" alt="hydraulic">
-      <p>Гидромолот</p>
-    </div>
-    <div class="tech-card">
-      <img src="../assets/images/trench/tech/excavator3.png" alt="excavator3">
-      <p>Колёсный экскаватор</p>
+  <div
+    v-if="kotlovan"
+    class="tech-cards-block"
+  >
+    <div
+      v-for="item in kotlovan.data.techniq"
+      :key="item.name"
+      class="tech-card"
+    >
+      <img
+        :src="`${config.public.baseURL}${item.picture.src}`"
+        :alt="item.picture.alt"
+      >
+      <p>{{ item.name }}</p>
     </div>
   </div>
-  <h2 class="excavation-block__title big-margin">
-    Факторы, влияющие на стоимость проекта
+  <h2
+    v-if="kotlovan"
+    class="excavation-block__title big-margin"
+  >
+    {{ kotlovan.data.factors.title }}
   </h2>
 
-  <div class="stages-block">
-    <p class="step-description">
+  <div
+    v-if="kotlovan"
+    class="stages-block"
+  >
+    <p
+      v-for="item in kotlovan.data.factors.items"
+      :key="item.name"
+      class="step-description"
+    >
       <span class="step-number">
-        01
+        {{ item.name }}
       </span>
       <span>
         <br>
         &emsp;
-        размер котлована: площадь и глубина
+        {{ item.text }}
       </span>
     </p>
-    <p class="step-description">
-        <span class="step-number">
-          02
-        </span>
-      <span>
-          <br>
-          &emsp;
-         расположение, транспортная доступность, возможность подъезда техники
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          03
-        </span>
-      <span>
-          <br>
-          &emsp;
-         соседство со строениями, коммуникациями, зелеными насаждениями
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          04
-        </span>
-      <span>
-          <br>
-          &emsp;
-         характеристика грунта: чистота, вторичный слой, грунтовые воды
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          05
-        </span>
-      <span>
-          <br>
-          &emsp;
-          наличие распорной системы
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          06
-        </span>
-      <span>
-          <br>
-          &emsp;
-         необходимость вывоза и утилизации грунта, его объем
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          07
-        </span>
-      <span>
-          <br>
-          &emsp;
-          спецтехника и специалисты, задействованные в проекте
-        </span>
-    </p>
-    <p class="step-description">
-        <span class="step-number">
-          08
-        </span>
-      <span>
-          <br>
-          &emsp;
-          срок реализации проекта
-        </span>
-    </p>
   </div>
-  <div class="advantages-block">
+  <div
+    v-if="kotlovan"
+    class="advantages-block"
+  >
     <h2 class="advantages-block__title big-margin white">
-      Наши преимущества
+      {{ kotlovan.data.adv.title }}
     </h2>
     <ul class="advantages-block__list">
-      <li class="advantages-block__list-item">
+      <li
+        v-for="item in kotlovan.data.adv.items"
+        :key="item.name"
+        class="advantages-block__list-item"
+      >
         <p>
-          опыт котлованных работ 14 лет
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          разработка всех типов котлованов
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          утилизация грунта с электронными талонами в АИС ОССИГ
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          быстрый выход на площадку
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          максимальный темп разработки
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          квалифицированные специалисты, необходимая спецтехника
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          эффективные решения по разработке, оптимизация расходов
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          качественная реализация сложных проектов
-        </p>
-      </li>
-      <li class="advantages-block__list-item">
-        <p>
-          неукоснительное соблюдение технологии, техники безопасности, законодательства
+          {{ item.name }}
         </p>
       </li>
     </ul>
@@ -364,48 +247,89 @@ const computerWidth = computed(() => {
   <h2 class="excavation-block__title big-margin margin-80">
     Примеры работ
   </h2>
-  <Carousel class="full-carousel" ref="carousel" :wrap-around="true" :items-to-show="3">
-    <Slide v-for="slide in 4" :key="slide">
+  <Carousel
+    ref="carousel"
+    class="full-carousel"
+    :wrap-around="true"
+    :items-to-show="3"
+  >
+    <Slide
+      v-for="slide in 4"
+      :key="slide"
+    >
       <div class="carousel__item">
-        <img :src="'/images/slider/'+slide+'.png'" alt="">
+        <img
+          :src="'/images/slider/'+slide+'.png'"
+          alt=""
+        >
       </div>
-      <div class="slider-blur"></div>
+      <div class="slider-blur" />
     </Slide>
 
     <template #addons>
       <navigation>
         <template #next>
           <span class="slider-next-icon">
-            <img src="/images/slider/next-btn.png" alt="next">
+            <img
+              src="/images/slider/next-btn.png"
+              alt="next"
+            >
           </span>
         </template>
         <template #prev>
-          <img class="slider-prev-icon" src="/images/slider/prev-btn.png" alt="prev">
+          <img
+            class="slider-prev-icon"
+            src="/images/slider/prev-btn.png"
+            alt="prev"
+          >
         </template>
       </navigation>
     </template>
   </Carousel>
 
-  <Carousel class="mobile-carousel" ref="mobileCarousel" :wrap-around="true" :items-to-show="2.5">
-    <Slide v-for="slide in 4" :key="slide">
+  <Carousel
+    ref="mobileCarousel"
+    class="mobile-carousel"
+    :wrap-around="true"
+    :items-to-show="2.5"
+  >
+    <Slide
+      v-for="slide in 4"
+      :key="slide"
+    >
       <div class="carousel__item">
-        <img :src="'/images/slider/'+slide+'.png'" alt="">
+        <img
+          :src="'/images/slider/'+slide+'.png'"
+          alt=""
+        >
       </div>
     </Slide>
   </Carousel>
   <div class="slider-buttons-mobile">
-    <button class="slider-btn" @click="mobileCarousel.prev()">
-      <img src="~/assets/images/trench/prev.png" alt="">
+    <button
+      class="slider-btn"
+      @click="mobileCarousel.prev()"
+    >
+      <img
+        src="~/assets/images/trench/prev.png"
+        alt=""
+      >
     </button>
-    <button class="slider-btn" @click="mobileCarousel.next()">
-      <img src="~/assets/images/trench/next.png" alt="">
+    <button
+      class="slider-btn"
+      @click="mobileCarousel.next()"
+    >
+      <img
+        src="~/assets/images/trench/next.png"
+        alt=""
+      >
     </button>
   </div>
 
   <div class="feedback-form">
     <BitrixForm />
   </div>
-  <div style="height: 10vh"></div>
+  <div style="height: 10vh" />
 </template>
 
 <style scoped>

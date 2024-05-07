@@ -22,6 +22,10 @@ export interface Text {
     text: string
 }
 
+export interface Name {
+    name: string
+}
+
 export interface NameTypeValue {
     name: string
     type: string
@@ -35,4 +39,9 @@ export interface Seo {
     description: string
     keywords: string
     title: string
+}
+
+export interface NameText {
+    name: string
+    text: string
 }
