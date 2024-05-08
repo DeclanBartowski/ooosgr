@@ -1,14 +1,15 @@
 <script setup lang="ts">
-defineProps(['className']);
-const btnData = {
-  link: '/balks',
-  text: 'балка б/у, швеллер б/у, лист б/у, уголок б/у',
-}
+import type { LinkText } from '~/types/root'
+
+defineProps<{
+  className: string,
+  data: LinkText
+}>()
 </script>
 
 <template>
   <div class="info_link" :class="className">
-    <NuxtLink :to="btnData.link"><span>В наличии:</span>{{ btnData.text }}</NuxtLink>
+    <NuxtLink :to="data.link"><span>В наличии:</span>{{ data.text }}</NuxtLink>
   </div>
 </template>
 

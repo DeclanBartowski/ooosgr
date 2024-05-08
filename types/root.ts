@@ -53,3 +53,14 @@ export interface Banner {
 	preview_picture: AltSrc
 	preview_text: string
 }
+
+export interface LinkText {
+    link: string
+    text: string
+}
+
+export interface CodeLinkName {
+    code: string
+    link: string
+    name: string
+}

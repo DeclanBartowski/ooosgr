@@ -1,35 +1,51 @@
 <script setup lang="ts">
-import {calculator} from "~/utils/calculator";
+import type { BusData } from '~/types/bus'
 
-defineProps(['wrapperClass'])
-const filterCollection = calculator;
+defineProps<{
+  wrapperClass?: string,
+  data: BusData
+}>()
 </script>
 
 <template>
-  <div class="column w25" :class="wrapperClass">
+  <div
+    class="column w25"
+    :class="wrapperClass"
+  >
     <div class="used_pipes widget vertical">
       <FancyboxComponent
-          :options="{
-                    defaultType:'html'
-                  }"
+        :options="{
+          defaultType:'html'
+        }"
       >
         <a
-            data-fancybox
-            class="btn red icon-calculator fancybox_dialog"
-            href="#pipe-calculator"
+          data-fancybox
+          class="btn red icon-calculator fancybox_dialog"
+          href="#pipe-calculator"
         > Калькулятор по трубам</a>
       </FancyboxComponent>
 
-      <div class="title">Выберите диаметр</div>
-      <div class="body">
-        <NuxtLink v-for="filter in filterCollection" :to="filter.link"
-           title="Применить фильтр"
+      <div class="title">
+        Выберите диаметр
+      </div>
+      <div
+        v-if="data"
+        class="body"
+      >
+        <NuxtLink
+          v-for="filter in data.sibar_filter"
+          :key="filter.code"
+          :to="filter.link"
+          title="Применить фильтр"
         >
           {{ filter.name }}
         </NuxtLink>
-        <SidebarBtn/>
+        <SidebarBtn :data="data.btnLink" />
       </div>
-      <SidebarBanners/>
+      <SidebarBanners
+        v-if="data"
+        :data="data.sidebar_banner"
+      />
     </div>
   </div>
 </template>
