@@ -1,4 +1,4 @@
-import type { AltSrc, NameText, Seo, Name } from '../root'
+import type { AltSrc, NameText, Seo, Name, Banner } from '../root'
 
 export interface KotlovanDto {
 	data: KotlovanData
@@ -8,7 +8,7 @@ export interface KotlovanDto {
 
 export interface KotlovanData {
 	adv: KotlovanAdv
-	banner: KotlovanBanner
+	banner: Banner
 	case: KotlovanCase
 	factors: KotlovanFactors
 	seo: Seo
@@ -24,13 +24,7 @@ export interface KotlovanAdv {
 	title: string
 }
 
-export interface KotlovanBanner {
-	detail_picture: AltSrc
-	detail_text: string
-	name: string
-	preview_picture: AltSrc
-	preview_text: string
-}
+
 
 export interface KotlovanCase {
 	items: KotlovanCaseItems[]

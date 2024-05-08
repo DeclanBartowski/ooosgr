@@ -45,3 +45,11 @@ export interface NameText {
     name: string
     text: string
 }
+
+export interface Banner {
+	detail_picture: AltSrc
+	detail_text: string
+	name: string
+	preview_picture: AltSrc
+	preview_text: string
+}
