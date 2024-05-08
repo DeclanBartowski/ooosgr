@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BalksData } from '~/types/balks'
 import type { Banner } from '~/types/root'
 
 const { $alignCatText } = useNuxtApp()
@@ -8,7 +9,9 @@ onMounted(() => {
 
 defineProps<{
   category: Banner,
-  template: string
+  template: string,
+  data?: unknown,
+  content: BalksData
 }>()
 
 const config = useRuntimeConfig()
@@ -55,42 +58,37 @@ const config = useRuntimeConfig()
       <div class="js-pipe-category-content">
         <div class="two columns columns--adaptive">
           <div class="column text-pad-right js-column-text">
-            <h1>{{ data.name }}</h1>
+            <h1>{{ category.name }}</h1>
             <div
               class="text"
-              v-html="data.preview_text"
+              v-html="category.preview_text"
             />
           </div>
           <div class="column text-pad-left js-column-image text--center">
             <DownloadPdfBtn
-              v-if="category.priceList"
-              :link="category.priceList"
+              v-if="data.priceList"
+              :link="data.priceList"
             />
             <CategoryGallery
-              v-if="category.slider"
-              :slides="category.slider"
+              v-if="data.slider"
+              :slides="data.slider"
             />
           </div>
         </div>
       </div>
-      <NewsMenu v-if="category.showMenu" />
+      <NewsMenu v-if="data.showMenu" />
       <CategoryItemsList
-        v-if="category.items"
-        :head="category.itemsHead"
-        :items="category.items"
+        :head="data.itemsHead"
+        :items="content.items"
       />
       <div class="two columns columns--adaptive">
         <div class="column w75">
           <div
             class="text small"
-            v-html="category.textHtml"
+            v-html="category.detail_text"
           />
         </div>
       </div>
     </template>
   </div>
 </template>
-
-<style scoped>
-
-</style>

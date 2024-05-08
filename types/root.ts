@@ -64,3 +64,13 @@ export interface CodeLinkName {
     link: string
     name: string
 }
+
+export interface TitleSrc {
+    title: string
+    src: string
+}
+
+export interface TitleUrl {
+    title: string
+    url: string
+}

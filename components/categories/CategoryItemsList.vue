@@ -1,58 +1,91 @@
 <script setup lang="ts">
 import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+import type { BalksItems } from '~/types/balks'
 
-defineProps(['head', 'items'])
+defineProps<{
+  head: string[],
+  items: BalksItems[]
+}>()
+
+const config = useRuntimeConfig()
 </script>
 
 <template>
   <div class="text">
     <table class="styled center_align archetype archetype--720p">
       <thead>
-      <tr>
-        <th v-for="headName in head">{{ headName }}</th>
-      </tr>
+        <tr>
+          <th
+            v-for="headName in head"
+            :key="headName"
+          >
+            {{ headName }}
+          </th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="item in items">
-        <td style="white-space: nowrap;" v-html="item.htmlName"></td>
-        <td><p style="text-align: left;">{{ item.text }}</p></td>
-        <td style="white-space: nowrap;">{{ item.priceFormated }}</td>
-        <td class="pic">
-          <!--noindex-->
-          <NuxtLink v-if="item.img" class="fancybox photo_thumb" :rel="item.img.rel" :to="item.img.big"
-             :title="item.img.title" target="_blank"
-          >
-            <img alt="" :src="item.img.small"/>
-          </NuxtLink>
-          <!--/noindex-->
-          <div class="hide">
-          </div>
-          <!--noindex-->
-          <FancyboxComponent
+        <tr
+          v-for="item in items"
+          :key="item.name"
+        >
+          <td
+            style="white-space: nowrap;"
+            v-html="item.name"
+          />
+          <td>
+            <p style="text-align: left;">
+              {{ item.text }}
+            </p>
+          </td>
+          <td style="white-space: nowrap;">
+            {{ item.price }}
+          </td>
+          <td class="pic">
+            <!--noindex-->
+            <NuxtLink
+              v-if="item.picture"
+              class="fancybox photo_thumb"
+              :to="`${config.public.baseURL}${item.picture.src}`"
+              target="_blank"
+            >
+              <img
+                v-for="i in item.photo"
+                :key="i.src"
+                :alt="i.alt"
+                :src="`${config.public.baseURL}${i.src}`"
+              >
+            </NuxtLink>
+            <!--/noindex-->
+            <div class="hide" />
+            <!--noindex-->
+            <FancyboxComponent
               :options="{
-                    defaultType:'html'
-                  }"
-          >
-          <a
-              class="btn red fancybox_dialog js-fancyboxOrder"
-              :data-message="`[ ${item.name} ] ${item.text} * ${item.priceFormated}`"
-              href="#popup-order"
-              data-fancybox
-          >
-            Заказать
-          </a>
-          </FancyboxComponent>
+                defaultType:'html'
+              }"
+            >
+              <a
+                class="btn red fancybox_dialog js-fancyboxOrder"
+                :data-message="`[ ${item.name} ] ${item.text} * ${item.price}`"
+                href="#popup-order"
+                data-fancybox
+              >
+                Заказать
+              </a>
+            </FancyboxComponent>
           <!--/noindex-->
-        </td>
-      </tr>
+          </td>
+        </tr>
       </tbody>
     </table>
 
     <ul class="products-list mobile mobile--720p">
-      <li v-for="item in items">
+      <li
+        v-for="item in items"
+        :key="item.name"
+      >
         <div>
           <div class="products-list__item">
-            {{ item.mobilePrefixName }} <span v-html="item.htmlName"></span>
+            <span v-html="item.name" />
           </div>
           <div class="products-list__data">
             {{ item.text }}
@@ -61,30 +94,31 @@ defineProps(['head', 'items'])
 
         <div>
           <div class="products-list__price">
-            {{ item.priceFormated }}
+            {{ item.price }}
           </div>
           <div class="products-list__picture">
-
             <!--noindex-->
-            <NuxtLink v-if="item.img"
-               class="fancybox photo_thumb"
-               :rel="item.img.rel"
-               :to="item.img.big"
-               :title="item.img.title"
-               target="_blank"
+            <NuxtLink
+              v-if="item.picture"
+              class="fancybox photo_thumb"
+              :to="`${config.public.baseURL}${item.picture.src}`"
             >
-              <img alt="" :src="item.img.small"/>
+              <img
+                v-for="i in item.photo"
+                :key="i.src"
+                :alt="i.alt"
+                :src="`${config.public.baseURL}${i.src}`"
+              >
             </NuxtLink>
             <!--/noindex-->
 
-            <div class="hide">
-            </div>
+            <div class="hide" />
 
             <!--noindex-->
             <a
-                class="btn red fancybox_dialog js-fancyboxOrder"
-                :data-message="`[ ${item.name} ] ${item.text} * ${item.priceFormated}`"
-                href="#popup-order"
+              class="btn red fancybox_dialog js-fancyboxOrder"
+              :data-message="`[ ${item.name} ] ${item.text} * ${item.price}`"
+              href="#popup-order"
             >
               Заказать
             </a>
@@ -95,7 +129,3 @@ defineProps(['head', 'items'])
     </ul>
   </div>
 </template>
-
-<style scoped>
-
-</style>
