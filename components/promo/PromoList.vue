@@ -1,42 +1,17 @@
-<script setup>
+<script setup lang="ts">
+import type { NamePictureText } from '~/types/root'
 
-const promosCollection = ref({
-  0: {
-    title: 'Распродажа 168 трубы!!!',
-    text: 'Коллеги, предлагаем вашему вниманию отличную трубу 168 диаметра, стенки 7-8-9 нефтянка, качество под восстановление. Доступно к заказу около 100 тонн. Спешите, ценник очень приятный!',
-    img: 'https://ooosgr.ru/cache/news_prew/files/promo/2998d80331269523840b7dc6ed5406b1c306cd31c8.jpeg',
-  },
-  1: {
-    title: 'Распродажа лежалых труб',
-    text: 'Коллеги, предлагаем вашему вниманию лежалую, спиралешовную трубу 820 диаметра, со стенкой 8 мм в идеальном состоянии, по очень выгодной цене. В наличии 60 тонн.',
-    img: 'https://ooosgr.ru/cache/news_prew/files/promo/28deae4690aabd446f3dacebbdb2d6fc437e2a589c.jpeg',
-  },
-  2: {
-    title: 'РАСПРОДАЖА ТРУБЫ 1220*10',
-    text: 'Уважаемые коллеги! Есть возможность предложить очень низкие цены на трубу 1220 со стенкой 10. Газ, состояние отличное. В наличии 50 тонн.',
-    img: 'https://ooosgr.ru/cache/news_prew/files/promo/272a493c2f8699f8c3732877a4b083d89fcba7b0f7.jpeg',
-  },
-  3: {
-    title: 'Карантин 2020',
-    text: 'Дорогие друзья! До конца мая продлеваем акцию с дополнительными скидками для клиентов, забирающих трубы самовывозом с нашей базы. Всем крепкого здоровья и процветания - ваш Стройгеоресурс.',
-    img: 'https://ooosgr.ru/cache/news_prew/files/promo/26e1e01c430ea24a3762f930f5c7292103e3940ffa.jpeg',
-  },
-  4: {
-    title: 'Распродажа трубы 530*7 !!!',
-    text: 'Внимание, коллеги! В преддверии Весны, проводим акцию по распродаже трубы 530*7 (прямошовка, вода, в остаточной изоляции). Крепкий свайный вариант. Спешите приобрести по очень сладким ценам- постоянным покупателям дополнительные, персональные скидки. С уважением к Вам и Вашему бизнесу - СтройГеоРесурс.',
-    img: 'https://ooosgr.ru/cache/news_prew/files/promo/252f4413ca796c787020168f21743933451e24592b.jpeg',
-  },
-});
+defineProps<{
+  data: NamePictureText[]
+}>()
 </script>
+
 <template>
   <ul class="articles_list _news">
-    <PromoItem v-for="promo in promosCollection" :key="promo.id" :promo="promo"/>
+    <PromoItem
+      v-for="d in data"
+      :key="d.name"
+      :data="d"
+    />
   </ul>
 </template>
-
-<style scoped>
-
-</style>
-
-
-

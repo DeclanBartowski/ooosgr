@@ -74,3 +74,9 @@ export interface TitleUrl {
     title: string
     url: string
 }
+
+export interface NamePictureText {
+    name: string
+    picture: AltSrc
+    text: string
+}
