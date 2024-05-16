@@ -14,7 +14,7 @@ const page =ref({
       </div>
       <div class="home__content two columns">
         <div class="column w65">
-          <MainCalculator />
+<!--          <MainCalculator />-->
           <div class="mobile mobile--720p">
             <SteelList />
           </div>
