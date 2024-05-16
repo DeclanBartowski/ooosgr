@@ -2,6 +2,19 @@
 const page =ref({
   title:'МЕТАЛЛОБАЗА ТРУБА БУ БАЛКА Б/У РАЗРАБОТКА КОТЛОВАНА',
 })
+import type { HomeDto } from '~/types/home'
+const { data: detail } = await useContentFetch<HomeDto>(`home`, {
+    method: 'GET'
+})
+
+useServerSeoMeta({
+    ogTitle: () => detail.value!.data.seo.title,
+    title: () => detail.value!.data.seo.title,
+    description: () => detail.value!.data.seo.description,
+    ogDescription: () => detail.value!.data.seo.description,
+    keywords: () => detail.value!.data.seo.keywords
+})
+
 </script>
 
 <template>
@@ -14,17 +27,21 @@ const page =ref({
       </div>
       <div class="home__content two columns">
         <div class="column w65">
-<!--          <MainCalculator />-->
+          <MainCalculator :file="detail.data.file"
+                          :sibar_filter="detail.data.sibar_filter"
+                          :trub="detail.data.trub"
+                          :linktext="detail.data.btnLink"
+          />
           <div class="mobile mobile--720p">
             <SteelList />
           </div>
         </div>
         <div class="column w35 text-pad-left">
-          <AboutBlock />
+          <AboutBlock :link="detail.data.about.moreText" :title="detail.data.about.name" :description="detail.data.about.preview_text" />
         </div>
-        <AboutBlockSub />
+        <AboutBlockSub :description="detail.data.about.detail_text" />
         <BitrixForm />
-        <NewsBlock />
+        <NewsBlock :title="detail.data.newsLink.text" :link="detail.data.newsLink.link" :items="detail.data.news" />
       </div>
     </div>
   </div>

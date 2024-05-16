@@ -1,27 +1,19 @@
 <script setup lang="ts">
 
-import {calculator} from "~/utils/calculator";
-import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+defineProps(['trub', 'file', 'sibar_filter', 'linktext'])
+const config = useRuntimeConfig()
 
-const calculatorData = ref({
-  title:'Трубы бу',
-  link: '/truby-b-u',
-  priceList:'https://ooosgr.ru/files/pipe/category/5a97a18be80e79e940079c3f3b8fc169a29c9e7f9.pdf',
-  description:'В случае возникновения потребности трубы нестандартного диаметра, поставка займет от двух до четырех\n' +
-      '      дней.<br> Для этого Вам необходимо заполнить форму заявки, расположенную ниже, или позвонить нашим\n' +
-      '      специалистам',
-  items:calculator
-})
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 </script>
 
 <template>
   <div class="used_pipes widget main-calculator">
     <div class="title title--flex">
       <NuxtLink
-        :to="calculatorData.link"
-        :title="calculatorData.title"
+        :to="trub.url"
+        :title="trub.title"
       >
-        {{ calculatorData.title }}
+        {{ trub.title }}
       </NuxtLink>
       <FancyboxComponent
         :options="{
@@ -37,16 +29,16 @@ const calculatorData = ref({
     </div>
     <div class="body">
       <NuxtLink
-        v-for="calcItem in calculatorData.items"
+        v-for="calcItem in sibar_filter"
         :to="calcItem.link"
         :title="calcItem.name"
       >
         {{ calcItem.name }}
       </NuxtLink>
-      <SidebarBtn :class-name="'_normal'" />
+     <SidebarBtn :class-name="'_normal'"  :data="linktext" />
 
     </div>
-    <DownloadCalculatorBtnMain :link="calculatorData.priceList" />
+    <DownloadCalculatorBtnMain :link="`${config.public.baseURL}${file}`" />
   </div>
 </template>
 

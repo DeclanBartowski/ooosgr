@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import {newsMenuList} from "~/utils/newsMenu";
-const menu = newsMenuList;
-defineProps(['className']);
+defineProps(['className', 'menu']);
 </script>
 
 <template>
   <div
+      v-if="menu"
       class="news__link"
       :class="className"
   >
@@ -13,7 +12,7 @@ defineProps(['className']);
         v-for="menuItem in menu"
         class="title"
         :class="{ 'btn red': className === 'news__link-about' }"
-        :to="menuItem.link"
+        :to="menuItem.url"
         :title="menuItem.title"
     >
       {{ menuItem.title }}

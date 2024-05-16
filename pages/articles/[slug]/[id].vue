@@ -5,6 +5,7 @@ const id = computed(() => route.path.split('/').pop())
 const { data: detail } = await useContentFetch<ArticleDto>(`articles/news/${id.value}`, {
     method: 'GET'
 })
+const config = useRuntimeConfig()
 
 useServerSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
@@ -25,12 +26,12 @@ useServerSeoMeta({
         >
           <a
             class="fancybox"
-            :href="detail.data.detailImg.src"
+            :href="`${config.public.baseURL}${detail.data.img.src}`"
             target="_blank"
           >
             <img
               :alt="detail.data.title"
-              :src="detail.data.img.src"
+              :src="`${config.public.baseURL}${detail.data.img.src}`"
             >
           </a>
         </div>

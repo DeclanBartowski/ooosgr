@@ -1,34 +1,36 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps(['article']);
 const route = useRoute();
 const url = route.path + '/' + props.article.code;
+const config = useRuntimeConfig()
+
 </script>
 <template>
-  <template v-if="article.type=='article'">
+  <template v-if="article.type=='articles'">
     <li>
-      <NuxtLink :to="url">
+      <NuxtLink :to="article.url">
         <div
           class="img"
           style="height: 0px;"
         >
           <img
             v-if="article.img"
-            :alt="article.name"
-            :src="article.img"
+            :alt="article.img.alt"
+            :src="`${config.public.baseURL}${article.img.src}`"
           >
         </div>
       </NuxtLink>
       <div class="desc">
         <h2>
-          <NuxtLink :to="url">
+          <NuxtLink :to="article.url">
             {{ article.title }}
           </NuxtLink>
         </h2>
-        <p>{{ article.text }}</p>
+          <div v-html="article.text"></div>
       </div>
       <div class="right_align">
         <NuxtLink
-          :to="url"
+          :to="article.url"
           title="Перейти на страницу статьи"
           class="more"
         >
@@ -50,8 +52,8 @@ const url = route.path + '/' + props.article.code;
           >
             <img
               v-if="article.img"
-              :alt="article.name"
-              :src="article.img"
+              :alt="article.img.alt"
+              :src="`${config.public.baseURL}${article.img.src}`"
             >
           </div>
         </NuxtLink>
@@ -61,15 +63,15 @@ const url = route.path + '/' + props.article.code;
           Дата создания: {{ article.create }}
         </p>
         <h2>
-          <NuxtLink :to="url">
+          <NuxtLink :to="article.url">
             {{ article.title }}
           </NuxtLink>
         </h2>
-        <p>{{ article.text }}</p>
+          <div v-html="article.text"></div>
       </div>
       <div class="right_align">
         <NuxtLink
-          :to="url"
+          :to="article.url"
           title="Перейти на страницу статьи"
           class="more"
         >
@@ -91,8 +93,8 @@ const url = route.path + '/' + props.article.code;
         >
           <img
             v-if="article.img"
-            :alt="article.name"
-            :src="article.img"
+            :alt="article.img.alt"
+            :src="`${config.public.baseURL}${article.img.src}`"
             width="300"
             height="180"
           >
@@ -100,7 +102,7 @@ const url = route.path + '/' + props.article.code;
       </div>
       <div class="desc">
         <h2>{{ article.title }}</h2>
-        <p>{{ article.text }}</p>
+          <div v-html="article.text"></div>
       </div>
     </li>
   </template>
