@@ -25,8 +25,9 @@ const config = useRuntimeConfig()
               style="height: 116px;"
           >
             <img
+                    height="64" width="64"
                 alt=""
-                :src="`${config.public.baseURL}${item.img}`"
+                :src="`${config.public.baseURL}${item.img.src}`"
             >
           </div>
           <div class="desc">

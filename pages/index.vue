@@ -18,12 +18,12 @@ useServerSeoMeta({
 </script>
 
 <template>
-  <MainSlider />
+  <MainSlider :items="detail.data.sliders" />
   <div class="wrap content home">
     <div class="wrap_cont">
-      <h1>{{ page.title }}</h1>
+      <h1>{{ detail.data.list.title }}</h1>
       <div class="archetype archetype--720p">
-        <SteelList />
+        <SteelList :items="detail.data.list.items" />
       </div>
       <div class="home__content two columns">
         <div class="column w65">
@@ -33,7 +33,7 @@ useServerSeoMeta({
                           :linktext="detail.data.btnLink"
           />
           <div class="mobile mobile--720p">
-            <SteelList />
+            <SteelList :items="detail.data.list.items" />
           </div>
         </div>
         <div class="column w35 text-pad-left">
