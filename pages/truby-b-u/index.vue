@@ -60,7 +60,7 @@ const data = ref({
           :content="trubybu?.data"
           :category="trubybu?.data.info"
           :template
-          :data
+          :data="trubybu.data"
         />
       </div>
     </div>

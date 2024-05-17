@@ -2,7 +2,8 @@
 import type { AboutPartner } from '~/types/about'
 
 defineProps<{
-  partners: AboutPartner
+  partners: AboutPartner,
+    menu: object
 }>()
 
 const config = useRuntimeConfig()
@@ -34,7 +35,7 @@ const config = useRuntimeConfig()
                 {{ partners.phone }}</a></span>
             </p>
           </div>
-          <NewsMenu :class-name="'news__link-about'" />
+          <NewsMenu :class-name="'news__link-about'" :menu="menu" />
         </div>
 
         <div class="column text-pad-left">

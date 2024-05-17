@@ -10,7 +10,9 @@ export interface TrubybuDto {
 
 export interface TrubybuData {
 	btnLink: LinkText
+	slider: object
 	file: string
+    priceList: string
 	info: Banner
 	items: BalksItems[]
 	menu: TitleUrl[]

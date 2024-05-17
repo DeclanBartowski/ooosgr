@@ -28,7 +28,7 @@ const config = useRuntimeConfig()
         >
           <NuxtLink
             class="photo_thumb fancybox"
-            :to="category.preview_picture.src"
+            :to="`${config.public.baseURL}${category.detail_picture.src}`"
             rel="insultation-mobile"
           >
             <img
@@ -76,7 +76,7 @@ const config = useRuntimeConfig()
           </div>
         </div>
       </div>
-      <NewsMenu v-if="data.showMenu" />
+      <NewsMenu v-if="data.showMenu"  :menu="data.menu" />
       <CategoryItemsList
         :head="data.itemsHead"
         :items="content.items"

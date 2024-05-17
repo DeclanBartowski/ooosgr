@@ -29,6 +29,7 @@ useServerSeoMeta({
           v-if="bus"
           :template
           :category="bus.data.info"
+          :data="bus.data"
         />
       </div>
     </div>

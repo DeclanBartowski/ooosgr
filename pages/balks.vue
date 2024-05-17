@@ -48,7 +48,7 @@ useServerSeoMeta({
           :template
           :category="balks.data.info"
           :content="balks.data"
-          :data
+          :data="balks.data"
         />
       </div>
     </div>

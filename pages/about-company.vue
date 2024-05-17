@@ -41,6 +41,7 @@ useServerSeoMeta({
         <ForPartners
           v-if="about"
           :partners="about.data.partners"
+          :menu="about.data.menu"
         />
       </div>
     </div>
