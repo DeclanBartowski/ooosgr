@@ -2,16 +2,7 @@
 import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 import DownloadCalculatorBtn from "~/components/parts/downloadCalculatorBtn.vue";
 import {calculator} from "~/utils/calculator";
-
-const calculatorData = ref({
-  title:'Трубы бу всегда в наличии на складе',
-  link: '/truby-b-u',
-  priceList:'https://ooosgr.ru/files/pipe/category/5a97a18be80e79e940079c3f3b8fc169a29c9e7f9.pdf',
-  description:'В случае возникновения потребности трубы нестандартного диаметра, поставка займет от двух до четырех\n' +
-      '      дней.<br> Для этого Вам необходимо заполнить форму заявки, расположенную ниже, или позвонить нашим\n' +
-      '      специалистам',
-  items:calculator
-})
+defineProps(['title', 'link', 'priceList','description', 'items','btnLink']);
 </script>
 
 <template>
@@ -28,25 +19,25 @@ const calculatorData = ref({
       > Калькулятор по трубам</a>
     </FancyboxComponent>
     <div class="title">
-      <NuxtLink :to="calculatorData.link">
-        {{ calculatorData.title }}
+      <NuxtLink :to="link">
+        {{ title }}
       </NuxtLink>
     </div>
     <div class="body">
       <NuxtLink
-        v-for="calcItem in calculatorData.items"
+        v-for="calcItem in items"
         :to="calcItem.link"
         :title="calcItem.name"
       >
         {{ calcItem.name }}
       </NuxtLink>
-      <SidebarBtn />
+      <SidebarBtn :data="btnLink" />
     </div>
     <div
       class="custom"
-      v-html="calculatorData.description"
+      v-html="description"
     />
-    <DownloadCalculatorBtn :link="calculatorData.priceList" />
+    <DownloadCalculatorBtn :link="priceList" />
   </div>
 </template>
 

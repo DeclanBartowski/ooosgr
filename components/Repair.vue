@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Calculator from "~/components/categories/Calculator.vue";
+defineProps(['repair']);
+const config = useRuntimeConfig()
 
 const data = ref({
   previewBlock: {
@@ -174,18 +176,17 @@ const data = ref({
       <ul class="category_list">
         <li style="list-style: none;">
           <div class="desc">
-            <h1>{{ data.previewBlock.title }}</h1>
-
+            <h1>{{ repair.restore_main.name }}</h1>
             <div
               class="text"
-              v-html="data.previewBlock.previewTextHtml"
+              v-html="repair.restore_main.preview"
             />
             <NuxtLink
               class="pipe_category_more"
-              :to="data.previewBlock.link"
-              :title="data.previewBlock.linkName"
+              :to="repair.restore_main.btnLink"
+              :title="repair.restore_main.btnName"
             >{{
-              data.previewBlock.linkName
+                repair.restore_main.btnName
             }}</NuxtLink>
           </div>
 
@@ -194,74 +195,65 @@ const data = ref({
             style="height: 390px;"
           >
             <img
-              :alt="data.previewBlock.title"
-              :src="data.previewBlock.img"
+              :alt="repair.restore_main.name"
+              :src="`${config.public.baseURL}${repair.restore_main.picture.src}`"
               style="width: 707px; height: 390px;"
             >
           </div>
         </li>
       </ul>
     </div>
-    <div
-      class="two columns"
-      style="padding: 30px 0;"
-    >
-      <div
-        class="column text-pad-right"
-        v-html="data.previewBlock.detailText.left"
-      />
-      <div
-        class="column text-pad-left"
-        v-html="data.previewBlock.detailText.right"
-      />
-    </div>
+    <div v-html="repair.restore_main.detail"></div>
   </div>
   <div class="wrap content page pipes">
     <ul class="category_list">
-      <template v-for="item in data.items">
+      <template v-for="item in repair.items">
         <li class="archetype archetype--1280p">
           <div class="clearfix desc_cont">
             <div class="desc">
               <NuxtLink
-                :to="item.link"
-                :title="item.linkName"
+                :to="item.btnLink"
+                :title="item.btnName"
                 class="title"
               >
-                <h2>{{ item.title }}</h2>
+                <h2>{{ item.name }}</h2>
               </NuxtLink>
 
               <div
                 class="text"
-                v-html="item.previewTextHtml"
+                v-html="item.preview"
               />
               <NuxtLink
-                :to="item.link"
-                :title="item.linkName"
+                :to="item.btnLink"
+                :title="item.btnName"
                 class="pipe_category_more"
               >
-                {{ item.linkName }}
+                {{ item.btnName }}
               </NuxtLink>
             </div>
             <div
+              v-if="item.picture.src"
               class="img"
-              :style="{ background: `url('${item.img}') right top / cover`, height: '385px' }"
+              :style="{ background: `url('${config.public.baseURL}${item.picture.src}') right top / cover`, height: '385px' }"
             />
           </div>
 
           <div
-            v-if="item.slider"
+            v-if="item.photo"
             class="gallery clearfix"
           >
             <NuxtLink
-              v-for="slide in item.slider"
+              v-for="slide in item.photo"
               class="photo_thumb fancybox"
-              :to="slide.big"
-              :title="slide.title"
-              :rel="slide.rel"
+              :to="`${config.public.baseURL}${slide.src}`"
+              :title="slide.alt"
+              :rel="slide.alt"
             >
               <img
-                :alt="slide.title"
-                :src="slide.small"
+                      width="155"
+                      height="150"
+                :alt="slide.alt"
+                :src="`${config.public.baseURL}${slide.src}`"
               >
             </NuxtLink>
           </div>
@@ -270,7 +262,10 @@ const data = ref({
           v-if="item.showCalculator"
           class="archetype archetype--1280p mb-10"
         >
-          <Calculator />
+        <Calculator :items="repair.sibar_filter" :description="repair.text_link" :priceList="`${config.public.baseURL}${repair.file}`"
+        :link="repair.trub.url"  :title="repair.trub.title"
+                    :btnLink="repair.btnLink"
+        />
         </li>
       </template>
     </ul>
