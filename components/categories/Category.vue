@@ -70,7 +70,7 @@ const config = useRuntimeConfig()
               :link="data.priceList"
             />
             <CategoryGallery
-              v-if="data.slider"
+              v-if="data.slider && data.slider.length > 0"
               :slides="data.slider"
             />
           </div>
