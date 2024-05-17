@@ -135,12 +135,12 @@ watch(() => route.name, (newName) => {
               <li
                 v-for="(item, index) in headerdata.menu"
                 :key="index"
-                :class="{ first: index === 0, last: index === headerdata.menu.length - 1 }"
+                :class="{ first: index === 0, last: index === headerdata.menu.length - 1, current: item.link ==  route.path}"
+
               >
                 <nuxt-link
                   :to="item.link"
-                >
-                  {{ item.name }}
+                >{{ item.name }}
                 </nuxt-link>
               </li>
             </ul>
@@ -180,7 +180,7 @@ watch(() => route.name, (newName) => {
             <li
               v-for="(item, index) in headerdata.menu"
               :key="index"
-              :class="{ first: index === 0, last: index === headerdata.menu.length - 1 }"
+              :class="{ first: index === 0, last: index === headerdata.menu.length - 1, current: item.link ==  route.path }"
             >
               <nuxt-link
                 :to="item.link"
@@ -255,4 +255,5 @@ watch(() => route.name, (newName) => {
       background-color: #2d2f8e;
     }
   }
+  .main_menu .current a {color: #ffffff; text-shadow:none}
 </style>

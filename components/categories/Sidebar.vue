@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BusData } from '~/types/bus'
-
+const route = useRoute();
 defineProps<{
   wrapperClass?: string,
   data: BusData
@@ -37,6 +37,7 @@ defineProps<{
           :key="filter.code"
           :to="filter.link"
           title="Применить фильтр"
+          :class="{ current: filter.link ==  route.path}"
         >
           {{ filter.name }}
         </NuxtLink>
