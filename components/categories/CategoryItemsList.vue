@@ -49,6 +49,7 @@ const config = useRuntimeConfig()
               target="_blank"
             >
               <img
+                width="155" height="105"
                 v-for="i in item.photo"
                 :key="i.src"
                 :alt="i.alt"

@@ -14,6 +14,8 @@ const config = useRuntimeConfig()
           style="height: 0px;"
         >
           <img
+                  width="300"
+                  height="200"
             v-if="article.img"
             :alt="article.img.alt"
             :src="`${config.public.baseURL}${article.img.src}`"
@@ -51,6 +53,8 @@ const config = useRuntimeConfig()
             style="height: 0px;"
           >
             <img
+              width="220"
+              height="145"
               v-if="article.img"
               :alt="article.img.alt"
               :src="`${config.public.baseURL}${article.img.src}`"
