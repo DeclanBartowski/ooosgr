@@ -98,7 +98,7 @@ const config = useRuntimeConfig()
           <img
             v-if="article.img"
             :alt="article.img.alt"
-            :src="`${config.public.baseURL}${article.img.src}`"
+            :src="`${article.img.src}`"
             width="300"
             height="180"
           >
