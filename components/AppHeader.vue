@@ -50,12 +50,12 @@ watch(() => route.name, (newName) => {
           <img
               class="logo_image"
               alt="СТРОЙГЕОРЕСУРС"
-              :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
+              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
           >
           <img
               class="logo_image_alt"
               alt="СТРОЙГЕОРЕСУРС"
-              :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
+              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
           >
         </NuxtLink>
         <div class="title js-title">
