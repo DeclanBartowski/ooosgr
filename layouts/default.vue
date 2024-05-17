@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { MainDto } from '~/types/main'
+
 const { $initializeParallax,$variableTitle,$initSlidingMenus } = useNuxtApp();
 const route = useRoute();
 onMounted(() => {
@@ -11,15 +13,19 @@ watch(() => route.name, () => {
   $variableTitle();
   $initSlidingMenus();
 });
+
+const { data: headfoot } = await useContentFetch<MainDto>(`main`, {
+    method: 'GET'
+})
 </script>
 
 <template>
   <div>
     <div class="main_wrapper">
-      <AppHeader />
+      <AppHeader :headerdata="headfoot.data" />
       <slot />
     </div>
-    <AppFooter />
+    <AppFooter :footerdata="headfoot.data" />
   </div>
 </template>
 

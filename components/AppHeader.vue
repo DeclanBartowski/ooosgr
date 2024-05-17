@@ -1,6 +1,7 @@
 <script setup lang="ts">
-
+defineProps(['headerdata']);
 import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+const config = useRuntimeConfig()
 
 const route = useRoute();
 const hideShadow = ref(false);
@@ -31,49 +32,8 @@ watch(() => route.name, (newName) => {
   hideShadow.value = $checkShadowByRouteName(newName);
 });
 
-const header  = ref({
-    "mainLogo" : 'https://ooosgr.ru/bundles/app/images/logo.png?51080781afe3f2dcd50bc049a8d5083a',
-    "altLogo": 'https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a',
-    "title": "СТРОЙГЕОРЕСУРС",
-    "menu": [
-        {
-            "link": '/truby-b-u',
-            "title": "Труба б/у"
-        },
-        {
-            "link": '/balks',
-            "title": "Балка б/у"
-        },
-        {
-          "link": '/kotlovan',
-          "title": "Котлован"
-        },
-        {
-            "link": '/truby-stalnye-v-vus-izolyaczii',
-            "title": "ВУС"
-        },
-        {
-            "link": '/vosstanovlenie-trub',
-            "title": "Восстановление"
-        },
-        {
-            "link": '/promos/',
-            "title": "Акции"
-        },
-        {
-            "link": '/procurement',
-            "title": "Закупки"
-        },
-        {
-            "link": '/about-company',
-            "title": "О компании"
-        },
-        {
-            "link": '/kontakty',
-            "title": "Контакты"
-        },
-    ]
-});
+
+
 </script>
 
 <template>
@@ -90,28 +50,28 @@ const header  = ref({
           <img
               class="logo_image"
               alt="СТРОЙГЕОРЕСУРС"
-              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+              :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
           >
           <img
               class="logo_image_alt"
               alt="СТРОЙГЕОРЕСУРС"
-              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+              :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
           >
         </NuxtLink>
         <div class="title js-title">
-          ООО "СТРОЙГЕОРЕСУРС"
+            {{ headerdata.header.name }}
         </div>
         <div class="title title--hide js-short-title">
-          ООО "СГР"
+            {{ headerdata.header.preview_text }}
         </div>
         <div class="right">
           <div class="top">
             <div class="two columns">
               <div class="column text-pad-right">
-                <span style="white-space: nowrap;color:#27297b;font-weight:bold;">e-mail: <a
-                  href="mailto:info@ooosgr.ru"
+                <span style="white-space: nowrap;color:#27297b;font-weight:bold;">{{ headerdata.header_email.name }} <a
+                  :href="`mailto:${headerdata.header_email.preview_text}`"
                   title="Написать письмо"
-                >info@ooosgr.ru</a></span>
+                >{{ headerdata.header_email.preview_text }}</a></span>
                 <div class="search">
                   <div class="form form_inline">
                     <form
@@ -142,9 +102,10 @@ const header  = ref({
                   <a
                     class="callibri_phone"
                     style="white-space: nowrap;"
-                    href="tel:+74957773646"
+                    :href="headerdata.header_phone.detail_text"
+                    v-html="headerdata.header_phone.preview_text"
                   >
-                    <small>+7 (495) </small>777-36-46
+
                   </a>
                 </div>
                 <FancyboxComponent
@@ -165,20 +126,21 @@ const header  = ref({
           <div class="phone phone--hidden">
             <a
               class="callibri_phone"
-              href="tel:+74957773646"
-            ><small>+7 (495) </small>777-36-46</a>
+              :href="headerdata.header_phone.detail_text"
+              v-html="headerdata.header_phone.preview_text"
+            ></a>
           </div>
           <div class="main_menu">
             <ul>
               <li
-                v-for="(item, index) in header.menu"
+                v-for="(item, index) in headerdata.menu"
                 :key="index"
-                :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+                :class="{ first: index === 0, last: index === headerdata.menu.length - 1 }"
               >
                 <nuxt-link
                   :to="item.link"
                 >
-                  {{ item.title }}
+                  {{ item.name }}
                 </nuxt-link>
               </li>
             </ul>
@@ -192,14 +154,15 @@ const header  = ref({
       <NuxtLink :to="'/'" :class="'logo'" :title="'На главную'">
         <img
             alt=""
-            src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+            :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
         >
       </NuxtLink>
     </div>
     <a
       class="callibri_phone-mobile"
-      href="tel:+74957773646"
-    >+7 (495) 777-36-46</a>
+      :href="headerdata.header_phone.detail_text"
+      v-html="headerdata.header_phone.preview_text"
+    ></a>
 
     <div class="wrap_cont-mobile">
       <div class="header__menu js-menu">
@@ -215,14 +178,14 @@ const header  = ref({
         <div class="menu-options js-menu__options">
           <ul>
             <li
-              v-for="(item, index) in header.menu"
+              v-for="(item, index) in headerdata.menu"
               :key="index"
-              :class="{ first: index === 0, last: index === header.menu.length - 1 }"
+              :class="{ first: index === 0, last: index === headerdata.menu.length - 1 }"
             >
               <nuxt-link
                 :to="item.link"
               >
-                {{ item.title }}
+                {{ item.name }}
               </nuxt-link>
             </li>
           </ul>

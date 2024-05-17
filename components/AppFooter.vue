@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import PipeModal from "~/components/modals/PipeModal.vue";
-
-const footerText  = ref({
-    "copyright" : '© 2024 Металлобаза трубы б/у труба бу - СтройГеоРесурс.<br>Все права защищены. Копирование информации преследуется по закону.<br>Статья 146 УК РФ.',
-    "address": '117105, Город Москва, вн.тер.г. муниципальный округ Нагатино-Садовники, ул Нагатинская, д.1',
-    "phone": "+7 (495) 777-36-46",
-    "email":"info@ooosgr.ru"
-});
+defineProps(['footerdata']);
 </script>
 
 <template>
@@ -14,17 +8,11 @@ const footerText  = ref({
     <div class="wrap_cont clearfix">
       <div
         class="copyright"
-        v-html="footerText.copyright"
+        v-html="footerdata.copyright.preview_text"
       />
-      <div class="address">
-        {{ footerText.address }}<br>
-        <span class="callibri_phone1">{{ footerText.phone }}</span>,
-        <a
-          href="mailto:info@ooosgr.ru"
-          title="Написать письмо"
-        >{{ footerText.email }}</a>
+      <div class="address" v-html="footerdata.address.preview_text">
       </div>
-      <social-footer />
+      <social-footer :socials="footerdata.social" />
     </div>
   </footer>
   <div class="popup" id="popup-callback">
