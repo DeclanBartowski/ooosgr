@@ -1,8 +1,64 @@
 <script setup lang="ts">
+import {useForm} from "vee-validate";
+import * as yup from "yup";
+
 defineProps(['title'])
 const { $openB24AgreementModal } = useNuxtApp();
-const bitrixFormName = ref('');
-const bitrixFormPhone = ref('');
+
+const bitrixFormSchema = yup.object({
+  name: yup.string().required(),
+  phone: yup.string().required(),
+  agreement: yup.boolean().isTrue().required(),
+});
+
+const { values, errors, defineField, handleSubmit, resetForm } = useForm({
+  validationSchema: bitrixFormSchema,
+  initialValues: {
+    name:'',
+    phone: '',
+    agreement: true,
+  }
+});
+
+const [name, nameAttrs] = defineField('name', {
+  validateOnModelUpdate: false,
+});
+const [phone, phoneAttrs] = defineField('phone', {
+  validateOnModelUpdate: false,
+});
+
+const [agreement, agreementAttrs] = defineField('agreement', {
+  validateOnModelUpdate: false,
+});
+
+const phoneFocused = ref(false);
+const nameFocused = ref(false);
+const status = ref('');
+
+const sendRepeat = () => {
+  status.value = '';
+  resetForm();
+}
+
+const onSubmit = handleSubmit(async values => {
+  const { data: response } = await useContentFetch<{
+    status: 'success' | 'error',
+    data: unknown,
+    errors: Array<{message: string; code: string; customData: unknown}>
+  }>(`/form/call`, {
+    method: 'POST',
+    body: "name=" + values.name + "&phone="+values.phone,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+  if(response.value) {
+    status.value = response.value.status;
+  } else {
+    status.value = "error";
+  }
+});
+
 </script>
 
 <template>
@@ -25,6 +81,7 @@ const bitrixFormPhone = ref('');
           <div class="b24-form-content b24-form-padding-side">
             <form
               method="post"
+              @submit="onSubmit"
               novalidate="novalidate"
             >
               <div>
@@ -33,24 +90,28 @@ const bitrixFormPhone = ref('');
                     <div>
                       <div class="b24-form-control-container b24-form-control-icon-after">
                         <input
-                          v-model="bitrixFormName"
                           name="name"
+                          @focus="nameFocused = true"
+                          @blur="nameFocused = false"
+                          v-model="name"
+                          v-bind="nameAttrs"
                           autocomplete="given-name"
                           type="string"
                           class="b24-form-control"
-                          :class="{ 'b24-form-control-not-empty': bitrixFormName !== '' }"
+                          :class="{ 'b24-form-control-not-empty': values.name != undefined && values.name != '' }"
                         >
                         <div class="b24-form-control-label">
                           Ваше имя
                           <span
                             class="b24-form-control-required"
-                            style="display: none;"
                           >*</span>
                         </div>
                         <div
                           class="b24-form-control-alert-message"
-                          style="display: none;"
-                        />
+                          :style="{display: errors.name && !nameFocused ? 'block' : ''}"
+                        >
+                          Поле обязательно для заполнения
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -60,12 +121,16 @@ const bitrixFormPhone = ref('');
                     <div>
                       <div class="b24-form-control-container b24-form-control-icon-after">
                         <input
-                          v-model="bitrixFormPhone"
+                          @focus="phoneFocused = true"
+                          @blur="phoneFocused = false"
                           name="phone"
                           autocomplete="tel"
                           type="tel"
+                          v-model="phone"
+                          v-bind="phoneAttrs"
+                          pattern="[0-9\-\(\)\+]+"
                           class="b24-form-control"
-                          :class="{ 'b24-form-control-not-empty': bitrixFormPhone !== '' }"
+                          :class="{ 'b24-form-control-not-empty': values.phone != undefined && values.phone != '' }"
                         >
                         <div class="b24-form-control-label">
                           Телефон
@@ -73,7 +138,7 @@ const bitrixFormPhone = ref('');
                         </div>
                         <div
                           class="b24-form-control-alert-message"
-                          style="display: none;"
+                          :style="{display: errors.phone && !phoneFocused ? 'block' : ''}"
                         >
                           Поле обязательно для заполнения
                         </div>
@@ -91,6 +156,8 @@ const bitrixFormPhone = ref('');
                     <label class="b24-form-control-container">
                       <input
                         checked
+                        v-bind="agreementAttrs"
+                        v-model="agreement"
                         type="checkbox"
                       >
                       <span class="b24-form-control-desc">
@@ -99,8 +166,10 @@ const bitrixFormPhone = ref('');
                       <span class="b24-form-control-required">*</span>
                       <div
                         class="b24-form-control-alert-message"
-                        style="display: none;"
-                      />
+                        :style="{display: errors.agreement ? 'block' : ''}"
+                      >
+                        Поле обязательно для заполнения
+                      </div>
                     </label>
                   </div>
                 </div>
@@ -163,7 +232,7 @@ const bitrixFormPhone = ref('');
             </div>
             <div
               class="b24-form-state b24-form-success"
-              style="display: none;"
+              :style="{display: status !== 'success' ? 'none' : ''}"
             >
               <div class="b24-form-state-inner">
                 <div class="b24-form-state-icon b24-form-success-icon" />
@@ -176,14 +245,14 @@ const bitrixFormPhone = ref('');
             </div>
             <div
               class="b24-form-state b24-form-error"
-              style="display: none;"
+              :style="{display: status !== 'error' ? 'none' : ''}"
             >
               <div class="b24-form-state-inner">
                 <div class="b24-form-state-icon b24-form-error-icon" />
                 <div class="b24-form-state-text">
                   <p />
                 </div>
-                <button class="b24-form-btn b24-form-btn-border b24-form-btn-tight">
+                <button @click="sendRepeat" class="b24-form-btn b24-form-btn-border b24-form-btn-tight">
                   Отправить еще раз
                 </button>
               </div>
