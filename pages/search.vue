@@ -1,7 +1,10 @@
 <script setup lang="ts">
 const route = useRoute();
+const config = useRuntimeConfig()
+
 const search = route.query.q;
-const countItems = ref(99);
+//const countItems = ref(99);
+/*
 const items = ref([
   {
     position: '96',
@@ -50,27 +53,43 @@ const items = ref([
     img: '',
   }
 ]);
+*/
+
+import type { SearchDto } from '~/types/search'
+
+const { data: detail } = await useContentFetch<SearchDto>(`search?query=`+search, {
+    method: 'GET'
+})
+
+useServerSeoMeta({
+    ogTitle: () => detail.value!.data.seo.title,
+    title: () => detail.value!.data.seo.title,
+    description: () => detail.value!.data.seo.description,
+    ogDescription: () => detail.value!.data.seo.description,
+    keywords: () => detail.value!.data.seo.keywords
+})
+
 </script>
 
 <template>
   <div class="wrap content page search">
     <div class="wrap_cont">
       <h1>
-        <template v-if="countItems>0">
+        <template v-if="detail.data.count>0">
           Вы искали «{{ search }}»:
-          найдено {{ countItems }} результатов
+          найдено {{ detail.data.count }} результатов
         </template>
         <template v-else>
           Вы искали «{{ search }}»: к сожалению, по Вашему запросу ничего не найдено
         </template>
       </h1>
       <div
-        v-if="countItems>0"
+        v-if="detail.data.count>0"
         class="text"
       >
         <ul class="articles_list _default">
           <li
-            v-for="item in items"
+            v-for="item in detail.data.items"
             :class="item.class"
           >
             <div
@@ -82,9 +101,11 @@ const items = ref([
 
             <div class="img">
               <img
+                      height="64"
+                      width="64"
                 v-if="item.img"
                 :alt="item.name"
-                :src="item.img"
+                :src="`${config.public.baseURL}${item.img.src}`"
               >
             </div>
             <div class="desc">
@@ -107,12 +128,12 @@ const items = ref([
                   <small>{{ item.category.name }}</small>
                 </NuxtLink>
               </div>
-              <p>{{ item.text }}</p>
+              <p v-html="item.text"></p>
             </div>
           </li>
         </ul>
       </div>
-      <Pagination v-if="countItems>0" />
+      <Pagination v-if="detail.data.count>0" />
     </div>
   </div>
   <div class="wrap content">

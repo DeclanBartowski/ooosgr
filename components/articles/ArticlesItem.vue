@@ -3,6 +3,7 @@ const props = defineProps(['article']);
 const route = useRoute();
 const url = route.path + props.article.category.code + '/' + props.article.code;
 const categoryUrl = route.path + props.article.category.code;
+const config = useRuntimeConfig()
 </script>
 
 <template>
@@ -19,7 +20,7 @@ const categoryUrl = route.path + props.article.category.code;
           <img
             v-if="article.img"
             :alt="article.name"
-            :src="article.img"
+            :src="article.img.src"
             width="300"
             height="180"
           >
@@ -27,9 +28,11 @@ const categoryUrl = route.path + props.article.category.code;
       </template>
       <template v-else>
         <img
+                width="300"
+                height="180"
           v-if="article.img"
           :alt="article.name"
-          :src="article.img"
+          :src="`${config.public.baseURL}${article.img.src}`"
         >
       </template>
     </div>
@@ -47,12 +50,12 @@ const categoryUrl = route.path + props.article.category.code;
           <small>{{ article.category.name }}</small>
         </NuxtLink>
       </p>
-      <p>{{ article.text }}</p>
+      <p v-html="article.text"></p>
     </div>
     <div class="right_align">
       <NuxtLink
         v-if="article.type !=='video'"
-        :to="url"
+        :to="article.url"
         title="Перейти на страницу статьи"
         class="more"
       >
