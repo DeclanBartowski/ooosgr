@@ -25,13 +25,15 @@ const { data: balks } = await useContentFetch<BalksDto>('balks', {
   method: 'GET'
 })
 
-useServerSeoMeta({
+useSeoMeta({
   ogTitle: () => balks.value!.data.seo.title,
   title: () => balks.value!.data.seo.title,
   description: () => balks.value!.data.seo.description,
   ogDescription: () => balks.value!.data.seo.description,
   keywords: () => balks.value!.data.seo.keywords
 })
+
+
 </script>
 
 <template>

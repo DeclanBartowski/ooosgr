@@ -91,18 +91,28 @@ const config = useRuntimeConfig()
         class="img"
         style="height: 180px;"
       >
-        <NuxtLink
-          class="fancybox-media article_video"
-          :to="article.video"
+        <FancyboxComponent
+            :options="{
+          defaultType:'youtube',
+          Html: {
+            videoAutoplay: false
+          },
+        }"
         >
-          <img
-            v-if="article.img"
-            :alt="article.img.alt"
-            :src="`${article.img.src}`"
-            width="300"
-            height="180"
+          <a
+              class="fancybox-media article_video"
+              :href="article.video"
+              data-fancybox="video"
           >
-        </NuxtLink>
+            <img
+                v-if="article.img"
+                :alt="article.img.alt"
+                :src="`${article.img.src}`"
+                width="300"
+                height="180"
+            >
+          </a>
+        </FancyboxComponent>
       </div>
       <div class="desc">
         <h2>{{ article.title }}</h2>

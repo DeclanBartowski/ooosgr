@@ -1,14 +1,76 @@
 <script setup lang="ts">
+import {useForm} from "vee-validate";
+import axios from "axios";
+
+const props = defineProps(['message', 'id']);
+const config = useRuntimeConfig()
+
+const { defineField, handleSubmit } = useForm({
+  initialValues: {
+    file: null,
+    name: '',
+    phone: '',
+  }
+});
+
+
+const [file, fileAttrs] = defineField('file', {
+  validateOnModelUpdate: false,
+});
+
+const [name, nameAttrs] = defineField('name', {
+  validateOnModelUpdate: false,
+});
+
+const [phone, phoneAttrs] = defineField('phone', {
+  validateOnModelUpdate: false,
+});
+
+const status = ref('');
+
+const onSubmit = handleSubmit(async values => {
+  const formData = new FormData();
+  formData.append('file', file.value);
+  formData.append('name', name.value);
+  formData.append('phone', phone.value);
+  formData.append('item', props.message);
+  formData.append('email', 'testemail@gmail.com');
+  formData.append('diametr', '12');
+
+  const res = await axios({
+    method: "POST",
+    url: config.public.baseAPI+'form/send_offer',
+    data: formData,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  if(res.status == 200) {
+    if(res?.data?.status == 'success') {
+      status.value = 'success';
+    } else {
+      status.value = 'error';
+    }
+  } else {
+    status.value = 'error';
+  }
+});
+
+const fileRef = ref(null);
+
+const onFileLoad = () => {
+  file.value = fileRef.value.files[0];
+  console.log(file.value);
+}
 
 </script>
 
 <template>
   <div
-    id="popup-order"
+    :id="id ? id : 'popup-order'"
     class="popup"
     style="display: none;"
   >
-    <div class="callback_form widget form form--order">
+    <div v-if="!status" class="callback_form widget form form--order">
       <div class="title">
         Оставить заявку
       </div>
@@ -17,7 +79,7 @@
       <form
         name="order"
         method="post"
-        action="/callback/order"
+        @submit="onSubmit"
         class="ajaxMultipart"
         data-container=".form--order"
         enctype="multipart/form-data"
@@ -29,11 +91,13 @@
                 <input
                   id="order_name"
                   type="text"
-                  name="order[name]"
-                  required="required"
+                  required
+                  v-bind="nameAttrs"
+                  v-model="name"
                   placeholder="Введите Ваше имя"
                   autocomplete="off"
                   data-placeholder="Введите Ваше имя"
+
                 >
               </div>
             </div>
@@ -43,7 +107,9 @@
                   id="order_phone"
                   type="text"
                   name="order[phone]"
-                  required="required"
+                  required
+                  v-bind="phoneAttrs"
+                  v-model="phone"
                   placeholder="Введите Ваш телефон"
                   autocomplete="off"
                   data-placeholder="Введите Ваш телефон"
@@ -55,12 +121,13 @@
                 <textarea
                   id="order_message"
                   name="order[message]"
-                  readonly="readonly"
-                  required="required"
+                  readonly
+                  required
                   class="js-orderMessage"
                   placeholder="Введите диаметр труб и др. параметры заказа"
                   autocomplete="off"
                   data-placeholder="Введите диаметр труб и др. параметры заказа"
+                  :value="message"
                 />
               </div>
             </div>
@@ -75,19 +142,24 @@
                     ><div class="widget_row clearfix">
                       <div class="file_selector icon-file">
                         <div class="file_message">
-                          Нажмите, чтобы прикрепить файл.
+                          {{file?.name ? file?.name : 'Нажмите, чтобы прикрепить файл.'}}
+
                         </div>
                         <div class="widget">
                           <input
                             id="order_attachments_0_file"
                             type="file"
+                            :disabled="!!file"
                             name="order[attachments][0][file]"
+                            @change="onFileLoad"
+                            ref="fileRef"
                           >
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <a v-if="file" href="#" @click.prevent="file=null" class="remove-tag">✖</a>
               </div>
             </div>
             <div class="row">
@@ -109,8 +181,8 @@
             <div class="row row--checkbox">
               <input
                 id="order_privacy"
-                checked=""
-                required=""
+                checked
+                required
                 type="checkbox"
               >
               <label for="order_privacy">Даю согласие на <a
@@ -120,12 +192,13 @@
             </div>
           </div>
           <div class="center_align">
-            <button
-              type="submit"
-              class="btn red"
-            >
-              Отправить
-            </button>
+              <button
+                  type="submit"
+                  class="btn red"
+
+              >
+                Отправить
+              </button>
           </div>
         </div>
         <div class="row">
@@ -150,7 +223,14 @@
         >
       </form>
     </div>
+    <div v-if="status" class="callback_form widget form form--order">
+      <div class="title">
+        Оставить заявку
+      </div>
+      <p>{{status ? " Запрос отправлен успешно!" : " Запрос не отправлен. Попробуйте позже"}}</p>
+    </div>
   </div>
+
 </template>
 
 <style scoped>

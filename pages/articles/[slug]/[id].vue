@@ -7,7 +7,7 @@ const { data: detail } = await useContentFetch<ArticleDto>(`articles/news/${id.v
 })
 const config = useRuntimeConfig()
 
-useServerSeoMeta({
+useSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
     title: () => detail.value!.data.seo.title,
     description: () => detail.value!.data.seo.description,

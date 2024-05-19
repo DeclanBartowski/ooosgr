@@ -12,7 +12,7 @@ const { data: kotlovan } = await useContentFetch<KotlovanDto>('kotlovan', {
   method: 'GET'
 })
 
-useServerSeoMeta({
+useSeoMeta({
   ogTitle: () => kotlovan.value!.data.seo.title,
   title: () => kotlovan.value!.data.seo.title,
   description: () => kotlovan.value!.data.seo.description,

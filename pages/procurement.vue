@@ -5,7 +5,7 @@ import type { ProcurementDto } from '~/types/procurement'
   method: 'GET'
 })
 
-useServerSeoMeta({
+useSeoMeta({
   ogTitle: () => procurement.value!.data.seo.title,
   title: () => procurement.value!.data.seo.title,
   description: () => procurement.value!.data.seo.description,

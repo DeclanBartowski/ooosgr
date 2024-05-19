@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.33",
+    "axios": "^1.6.8",
     "defu": "^6.1.4",
     "nuxt": "^3.10.2",
     "vee-validate": "^4.12.8",

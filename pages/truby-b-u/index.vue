@@ -7,7 +7,7 @@ const { data: trubybu } = await useContentFetch<TrubybuDto>('truby-b-u', {
 
 const template = ref('')
 
-useServerSeoMeta({
+useSeoMeta({
   ogTitle: () => trubybu.value!.data.seo.title,
   title: () => trubybu.value!.data.seo.title,
   description: () => trubybu.value!.data.seo.description,

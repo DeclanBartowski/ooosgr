@@ -7,7 +7,7 @@ const { data: bus } = await useContentFetch<BusDto>('bus', {
   method: 'GET'
 })
 
-useServerSeoMeta({
+useSeoMeta({
   ogTitle: () => bus.value!.data.seo.title,
   title: () => bus.value!.data.seo.title,
   description: () => bus.value!.data.seo.description,

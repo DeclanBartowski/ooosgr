@@ -20,7 +20,7 @@ const { data: promos } = await useAsyncData<PromosDto>(
   watch: [pages]
 })
 
-useServerSeoMeta({
+useSeoMeta({
   ogTitle: () => promos.value!.data.seo.title,
   title: () => promos.value!.data.seo.title,
   description: () => promos.value!.data.seo.description,

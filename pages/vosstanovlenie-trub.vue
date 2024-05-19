@@ -5,7 +5,7 @@ import type { RepairDto } from '~/types/repair'
 const { data: repairData } = await useContentFetch<RepairDto>('vosstanovlenie-trub', {
     method: 'GET'
 })
-useServerSeoMeta({
+useSeoMeta({
     ogTitle: () => repairData.value!.data.seo.title,
     title: () => repairData.value!.data.seo.title,
     description: () => repairData.value!.data.seo.description,

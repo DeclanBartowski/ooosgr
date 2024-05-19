@@ -5,9 +5,9 @@ import type { ArticleDto } from '~/types/articles'
 const route = useRoute();
 const { data: detail } = await useContentFetch<ArticleDto>(`articles/${route.params.slug}`, {
     method: 'GET'
-})
+});
 
-useServerSeoMeta({
+useSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
     title: () => detail.value!.data.seo.title,
     description: () => detail.value!.data.seo.description,

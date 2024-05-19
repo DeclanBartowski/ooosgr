@@ -7,7 +7,9 @@ defineProps<{
   items: BalksItems[]
 }>()
 
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
+
+const orderMessage = ref('');
 </script>
 
 <template>
@@ -66,18 +68,20 @@ const config = useRuntimeConfig()
             >
               <a
                 class="btn red fancybox_dialog js-fancyboxOrder"
-                :data-message="`[ ${item.name} ] ${item.text} * ${item.price}`"
-                href="#popup-order"
-                data-fancybox
+                href="#bulk-order"
+                data-fancybox="popup_bulks"
+                @click="orderMessage = `[ ${item.name} ] ${item.text} * ${item.price}`"
               >
                 Заказать
               </a>
+
             </FancyboxComponent>
           <!--/noindex-->
           </td>
         </tr>
       </tbody>
     </table>
+    <OrderModal :id="'bulk-order'" :message="orderMessage"/>
 
     <ul class="products-list mobile mobile--720p">
       <li
