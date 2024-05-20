@@ -8,7 +8,14 @@ export interface SearchDto {
 
 export interface SearchData {
     items: object
-    pagination: object
+    pagination: Pagination
     count: string
     seo: Seo
+}
+
+interface Pagination {
+	itemsCount: number;
+	pageCount: string;
+	pageCurrent: string;
+	pageSize: number;
 }

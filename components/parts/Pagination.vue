@@ -1,35 +1,47 @@
 <script setup lang="ts">
-  defineProps('data');
+  defineProps(['currentPage', 'pageCount', 'url']);
 </script>
 
 <template>
   <div class="paginator">
     <div class="pagination">
-      <span class="current">1</span>
 
-      <span class="page">
-        <a href="/articles/articles/?page=2">2</a>
+      <span class="last" v-if="(currentPage) > 1">
+        <NuxtLink :to="url+'page='+1">&lt;&lt;</NuxtLink>
       </span>
 
-      <span class="page">
-        <a href="/articles/articles/?page=3">3</a>
+      <span class="next" v-if="(currentPage) > 1">
+        <NuxtLink :to="url+'page='+(currentPage-1)">&lt;</NuxtLink>
       </span>
 
-      <span class="page">
-        <a href="/articles/articles/?page=4">4</a>
+      <template v-if="currentPage > 2">
+        <span class="page">
+          <NuxtLink :to="url+'page='+(currentPage-2)">{{currentPage-2}}</NuxtLink>
+        </span>
+
+        <span class="page">
+          <NuxtLink :to="url+'page='+(currentPage-1)">{{currentPage-1}}</NuxtLink>
+        </span>
+      </template>
+      <template v-if="currentPage == 2">
+         <span class="page">
+          <NuxtLink :to="url+'page='+(currentPage-1)">{{currentPage-1}}</NuxtLink>
+        </span>
+      </template>
+
+      <span class="current">{{currentPage}}</span>
+
+      <span class="page" v-for="n in Math.min(2, pageCount-currentPage)" >
+            <NuxtLink :to="url+'page='+(currentPage+n)">{{currentPage+n}}</NuxtLink>
       </span>
 
-      <span class="page">
-        <a href="/articles/articles/?page=5">5</a>
+
+      <span class="next" v-if="(pageCount-currentPage) >= 1">
+        <NuxtLink :to="url+'page='+(currentPage+1)">&gt;</NuxtLink>
       </span>
 
-
-      <span class="next">
-        <a href="/articles/articles/?page=2">&gt;</a>
-      </span>
-
-      <span class="last">
-        <a href="/articles/articles/?page=6">&gt;&gt;</a>
+      <span class="last" v-if="(pageCount-currentPage) >= 1">
+        <NuxtLink :to="url+'page='+pageCount">&gt;&gt;</NuxtLink>
       </span>
     </div>
   </div>

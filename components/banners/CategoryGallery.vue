@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+
 let props = defineProps(['slides']);
 const config = useRuntimeConfig()
 
@@ -7,21 +9,42 @@ const config = useRuntimeConfig()
 <template>
   <div class="gallery slider big">
     <template v-if="slides.length>0">
-      <NuxtLink class="photo_thumb fancybox"
-         :to="`${config.public.baseURL}${slides[0].src}`"
-         :rel="slides[0].alt"
-         :title="slides[0].alt">
-        <img alt="" :src="`${config.public.baseURL}${slides[0].src}`">
-      </NuxtLink>
+      <FancyboxComponent
+          :options="{
+                defaultType:'image'
+              }"
+      >
+        <a class="photo_thumb fancybox"
+          :href="`${config.public.baseURL}${slides[0].src}`"
+          :rel="slides[0].alt"
+          :title="slides[0].alt"
+           data-fancybox
+        >
+
+          <img alt="" :src="`${config.public.baseURL}${slides[0].src}`">
+        </a>
+
+      </FancyboxComponent>
+
       <div class="hide">
-        <NuxtLink v-for="(slide, index) in slides.slice(1)"
-           :key="index"
-           class="photo_thumb fancybox"
-           :to="`${config.public.baseURL}${slide.src}`"
-           :rel="slide.alt"
-           :title="slide.alt">
-          <img alt=""  :src="`${config.public.baseURL}${slide.src}`">
-        </NuxtLink>
+        <FancyboxComponent
+            :options="{
+                defaultType:'image'
+              }"
+        >
+          <a v-for="(slide, index) in slides.slice(1)"
+                    :key="index"
+                    class="photo_thumb fancybox"
+                    :href="`${config.public.baseURL}${slide.src}`"
+                    :rel="slide.alt"
+                    :title="slide.alt"
+                    data-fancybox
+          >
+            <img alt=""  :src="`${config.public.baseURL}${slide.src}`">
+          </a>
+
+        </FancyboxComponent>
+
       </div>
     </template>
     <template v-else>

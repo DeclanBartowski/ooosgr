@@ -4,9 +4,23 @@ import Pagination from "~/components/parts/Pagination.vue";
 import type { ArticleDto } from '~/types/articles'
 
 const route = useRoute();
-const { data: detail } = await useContentFetch<ArticleDto>(`articles`, {
+let { data: detail } = await useContentFetch<ArticleDto>(`articles`+(route.query.page ? '?page='+route.query.page : ''), {
     method: 'GET'
 })
+
+watch(
+    () => route.query.page,
+    async () => {
+      const {data: res} = await useContentFetch<ArticleDto>(`articles` + (route.query.page ? '?page=' + route.query.page : ''), {
+        method: 'GET',
+      });
+      detail.value = res.value;
+    }, {
+      deep: true,
+      immediate: true,
+    }
+)
+
 
 useServerSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
@@ -25,7 +39,11 @@ useServerSeoMeta({
         <h1>{{ detail.data.title }}</h1>
       </div>
       <ArticlesList :article-collection="detail.data.items" />
-      <Pagination />
+      <Pagination
+          :current-page="detail?.data?.pagination?.pageCurrent"
+          :page-count="detail?.data?.pagination?.pageCount"
+          url="/articles?"
+      />
     </div>
   </div>
   <BitrixForm />

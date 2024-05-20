@@ -7,8 +7,16 @@ export interface ArticleDto {
 }
 
 export interface ArticlesData {
-    title: string
-    menu: object
-    items: object
+	title: string
+	menu: object
+	items: object
+	pagination: Pagination;
 	seo: Seo
+}
+
+export interface Pagination {
+	itemsCount: number;
+	pageCount: number;
+	pageCurrent: number;
+	pageSize: number;
 }

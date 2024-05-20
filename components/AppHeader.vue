@@ -4,6 +4,7 @@ import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 const config = useRuntimeConfig()
 
 const route = useRoute();
+const router = useRouter();
 const hideShadow = ref(false);
 const isHeaderFixed = ref(false);
 const headerHeight = ref(0);
@@ -32,6 +33,7 @@ watch(() => route.name, (newName) => {
   hideShadow.value = $checkShadowByRouteName(newName);
 });
 
+const searchInputValue = ref('');
 
 
 </script>
@@ -75,8 +77,11 @@ watch(() => route.name, (newName) => {
                 <div class="search">
                   <div class="form form_inline">
                     <form
-                      action="/search/"
-                      method="get"
+                      @submit.prevent="
+                      navigateTo({path: '/search', query: {
+                        q: searchInputValue,
+
+                      }, force: true});"
                     >
                       <div class="row">
                         <div class="widget">
@@ -85,6 +90,7 @@ watch(() => route.name, (newName) => {
                             name="q"
                             placeholder="Поиск"
                             type="text"
+                            v-model="searchInputValue"
                           >
                           <button
                             class="icon-search"

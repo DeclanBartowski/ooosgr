@@ -44,20 +44,29 @@ const orderMessage = ref('');
           </td>
           <td class="pic">
             <!--noindex-->
-            <NuxtLink
-              v-if="item.picture"
-              class="fancybox photo_thumb"
-              :to="`${config.public.baseURL}${item.picture.src}`"
-              target="_blank"
+            <FancyboxComponent
+                :options="{
+                defaultType:'image'
+              }"
             >
-              <img
-                width="155" height="105"
-                v-for="i in item.photo"
-                :key="i.src"
-                :alt="i.alt"
-                :src="`${config.public.baseURL}${i.src}`"
+              <a
+                  v-if="item.picture"
+                  class="fancybox photo_thumb"
+                  :href="`${config.public.baseURL}${item.picture.src}`"
+                  target="_blank"
+                  data-fancybox
               >
-            </NuxtLink>
+                <img
+                    width="155" height="105"
+                    v-for="i in item.photo"
+                    :key="i.src"
+                    :alt="i.alt"
+                    :src="`${config.public.baseURL}${i.src}`"
+                >
+              </a>
+
+            </FancyboxComponent>
+
             <!--/noindex-->
             <div class="hide" />
             <!--noindex-->
@@ -103,18 +112,27 @@ const orderMessage = ref('');
           </div>
           <div class="products-list__picture">
             <!--noindex-->
-            <NuxtLink
-              v-if="item.picture"
-              class="fancybox photo_thumb"
-              :to="`${config.public.baseURL}${item.picture.src}`"
+            <FancyboxComponent
+                :options="{
+                defaultType:'image'
+              }"
             >
-              <img
-                v-for="i in item.photo"
-                :key="i.src"
-                :alt="i.alt"
-                :src="`${config.public.baseURL}${i.src}`"
+              <a
+                  v-if="item.picture"
+                  class="fancybox photo_thumb"
+                  :href="`${config.public.baseURL}${item.picture.src}`"
+                  data-fancybox
               >
-            </NuxtLink>
+                <img
+                    v-for="i in item.photo"
+                    :key="i.src"
+                    :alt="i.alt"
+                    :src="`${config.public.baseURL}${i.src}`"
+                >
+              </a>
+
+            </FancyboxComponent>
+
             <!--/noindex-->
 
             <div class="hide" />

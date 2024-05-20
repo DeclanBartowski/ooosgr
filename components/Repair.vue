@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Calculator from "~/components/categories/Calculator.vue";
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 defineProps(['repair']);
 const config = useRuntimeConfig()
 </script>
@@ -76,20 +77,29 @@ const config = useRuntimeConfig()
             v-if="item.photo"
             class="gallery clearfix"
           >
-            <NuxtLink
-              v-for="slide in item.photo"
-              class="photo_thumb fancybox"
-              :to="`${config.public.baseURL}${slide.src}`"
-              :title="slide.alt"
-              :rel="slide.alt"
+            <FancyboxComponent
+                :options="{
+                defaultType:'image'
+              }"
             >
-              <img
-                      width="155"
-                      height="150"
-                :alt="slide.alt"
-                :src="`${config.public.baseURL}${slide.src}`"
+              <a
+                  v-for="slide in item.photo"
+                  class="photo_thumb fancybox"
+                  :href="`${config.public.baseURL}${slide.src}`"
+                  :title="slide.alt"
+                  :rel="slide.alt"
+                  data-fancybox
               >
-            </NuxtLink>
+                <img
+                    width="155"
+                    height="150"
+                    :alt="slide.alt"
+                    :src="`${config.public.baseURL}${slide.src}`"
+                >
+              </a>
+
+            </FancyboxComponent>
+
           </div>
         </li>
         <li

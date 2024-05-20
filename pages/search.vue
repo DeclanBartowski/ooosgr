@@ -1,8 +1,9 @@
 <script setup lang="ts">
+
 const route = useRoute();
 const config = useRuntimeConfig()
 
-const search = route.query.q;
+const search = ref(route.query.q);
 //const countItems = ref(99);
 /*
 const items = ref([
@@ -56,12 +57,59 @@ const items = ref([
 */
 
 import type { SearchDto } from '~/types/search'
+import Pagination from "~/components/parts/Pagination.vue";
 
-const { data: detail } = await useContentFetch<SearchDto>(`search?query=`+search, {
+
+
+const { data: detail } = await useContentFetch<SearchDto>(`search?query=`+search.value , {
     method: 'GET'
 })
 
-useServerSeoMeta({
+console.log(detail.value);
+watch(
+    () => route.query.page,
+    async () => {
+
+      const {data: res} = await useContentFetch<SearchDto>(`search?query=`+search.value, {
+        method: 'GET',
+        params: {
+          page:  route.query.page ?  route.query.page : 1,
+        }
+      });
+      detail.value = res.value;
+    }, {
+      deep: true,
+      immediate: true,
+    }
+)
+
+watch(
+    () => route.query.q,
+    async () => {
+      search.value = route.query.q;
+      const {data: res} = await useContentFetch<SearchDto>(`search?query=`+search.value, {
+        method: 'GET',
+        params: {
+          page: route.query.page ?  route.query.page : 1,
+        },
+      });
+      detail.value = res.value;
+
+      // search.value =
+      // const data = await $fetch<SearchDto>(config.public.baseAPI+'search?query=' + (route.query.q ?  route.query.page : 1), {
+      //   method: "GET",
+      // });
+      // console.log(data);
+      // detail.value = data;
+      console.log("OKOKOK");
+
+    }, {
+      deep: true,
+      immediate: true,
+    }
+)
+
+useSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
     title: () => detail.value!.data.seo.title,
     description: () => detail.value!.data.seo.description,
@@ -133,7 +181,12 @@ useServerSeoMeta({
           </li>
         </ul>
       </div>
-      <Pagination v-if="detail.data.count>0" />
+      <Pagination
+          v-if="(+detail.data.count) > 0"
+          :current-page="+detail?.data?.pagination?.pageCurrent"
+          :page-count="+detail?.data?.pagination?.pageCount"
+          :url="`/search?q=`+search +'&'"
+      />
     </div>
   </div>
   <div class="wrap content">

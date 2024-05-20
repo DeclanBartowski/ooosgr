@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BalksData } from '~/types/balks'
 import type { Banner } from '~/types/root'
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 
 const { $alignCatText } = useNuxtApp()
 onMounted(() => {
@@ -26,30 +27,46 @@ const config = useRuntimeConfig()
           class="mobile mobile--720p"
           style="text-align: center;"
         >
-          <NuxtLink
-            class="photo_thumb fancybox"
-            :to="`${config.public.baseURL}${category.detail_picture.src}`"
-            rel="insultation-mobile"
+          <FancyboxComponent
+              :options="{
+                defaultType:'image'
+              }"
           >
-            <img
-              :alt="category.detail_picture.alt"
-              :src="`${config.public.baseURL}${category.detail_picture.src}`"
+            <a
+                class="photo_thumb fancybox"
+                :href="`${config.public.baseURL}${category.detail_picture.src}`"
+                rel="insultation-mobile"
+                data-fancybox
             >
-          </NuxtLink>
+              <img
+                  :alt="category.detail_picture.alt"
+                  :src="`${config.public.baseURL}${category.detail_picture.src}`"
+              >
+            </a>
+
+          </FancyboxComponent>
         </p>
 
         <p>
-          <NuxtLink
-            class="archetype archetype--720p photo_thumb fancybox"
-            :to="category.preview_picture.src"
-            rel="insultation"
-            style="float: right; margin: 0 0 20px 20px;"
+          <FancyboxComponent
+              :options="{
+                defaultType:'image'
+              }"
           >
-            <img
-              :alt="category.detail_picture.alt"
-              :src="`${config.public.baseURL}${category.detail_picture.src}`"
+            <a
+                class="archetype archetype--720p photo_thumb fancybox"
+                :href="category.preview_picture.src"
+                rel="insultation"
+                style="float: right; margin: 0 0 20px 20px;"
+                data-fancybox
             >
-          </NuxtLink>
+              <img
+                  :alt="category.detail_picture.alt"
+                  :src="`${config.public.baseURL}${category.detail_picture.src}`"
+              >
+            </a>
+
+          </FancyboxComponent>
         </p>
         <span v-html="category.preview_text" />
       </div>

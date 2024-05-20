@@ -4,8 +4,27 @@ import type { ArticleDto } from '~/types/articles'
 
 const route = useRoute();
 const { data: detail } = await useContentFetch<ArticleDto>(`articles/${route.params.slug}`, {
-    method: 'GET'
+    method: 'GET',
+    params: {
+      page: route.query.page ?  route.query.page : 1,
+    }
 });
+
+watch(
+    () => route.query.page,
+    async () => {
+      const {data: res} = await useContentFetch<ArticleDto>(`articles/${route.params.slug}`, {
+        method: 'GET',
+        params: {
+          page:  route.query.page ?  route.query.page : 1,
+        }
+      });
+      detail.value = res.value;
+    }, {
+      deep: true,
+      immediate: true,
+    }
+)
 
 useSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
@@ -29,7 +48,11 @@ useSeoMeta({
         :type="$route.params.slug"
         :collection="detail.data.items"
       />
-      <Pagination />
+      <Pagination
+          :current-page="detail?.data?.pagination?.pageCurrent"
+          :page-count="detail?.data?.pagination?.pageCount"
+          :url="`/articles/${route.params.slug}?`"
+      />
     </div>
   </div>
   <BitrixForm />
