@@ -7,8 +7,6 @@ const { data: detail } = await useContentFetch<HomeDto>(`home`, {
     method: 'GET'
 })
 
-console.log(detail);
-
 useSeoMeta({
     ogTitle: () => detail.value!.data.seo.title,
     title: () => detail.value!.data.seo.title,

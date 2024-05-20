@@ -54,7 +54,7 @@ const orderMessage = ref('');
                   class="fancybox photo_thumb"
                   :href="`${config.public.baseURL}${item.picture.src}`"
                   target="_blank"
-                  data-fancybox
+                  data-fancybox="gallery"
               >
                 <img
                     width="155" height="105"
@@ -78,7 +78,7 @@ const orderMessage = ref('');
               <a
                 class="btn red fancybox_dialog js-fancyboxOrder"
                 href="#bulk-order"
-                data-fancybox="popup_bulks"
+                data-fancybox="bulk"
                 @click="orderMessage = `[ ${item.name} ] ${item.text} * ${item.price}`"
               >
                 Заказать
@@ -121,7 +121,7 @@ const orderMessage = ref('');
                   v-if="item.picture"
                   class="fancybox photo_thumb"
                   :href="`${config.public.baseURL}${item.picture.src}`"
-                  data-fancybox
+                  data-fancybox="gallery"
               >
                 <img
                     v-for="i in item.photo"

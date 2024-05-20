@@ -21,7 +21,7 @@ import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
         }"
       >
         <a
-          data-fancybox
+          data-fancybox="calculator"
           class="btn red icon-calculator fancybox_dialog"
           href="#pipe-calculator"
         > Калькулятор по трубам</a>

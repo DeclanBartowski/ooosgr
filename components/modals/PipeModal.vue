@@ -57,6 +57,34 @@ const data = ref({
       name: '4',
       value: '4',
     },
+    {
+      name: '5.5',
+      value: '5.5',
+    },
+    {
+      name: '6.5',
+      value: '6.5',
+    },
+    {
+      name: '7.5',
+      value: '7.5',
+    },
+    {
+      name: '8.5',
+      value: '8.5',
+    },
+    {
+      name: '9.5',
+      value: '9.5',
+    },
+    {
+      name: '10.5',
+      value: '10.5',
+    },
+    {
+      name: '11.5',
+      value: '11.5',
+    },
   ]
 })
 
@@ -467,7 +495,7 @@ const pipeMessage = ref(`
 
                 <a
                     class="btn red fancybox_dialog js-fancyboxOrder js-calculatorData"
-                    href="#pipe-order"
+                    href="#popup-order"
                     @click="pipeMessage =
 `Диаметр: ${diameter} мм
 Стенка:  ${wall} мм
@@ -477,7 +505,7 @@ const pipeMessage = ref(`
 -----
 * Итоговая стоимость: ${resultPrice} руб.
 `"
-                    data-fancybox
+                    data-fancybox="pipe"
                 >
                   Заказать
                 </a>
@@ -486,7 +514,7 @@ const pipeMessage = ref(`
         </div>
         </div>
       </form>
-      <OrderModal :id="'pipe-order'" :message="pipeMessage"/>
+      <OrderModal :message="pipeMessage"/>
     </div>
   </div>
 </template>

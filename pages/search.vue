@@ -65,7 +65,6 @@ const { data: detail } = await useContentFetch<SearchDto>(`search?query=`+search
     method: 'GET'
 })
 
-console.log(detail.value);
 watch(
     () => route.query.page,
     async () => {
@@ -94,14 +93,6 @@ watch(
         },
       });
       detail.value = res.value;
-
-      // search.value =
-      // const data = await $fetch<SearchDto>(config.public.baseAPI+'search?query=' + (route.query.q ?  route.query.page : 1), {
-      //   method: "GET",
-      // });
-      // console.log(data);
-      // detail.value = data;
-      console.log("OKOKOK");
 
     }, {
       deep: true,

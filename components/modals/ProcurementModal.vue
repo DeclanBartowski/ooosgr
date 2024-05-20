@@ -1,13 +1,83 @@
 <script setup lang="ts">
 
+
+import {useForm} from "vee-validate";
+import axios from "axios";
+
+const props = defineProps(['message']);
+const config = useRuntimeConfig()
+
+const { defineField, handleSubmit } = useForm({
+  initialValues: {
+    file: null,
+    name: '',
+    phone: '',
+    parameters: props.message,
+  }
+});
+
+
+const [file, fileAttrs] = defineField('file', {
+  validateOnModelUpdate: false,
+});
+
+const [name, nameAttrs] = defineField('name', {
+  validateOnModelUpdate: false,
+});
+
+const [phone, phoneAttrs] = defineField('phone', {
+  validateOnModelUpdate: false,
+});
+
+const [parameters, parametersAttrs] = defineField('parameters', {
+  validateOnModelUpdate: false,
+});
+
+const status = ref('');
+
+const onSubmit = async () => {
+  const formData = new FormData();
+  formData.append('file', file.value);
+  formData.append('name', name.value);
+  formData.append('phone', phone.value);
+  formData.append('item', parameters.value);
+  formData.append('email', 'testemail@gmail.com');
+  formData.append('diametr', '12');
+
+  const res = await axios({
+    method: "POST",
+    url: config.public.baseAPI+'form/send_offer',
+    data: formData,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  if(res.status == 200) {
+    if(res?.data?.status == 'success') {
+      status.value = 'success';
+    } else {
+      status.value = 'error';
+    }
+  } else {
+    status.value = 'error';
+  }
+};
+
+const fileRef = ref(null);
+
+const onFileLoad = () => {
+  file.value = fileRef.value.files[0];
+}
+
 </script>
 
 <template>
+
   <div
     id="popup-procurement"
     class="callback_form widget form form--procurement"
     style="display: none"
   >
+    <template v-if="!status">
     <div class="title">
       Отправьте ваше предложение
     </div>
@@ -15,11 +85,7 @@
 
     <form
       name="procurement"
-      method="post"
-      action="/callback/procurement"
-      class="ajaxMultipart"
-      data-container=".form--procurement"
-      enctype="multipart/form-data"
+      @submit.prevent="onSubmit"
     >
       <div class="two columns">
         <div class="column w30">
@@ -28,11 +94,12 @@
               <input
                 id="procurement_name"
                 type="text"
-                name="procurement[name]"
-                required="required"
+                required
                 placeholder="Введите Ваше имя"
                 autocomplete="off"
                 data-placeholder="Введите Ваше имя"
+                v-bind="nameAttrs"
+                v-model="name"
               >
             </div>
           </div>
@@ -41,11 +108,12 @@
               <input
                 id="procurement_phone"
                 type="text"
-                name="procurement[phone]"
-                required="required"
+                required
                 placeholder="Введите Ваш телефон"
                 autocomplete="off"
                 data-placeholder="Введите Ваш телефон"
+                v-bind="phoneAttrs"
+                v-model="phone"
               >
             </div>
           </div>
@@ -54,10 +122,11 @@
               <input
                 id="procurement_email"
                 type="text"
-                name="procurement[email]"
                 placeholder="Введите Ваш e-mail"
                 autocomplete="off"
                 data-placeholder="Введите Ваш e-mail"
+                v-model="parameters"
+                v-bind="parametersAttrs"
               >
             </div>
           </div>
@@ -67,8 +136,7 @@
             <div class="widget">
               <textarea
                 id="procurement_message"
-                name="procurement[message]"
-                required="required"
+                required
                 placeholder="Введите диаметр труб и др. параметры заказа"
                 autocomplete="off"
                 data-placeholder="Введите диаметр труб и др. параметры заказа"
@@ -81,27 +149,31 @@
             <div class="js-files files_rows">
               <div class="row">
                 <div class="widget">
-                  <div id="procurement_attachments_0">
+                  <div id="order_attachments_0">
                     <input
-                      id="procurement_attachments_0_id"
-                      type="hidden"
-                      name="procurement[attachments][0][id]"
-                    ><div class="widget_row clearfix">
+                        id="order_attachments_0_id"
+                        type="hidden"
+                    >
+                    <div class="widget_row clearfix">
                       <div class="file_selector icon-file">
                         <div class="file_message">
-                          Нажмите, чтобы прикрепить файл.
+                          {{file?.name ? file?.name : 'Нажмите, чтобы прикрепить файл.'}}
+
                         </div>
                         <div class="widget">
                           <input
-                            id="procurement_attachments_0_file"
-                            type="file"
-                            name="procurement[attachments][0][file]"
+                              id="order_attachments_0_file"
+                              type="file"
+                              :disabled="!!file"
+                              @change="onFileLoad"
+                              ref="fileRef"
                           >
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <a v-if="file" href="#" @click.prevent="file=null" class="remove-tag">✖</a>
               </div>
             </div>
             <div class="row">
@@ -126,8 +198,8 @@
             >
               <input
                 id="procurement_privacy"
-                checked=""
-                required=""
+                checked
+                required
                 type="checkbox"
               >
               <label for="procurement_privacy">Даю согласие на <a
@@ -151,7 +223,6 @@
           <input
             id="procurement_company"
             type="text"
-            name="procurement[company]"
             class="company"
             placeholder=""
             autocomplete="off"
@@ -167,6 +238,13 @@
         value="4c9iYY8gWGRcX9sD7vTp-zFkCdpubZ6voCjurlz6b0o"
       >
     </form>
+    </template>
+    <template v-if="status" >
+      <div class="title">
+        Отправьте ваше предложение
+      </div>
+      <p>{{status ? " Предложение успешно отправлено!" : " Ошибка при отправке. Попробуйте позже."}}</p>
+    </template>
   </div>
 </template>
 

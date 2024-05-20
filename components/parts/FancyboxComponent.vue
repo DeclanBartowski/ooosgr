@@ -16,25 +16,25 @@ onMounted(() => {
     ...(props.options || {}),
     on: {
       init: () => {
-        console.info('fancybox init')
+        console.info('fancybox init ' + container.value)
       },
       done: (fancybox) => {
         // here `fancybox` refers to the current instance
-      }
+      },
     }
   })
 })
 
 onUpdated(() => {
-  // Fancybox.unbind(container.value)
-  // Fancybox.close()
+  Fancybox.unbind(container.value)
+  Fancybox.close()
 
   Fancybox.bind(container.value, '[data-fancybox]', {
     ...(props.options || {})
   })
 })
 
-onUnmounted(() => Fancybox.destroy());
+//onUnmounted(() => Fancybox.destroy());
 
 watch(() => route.name, () => {
   Fancybox.unbind(container.value)

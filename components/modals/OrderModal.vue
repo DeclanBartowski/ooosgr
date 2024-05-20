@@ -28,7 +28,7 @@ const [phone, phoneAttrs] = defineField('phone', {
 
 const status = ref('');
 
-const onSubmit = handleSubmit(async values => {
+const onSubmit = handleSubmit( async () => {
   const formData = new FormData();
   formData.append('file', file.value);
   formData.append('name', name.value);
@@ -59,7 +59,6 @@ const fileRef = ref(null);
 
 const onFileLoad = () => {
   file.value = fileRef.value.files[0];
-  console.log(file.value);
 }
 
 </script>
@@ -77,12 +76,7 @@ const onFileLoad = () => {
       <p>Заполните поля, и наш менеджер свяжется с Вами в ближайшее время.</p>
 
       <form
-        name="order"
-        method="post"
-        @submit="onSubmit"
-        class="ajaxMultipart"
-        data-container=".form--order"
-        enctype="multipart/form-data"
+        @submit.prevent="onSubmit"
       >
         <div>
           <div>
@@ -106,7 +100,6 @@ const onFileLoad = () => {
                 <input
                   id="order_phone"
                   type="text"
-                  name="order[phone]"
                   required
                   v-bind="phoneAttrs"
                   v-model="phone"
@@ -120,7 +113,6 @@ const onFileLoad = () => {
               <div class="widget">
                 <textarea
                   id="order_message"
-                  name="order[message]"
                   readonly
                   required
                   class="js-orderMessage"
@@ -138,7 +130,6 @@ const onFileLoad = () => {
                     <input
                       id="order_attachments_0_id"
                       type="hidden"
-                      name="order[attachments][0][id]"
                     ><div class="widget_row clearfix">
                       <div class="file_selector icon-file">
                         <div class="file_message">
@@ -150,7 +141,6 @@ const onFileLoad = () => {
                             id="order_attachments_0_file"
                             type="file"
                             :disabled="!!file"
-                            name="order[attachments][0][file]"
                             @change="onFileLoad"
                             ref="fileRef"
                           >
@@ -195,7 +185,6 @@ const onFileLoad = () => {
               <button
                   type="submit"
                   class="btn red"
-
               >
                 Отправить
               </button>
@@ -206,7 +195,6 @@ const onFileLoad = () => {
             <input
               id="order_company"
               type="text"
-              name="order[company]"
               class="company"
               placeholder=""
               autocomplete="off"
@@ -215,7 +203,6 @@ const onFileLoad = () => {
         </div><input
           id="order__token"
           type="hidden"
-          name="order[_token]"
           placeholder="order.entity._token"
           autocomplete="off"
           data-placeholder="order.entity._token"

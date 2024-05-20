@@ -122,7 +122,7 @@ const searchInputValue = ref('');
                   <a
                     href="#popup-callback"
                     class="is_block btn red"
-                    data-fancybox
+                    data-fancybox="callback"
                   >
                     Заказать звонок </a>
                 </FancyboxComponent>

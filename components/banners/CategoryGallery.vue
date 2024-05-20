@@ -18,7 +18,7 @@ const config = useRuntimeConfig()
           :href="`${config.public.baseURL}${slides[0].src}`"
           :rel="slides[0].alt"
           :title="slides[0].alt"
-           data-fancybox
+           data-fancybox="gallery"
         >
 
           <img alt="" :src="`${config.public.baseURL}${slides[0].src}`">
@@ -38,7 +38,7 @@ const config = useRuntimeConfig()
                     :href="`${config.public.baseURL}${slide.src}`"
                     :rel="slide.alt"
                     :title="slide.alt"
-                    data-fancybox
+                    data-fancybox="gallery"
           >
             <img alt=""  :src="`${config.public.baseURL}${slide.src}`">
           </a>

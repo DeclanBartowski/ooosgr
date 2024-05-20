@@ -36,7 +36,7 @@ const config = useRuntimeConfig()
                 class="photo_thumb fancybox"
                 :href="`${config.public.baseURL}${category.detail_picture.src}`"
                 rel="insultation-mobile"
-                data-fancybox
+                data-fancybox="gallery"
             >
               <img
                   :alt="category.detail_picture.alt"
@@ -55,10 +55,10 @@ const config = useRuntimeConfig()
           >
             <a
                 class="archetype archetype--720p photo_thumb fancybox"
-                :href="category.preview_picture.src"
+                :href="`${config.public.baseURL}${category.detail_picture.src}`"
                 rel="insultation"
                 style="float: right; margin: 0 0 20px 20px;"
-                data-fancybox
+                data-fancybox="gallery"
             >
               <img
                   :alt="category.detail_picture.alt"

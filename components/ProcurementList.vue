@@ -60,7 +60,7 @@ defineProps<{
             <a
               class="is_block btn red fancybox_inline"
               href="#popup-procurement"
-              data-fancybox
+              data-fancybox="popup"
             >ПРЕДЛОЖИТЬ</a>
           </FancyboxComponent>
         </td>
@@ -92,7 +92,7 @@ defineProps<{
           <a
             class="is_block btn red fancybox_inline"
             href="#popup-procurement"
-            data-fancybox
+            data-fancybox="popup"
           >ПРЕДЛОЖИТЬ</a>
         </FancyboxComponent>
       </div>

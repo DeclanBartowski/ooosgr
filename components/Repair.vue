@@ -88,7 +88,7 @@ const config = useRuntimeConfig()
                   :href="`${config.public.baseURL}${slide.src}`"
                   :title="slide.alt"
                   :rel="slide.alt"
-                  data-fancybox
+                  data-fancybox="gallery"
               >
                 <img
                     width="155"
