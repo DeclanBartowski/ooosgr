@@ -52,7 +52,7 @@ const orderMessage = ref('');
               <a
                   v-if="item.picture"
                   class="fancybox photo_thumb"
-                  :href="`${config.public.baseURL}${item.picture.src}`"
+                  :href="`${config.public.baseURL}${item.picture.original}`"
                   target="_blank"
                   data-fancybox="gallery"
               >
@@ -120,7 +120,7 @@ const orderMessage = ref('');
               <a
                   v-if="item.picture"
                   class="fancybox photo_thumb"
-                  :href="`${config.public.baseURL}${item.picture.src}`"
+                  :href="`${config.public.baseURL}${item.picture.original}`"
                   data-fancybox="gallery"
               >
                 <img
