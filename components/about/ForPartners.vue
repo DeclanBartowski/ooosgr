@@ -113,7 +113,7 @@ const config = useRuntimeConfig()
 }
 
 .bottom-req {
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .about_partner p .callibri_phone {

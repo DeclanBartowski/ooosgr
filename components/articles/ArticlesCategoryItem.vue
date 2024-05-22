@@ -47,7 +47,7 @@ const config = useRuntimeConfig()
         class="img"
         style="height: 145px;"
       >
-        <NuxtLink :to="url">
+        <NuxtLink :to="article.url">
           <div
             class="img"
             style="height: 0px;"
