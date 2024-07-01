@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 import type { ArticleDto } from '~/types/article'
 const route = useRoute();
 const id = computed(() => route.path.split('/').pop())
@@ -24,16 +25,24 @@ useSeoMeta({
           v-if="detail.data.detailImg && detail.data.img"
           class="article_image"
         >
-          <a
-            class="fancybox"
-            :href="`${config.public.baseURL}${detail.data.img.src}`"
-            target="_blank"
-          >
-            <img
-              :alt="detail.data.title"
-              :src="`${config.public.baseURL}${detail.data.img.src}`"
+            <FancyboxComponent
+                    :options="{
+                defaultType:'image'
+              }"
             >
-          </a>
+                <a
+                        data-fancybox="gallery"
+                        class="fancybox"
+                        rel="insultation"
+                        :href="`${config.public.baseURL}${detail.data.detailImg.src}`"
+                >
+                    <img
+                            :alt="detail.data.title"
+                            :src="`${config.public.baseURL}${detail.data.img.src}`"
+                    >
+                </a>
+            </FancyboxComponent>
+
         </div>
 
         <h1>{{ detail.data.title }}</h1>

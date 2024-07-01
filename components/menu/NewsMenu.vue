@@ -48,6 +48,8 @@ defineProps(['className', 'menu']);
   .news__link-about a {
     margin-right: 0;
     min-width: 90px!important;
+    margin-top: 5px!important;
+    margin-left: 5px!important;
   }
 }
 </style>

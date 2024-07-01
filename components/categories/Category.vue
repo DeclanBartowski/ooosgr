@@ -84,7 +84,7 @@ const config = useRuntimeConfig()
           <div class="column text-pad-left js-column-image text--center">
             <DownloadPdfBtn
               v-if="data.priceList"
-              :link="data.priceList"
+              :link="`${config.public.baseURL}${data.priceList}`"
             />
             <CategoryGallery
               v-if="data.slider && data.slider.length > 0"

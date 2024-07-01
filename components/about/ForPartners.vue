@@ -30,7 +30,7 @@ const config = useRuntimeConfig()
             v-html="partners.text"
           />
           <div class="text--center">
-            <p style="font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;">
+            <p style="font-family: 'RoadRadio', Verdana, sans-serif; font-weight: bold;position: relative;top: 28px;">
               Звоните: <span class="callibri_phone"><a :href="'tel:' + partners.phone">
                 {{ partners.phone }}</a></span>
             </p>
@@ -113,7 +113,7 @@ const config = useRuntimeConfig()
 }
 
 .bottom-req {
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
 .about_partner p .callibri_phone {
@@ -134,5 +134,23 @@ const config = useRuntimeConfig()
     padding-left: 0px;
     margin-top: 10px;
   }
+}
+
+@media only screen and (max-width: 1130px) {
+    .about_partner {
+        height: 100%;
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .news__link.news__link-about {
+        display: block;
+        float: left;
+    }
+
+    .news__link.news__link-about a.title  {
+        margin-top: 5px!important;
+        margin-left: 5px!important;
+    }
 }
 </style>

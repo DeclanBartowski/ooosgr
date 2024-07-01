@@ -35,6 +35,122 @@ const data = ref({
             name: '89',
             value: '89',
         },
+        {
+            name: '95',
+            value: '95',
+        },
+        {
+            name: '102',
+            value: '102',
+        },
+        {
+            name: '108',
+            value: '108',
+        },
+        {
+            name: '114',
+            value: '114',
+        },
+        {
+            name: '120',
+            value: '120',
+        },
+        {
+            name: '127',
+            value: '127',
+        },
+        {
+            name: '133',
+            value: '133',
+        },
+        {
+            name: '140',
+            value: '140',
+        },       {
+            name: '152',
+            value: '152',
+        },  {
+            name: '159',
+            value: '159',
+        },  {
+            name: '168',
+            value: '168',
+        },  {
+            name: '194',
+            value: '194',
+        },  {
+            name: '196',
+            value: '196',
+        },  {
+            name: '219',
+            value: '219',
+        },  {
+            name: '245',
+            value: '245',
+        },  {
+            name: '273',
+            value: '273',
+        },  {
+            name: '299',
+            value: '299',
+        },  {
+            name: '325',
+            value: '325',
+        },  {
+            name: '377',
+            value: '377',
+        },  {
+            name: '426',
+            value: '426',
+        },  {
+            name: '508',
+            value: '508',
+        },  {
+            name: '529',
+            value: '529',
+        }, {
+            name: '530',
+            value: '530',
+        }, {
+            name: '630',
+            value: '630',
+        }, {
+            name: '720',
+            value: '720',
+        }, {
+            name: '820',
+            value: '820',
+        }, {
+            name: '920',
+            value: '920',
+        }, {
+            name: '1020',
+            value: '1020',
+        }, {
+            name: '1220',
+            value: '1220',
+        }, {
+            name: '1420',
+            value: '1420',
+        }, {
+            name: '1620',
+            value: '1620',
+        }, {
+            name: '1720',
+            value: '1720',
+        },{
+            name: '1820',
+            value: '1820',
+        },{
+            name: '1920',
+            value: '1920',
+        },{
+            name: '2020',
+            value: '2020',
+        },{
+            name: '2220',
+            value: '2220',
+        }
     ],
     wall: [
         {
@@ -217,7 +333,7 @@ watch(diameter, () => {
     const weightInTons = (weightInKilo / 1000) * +meters.value;
     tons.value = weightInTons.toFixed(3);
 
-    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 watch(wall, () => {
@@ -225,7 +341,7 @@ watch(wall, () => {
     const weightInTons = (weightInKilo / 1000) * +meters.value;
     tons.value = weightInTons.toFixed(3);
 
-    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 const searchDiameter = ref('');
@@ -245,7 +361,7 @@ watch(meters, (next, prev) => {
     if (!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) meters.value = prev;
     if (isNaN(+next)) meters.value = prev;
 
-    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 watch(tons, (next, prev) => {
@@ -253,7 +369,7 @@ watch(tons, (next, prev) => {
     if (!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) tons.value = prev;
     if (isNaN(+next)) tons.value = prev;
 
-    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 const updateTons = () => {
@@ -269,13 +385,13 @@ const updateMeters = () => {
 }
 
 const updatePricePerMeter = () => {
-    pricePerMeter.value = (+pricePerTon.value * 0.0019).toFixed(4);
-    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+    pricePerMeter.value = (+pricePerTon.value * 0.0019).toFixed(2);
+    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 }
 
 const updatePricePerTon = () => {
-    pricePerTon.value = (+pricePerMeter.value / 0.0019).toFixed(4);
-    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+    pricePerTon.value = (+pricePerMeter.value / 0.0019).toFixed(2);
+    resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 }
 
 watch(pricePerTon, (next, prev) => {

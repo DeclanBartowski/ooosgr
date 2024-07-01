@@ -58,10 +58,7 @@ const orderMessage = ref('');
               >
                 <img
                     width="155" height="105"
-                    v-for="i in item.photo"
-                    :key="i.src"
-                    :alt="i.alt"
-                    :src="`${config.public.baseURL}${i.src}`"
+                    :src="`${config.public.baseURL}${item.picture.original}`"
                 >
               </a>
 
@@ -123,12 +120,10 @@ const orderMessage = ref('');
                   :href="`${config.public.baseURL}${item.picture.original}`"
                   data-fancybox="gallery"
               >
-                <img
-                    v-for="i in item.photo"
-                    :key="i.src"
-                    :alt="i.alt"
-                    :src="`${config.public.baseURL}${i.src}`"
-                >
+                  <img
+                          width="155" height="105"
+                          :src="`${config.public.baseURL}${item.picture.original}`"
+                  >
               </a>
 
             </FancyboxComponent>

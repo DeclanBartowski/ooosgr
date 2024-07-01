@@ -663,7 +663,7 @@ div.b24-form-loader {
 }
 
 .b24-form-state-container .b24-form-success {
-  background-color: #a0be47
+  background-color: rgba(221, 225, 235, 1);
 }
 
 .b24-form-state-inner {

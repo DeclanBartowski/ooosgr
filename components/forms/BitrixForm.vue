@@ -183,8 +183,7 @@ const onSubmit = handleSubmit(async values => {
                   <button
                     type="submit"
                     class="b24-form-btn"
-                  >
-                    ПЕРЕЗВОНИТЕ МНЕ
+                  >ПЕРЕЗВОНИТЬ
                   </button>
                 </div>
               </div>
@@ -396,7 +395,7 @@ const onSubmit = handleSubmit(async values => {
 
 <style scoped>
 #callback-form {
-  margin: 30px 0;
+  margin: 15px 0;
 }
 .b24-form-click-btn-wrapper button, .b24-form-click-btn-wrapper a {
   cursor: pointer
@@ -970,7 +969,7 @@ div.b24-form-loader {
 }
 
 .b24-form-state-container .b24-form-success {
-  background-color: #a0be47
+  background-color: rgba(221, 225, 235, 1);
 }
 
 .b24-form-state-inner {
