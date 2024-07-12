@@ -49,21 +49,27 @@ const orderMessage = ref('');
                 defaultType:'image'
               }"
             >
-              <a
-                  v-if="item.picture"
-                  class="fancybox photo_thumb"
-                  :href="`${config.public.baseURL}${item.picture.src}`"
-                  target="_blank"
-                  data-fancybox="gallery"
+              <div
+                  v-for="(i, key, index) in item.photo"
               >
-                <img
-                    width="155" height="105"
-                    v-for="i in item.photo"
-                    :key="i.src"
-                    :alt="i.alt"
-                    :src="`${config.public.baseURL}${i.src}`"
+                <a
+                    v-if="item.picture"
+                    :style="{display: (key == 0) ? 'block' : 'none'}"
+                    class="fancybox photo_thumb"
+                    :href="`${config.public.baseURL}${i.src}`"
+                    target="_blank"
+                    data-fancybox="gallery"
                 >
-              </a>
+                  <img
+
+                      width="155" height="105"
+                      :key="i.src"
+                      :alt="i.alt"
+                      :src="`${config.public.baseURL}${i.src}`"
+                  >
+                </a>
+              </div>
+
 
             </FancyboxComponent>
 

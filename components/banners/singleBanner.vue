@@ -6,7 +6,7 @@ defineProps(['img']);
   <div class="main slider">
     <ul>
       <li>
-        <div class="parallax" data-parallax-velocity="0">
+        <div data-parallax-velocity="0">
           <img alt="" :src="img" style="top: 0px;">
         </div>
       </li>

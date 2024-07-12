@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
+import type {Ref} from "vue";
 
 const data = ref({
   diameter: [
@@ -110,7 +111,13 @@ watch(searchWall, (newValue, oldValue) => {
 })
 
 const diameterMenuActive = ref(false);
+
+watch(diameterMenuActive, async  () => {
+  console.log(diameterMenuActive.value);
+
+})
 const diameter = ref('');
+
 
 watch(diameter, () => {
   const weightInKilo = (+diameter.value - +wall.value) * +wall.value * 0.02466;
@@ -144,7 +151,6 @@ watch(meters, (next, prev) => {
   if(+next == 0) meters.value = '';
   if(!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) meters.value = prev;
   if(isNaN(+next)) meters.value = prev;
-
   resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
 })
 
@@ -191,15 +197,29 @@ watch(resultPrice, (next, prev) => {
 watch(pricePerMeter, (next, prev) => {
   if(!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) pricePerMeter.value = prev;
 })
+const searchDiameterRef: Ref<HTMLInputElement | null>= ref(null);
+const setDiameterMenu = (isOpen: boolean) => {
+  if(isOpen) {
+    diameterMenuActive.value = true;
+  } else {
+    diameterMenuActive.value = false;
+  }
+}
+
+const focusDiameter = () => {
+  if(searchDiameterRef.value) {
+    searchDiameterRef.value?.focus();
+  }
+}
 
 const pipeMessage = ref(`
-  Диаметр: ${diameter.value}мм
-  Стенка:  ${wall.value}мм
-  Тонны:  ${tons.value}тн
-  Цена за тонну:  ${pricePerTon.value}руб/тн
-  Цена за метр:  ${pricePerMeter.value}руб/м
+  Диаметр: ${diameter?.value}мм
+  Стенка:  ${wall?.value}мм
+  Тонны:  ${tons?.value}тн
+  Цена за тонну:  ${pricePerTon?.value}руб/тн
+  Цена за метр:  ${pricePerMeter?.value}руб/м
   -----
-  * Итоговая стоимость: ${resultPrice.value} руб.
+  * Итоговая стоимость: ${resultPrice?.value} руб.
 `);
 
 </script>
@@ -253,7 +273,7 @@ const pipeMessage = ref(`
                   <a
                       class="chosen-single chosen-default"
                       tabindex="-1"
-                      @click="diameterMenuActive = !diameterMenuActive"
+                      @click="setDiameterMenu(!diameterMenuActive)"
                   ><span>{{diameter ? diameter : "Диаметр"}}</span>
                     <div v-if="diameter">
                       <abbr class="search-choice-close" @click="choseDiameter('')"></abbr>
@@ -268,6 +288,7 @@ const pipeMessage = ref(`
                           type="text"
                           autocomplete="off"
                           v-model="searchDiameter"
+                          ref="searchDiameterRef"
                       >
                     </div>
                     <ul class="chosen-results">
@@ -391,7 +412,7 @@ const pipeMessage = ref(`
                     id="pipe_calculator_parameters_meters"
                     type="text"
                     name="pipe_calculator[parameters][meters]"
-                    required="required"
+                    required
                     class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
                     placeholder="Метры"
                     data-placeholder="Метры"
