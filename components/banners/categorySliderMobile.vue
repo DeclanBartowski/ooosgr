@@ -32,7 +32,7 @@ const slides = ref([
     <ul class="owl-carousel js-slider">
       <li v-for="slide in slides">
         <div class="parallax">
-          <img v-if="slide.slide" alt="" :src="slide">
+          <img v-if="slide.slide" alt="" :src="slide.slide">
         </div>
         <img v-if="slide.slideText" alt="" :src="slide.slideText">
       </li>

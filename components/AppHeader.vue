@@ -9,8 +9,7 @@ const hideShadow = ref(false);
 const isHeaderFixed = ref(false);
 const headerHeight = ref(0);
 const initialOffsetTop = ref(0);
-const { $checkShadowByRouteName } = useNuxtApp();
-
+const { $checkShadowByRouteName , $initSlidingMenus} = useNuxtApp();
 const initializeHeader = () => {
   const header = document.querySelector('.js-header');
   const menu = document.querySelector('.main_menu');
@@ -31,11 +30,10 @@ onMounted(()=>{
 });
 watch(() => route.name, (newName) => {
   hideShadow.value = $checkShadowByRouteName(newName);
+  $initSlidingMenus();
 });
 
 const searchInputValue = ref('');
-
-
 </script>
 
 <template>
@@ -48,23 +46,27 @@ const searchInputValue = ref('');
       :class="{'header--fixed': isHeaderFixed}"
     >
       <div class="wrap_cont clearfix">
-        <NuxtLink :to="'/'" :class="'logo'" :title="'На главную'">
+        <NuxtLink
+          :to="'/'"
+          :class="'logo'"
+          :title="'На главную'"
+        >
           <img
-              class="logo_image"
-              alt="СТРОЙГЕОРЕСУРС"
-              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+            class="logo_image"
+            alt="СТРОЙГЕОРЕСУРС"
+            src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
           >
           <img
-              class="logo_image_alt"
-              alt="СТРОЙГЕОРЕСУРС"
-              src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
+            class="logo_image_alt"
+            alt="СТРОЙГЕОРЕСУРС"
+            src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
           >
         </NuxtLink>
         <div class="title js-title">
-            {{ headerdata.header.name }}
+          {{ headerdata.header.name }}
         </div>
         <div class="title title--hide js-short-title">
-            {{ headerdata.header.preview_text }}
+          {{ headerdata.header.preview_text }}
         </div>
         <div class="right">
           <div class="top">
@@ -78,19 +80,19 @@ const searchInputValue = ref('');
                   <div class="form form_inline">
                     <form
                       @submit.prevent="
-                      navigateTo({path: '/search', query: {
-                        q: searchInputValue,
+                        navigateTo({path: '/search', query: {
+                          q: searchInputValue,
 
-                      }, force: true});"
+                        }, force: true});"
                     >
                       <div class="row">
                         <div class="widget">
                           <input
+                            v-model="searchInputValue"
                             class="query"
                             name="q"
                             placeholder="Поиск"
                             type="text"
-                            v-model="searchInputValue"
                           >
                           <button
                             class="icon-search"
@@ -110,9 +112,7 @@ const searchInputValue = ref('');
                     style="white-space: nowrap;"
                     :href="headerdata.header_phone.detail_text"
                     v-html="headerdata.header_phone.preview_text"
-                  >
-
-                  </a>
+                  />
                 </div>
                 <FancyboxComponent
                   :options="{
@@ -134,19 +134,19 @@ const searchInputValue = ref('');
               class="callibri_phone"
               :href="headerdata.header_phone.detail_text"
               v-html="headerdata.header_phone.preview_text"
-            ></a>
+            />
           </div>
           <div class="main_menu">
             <ul>
               <li
                 v-for="(item, index) in headerdata.menu"
                 :key="index"
-                :class="{ first: index === 0, last: index === headerdata.menu.length - 1, current: item.link ==  route.path}"
-
+                :class="{ first: index === 0, last: index === headerdata.menu.length - 1, current: item.link == route.path}"
               >
                 <nuxt-link
                   :to="item.link"
-                >{{ item.name }}
+                >
+                  {{ item.name }}
                 </nuxt-link>
               </li>
             </ul>
@@ -157,10 +157,14 @@ const searchInputValue = ref('');
   </header>
   <div class="header header--simple wrap mobile mobile--980p">
     <div class="header__data-mobile">
-      <NuxtLink :to="'/'" :class="'logo'" :title="'На главную'">
+      <NuxtLink
+        :to="'/'"
+        :class="'logo'"
+        :title="'На главную'"
+      >
         <img
-            alt=""
-            :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
+          alt=""
+          :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
         >
       </NuxtLink>
     </div>
@@ -168,11 +172,13 @@ const searchInputValue = ref('');
       class="callibri_phone-mobile"
       :href="headerdata.header_phone.detail_text"
       v-html="headerdata.header_phone.preview_text"
-    ></a>
+    />
 
     <div class="wrap_cont-mobile">
       <div class="header__menu js-menu">
-        <div class="menu-switcher js-menu__switcher">
+        <div
+          class="menu-switcher js-menu__switcher"
+        >
           <div class="lines">
             <span class="line line--1" />
             <span class="line line--2" />
@@ -181,12 +187,14 @@ const searchInputValue = ref('');
           </div>
         </div>
 
-        <div class="menu-options js-menu__options">
+        <div
+          class="menu-options js-menu__options"
+        >
           <ul>
             <li
               v-for="(item, index) in headerdata.menu"
               :key="index"
-              :class="{ first: index === 0, last: index === headerdata.menu.length - 1, current: item.link ==  route.path }"
+              :class="{ first: index === 0, last: index === headerdata.menu.length - 1, current: item.link == route.path }"
             >
               <nuxt-link
                 :to="item.link"
