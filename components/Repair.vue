@@ -82,6 +82,7 @@ const config = useRuntimeConfig()
                 defaultType:'image'
               }"
             >
+
               <a
                   v-for="slide in item.photo"
                   class="photo_thumb fancybox"
@@ -89,12 +90,12 @@ const config = useRuntimeConfig()
                   :title="slide.alt"
                   :rel="slide.alt"
                   data-fancybox="gallery"
-              >
+              > {{slide.resize.src}}
                 <img
                     width="155"
                     height="150"
                     :alt="slide.alt"
-                    :src="`${config.public.baseURL}${slide.src}`"
+                    :src="`${config.public.baseURL}${slide.resize.src}`"
                 >
               </a>
 
