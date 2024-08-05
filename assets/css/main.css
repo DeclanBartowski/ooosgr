@@ -956,7 +956,7 @@ form.btn {
 
 .btn.red {
     background-color: #db4923;
-    box-shadow: 0 1px 0 #fff;
+    /*box-shadow: 0 1px 0 #fff;*/
     color: #fff;
     text-shadow: 0 1px 0 #720000;
     background-image: linear-gradient(to bottom,#db4923 0,#b90700 100%)
@@ -3279,7 +3279,7 @@ a.photo_thumb {
 .content.pipes .used_pipes.widget>.body .info_link {
     bottom: 80px;
     position: absolute;
-    right: 45px;
+    right: 75px;/*Изменено с 45 для формы настранице восстановление труб*/
     width: 210px
 }
 
@@ -3292,7 +3292,7 @@ a.photo_thumb {
     font-size: 12px;
     color: #fff;
     position: absolute;
-    bottom: 55px;
+    bottom: 35px;/*Изменен с 55 для вывода в форме восстановления труб*/
     left: 0;
     width: 680px;
     line-height: 1.4em
@@ -5407,4 +5407,7 @@ body .fancybox__content {
     .chosen-search input {
         border: 1px;
     }
+}
+.fancybox__container {
+    --fancybox-bg: rgba(24, 27, 27, 0.90)!important;
 }

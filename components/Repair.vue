@@ -105,7 +105,7 @@ const config = useRuntimeConfig()
         </li>
         <li
           v-if="item.showCalculator"
-          class="archetype archetype--1280p mb-10"
+          class="archetype archetype--1280p mb-10 vosstanovlenie-calculator"
         >
         <Calculator :items="repair.sibar_filter" :description="repair.text_link" :priceList="`${config.public.baseURL}${repair.file}`"
         :link="repair.trub.url"  :title="repair.trub.title"

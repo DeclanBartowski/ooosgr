@@ -124,7 +124,7 @@ watch(diameter, () => {
   const weightInTons = (weightInKilo / 1000) * +meters.value;
   tons.value = weightInTons.toFixed(3);
 
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 })
 
 watch(wall, () => {
@@ -132,7 +132,7 @@ watch(wall, () => {
   const weightInTons = (weightInKilo / 1000) * +meters.value;
   tons.value = weightInTons.toFixed(3);
 
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 })
 
 const searchDiameter = ref('');
@@ -151,7 +151,7 @@ watch(meters, (next, prev) => {
   if(+next == 0) meters.value = '';
   if(!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) meters.value = prev;
   if(isNaN(+next)) meters.value = prev;
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 })
 
 watch(tons, (next, prev) => {
@@ -159,7 +159,7 @@ watch(tons, (next, prev) => {
   if(!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) tons.value = prev;
   if(isNaN(+next)) tons.value = prev;
 
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 })
 
 const updateTons = () => {
@@ -175,13 +175,13 @@ const updateMeters = () => {
 }
 
 const updatePricePerMeter = () => {
-  pricePerMeter.value = (+pricePerTon.value * 0.0019).toFixed(4);
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+  pricePerMeter.value = (+pricePerTon.value * 0.0019).toFixed(3);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 }
 
 const updatePricePerTon = () => {
-  pricePerTon.value = (+pricePerMeter.value / 0.0019).toFixed(4);
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(1);
+  pricePerTon.value = (+pricePerMeter.value / 0.0019).toFixed(3);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 }
 
 watch(pricePerTon, (next, prev) => {
@@ -222,13 +222,26 @@ const pipeMessage = ref(`
   * Итоговая стоимость: ${resultPrice?.value} руб.
 `);
 
+const formatInput = (value: string): string => {
+  let formattedValue = value.replace(/[^0-9.]/g, '');
+
+  if ((formattedValue.match(/\./g) || []).length > 1) {
+    formattedValue = formattedValue.replace(/\.+$/, '');
+  }
+
+  const parts = formattedValue.split('.');
+  if (parts.length > 1 && parts[1].length > 3) {
+    parts[1] = parts[1].slice(0, 3);
+  }
+  return parts.join('.');
+};
 </script>
 
 <template>
   <div
-      id="pipe-calculator"
-      class="widget pipe_calculator"
-      style="display: none;"
+    id="pipe-calculator"
+    class="widget pipe_calculator"
+    style="display: none;"
   >
     <div class="title">
       Основные параметры
@@ -236,12 +249,12 @@ const pipeMessage = ref(`
 
     <div class="form form_horizontal">
       <form
-          name="pipe_calculator"
-          method="post"
-          action=""
-          ng-app="pipeCalculator"
-          ng-controller="calculatorController"
-          class="ng-pristine ng-scope ng-invalid ng-invalid-required"
+        name="pipe_calculator"
+        method="post"
+        action=""
+        ng-app="pipeCalculator"
+        ng-controller="calculatorController"
+        class="ng-pristine ng-scope ng-invalid ng-invalid-required"
       >
         <p>Введите исходные данные</p>
         <div class="two columns">
@@ -249,62 +262,71 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <select
-                    id="pipe_calculator_parameters_diameter"
-                    name="pipe_calculator[parameters][diameter]"
-                    ng-change="updateMetersOrTons()"
-                    ng-model="data.diameter"
-                    placeholder="Диаметр"
-                    data-placeholder="Диаметр"
-                    class="ng-pristine ng-untouched ng-valid"
-                    style="display: none"
+                  id="pipe_calculator_parameters_diameter"
+                  name="pipe_calculator[parameters][diameter]"
+                  ng-change="updateMetersOrTons()"
+                  ng-model="data.diameter"
+                  placeholder="Диаметр"
+                  data-placeholder="Диаметр"
+                  class="ng-pristine ng-untouched ng-valid"
+                  style="display: none"
                 >
-                  <option value=""/>
-                  <option v-for="diameter in data.diameter" :value="diameter.value">
+                  <option value="" />
+                  <option
+                    v-for="diameter in data.diameter"
+                    :value="diameter.value"
+                  >
                     {{ diameter.name }}
                   </option>
                 </select>
                 <div
-                    id="pipe_calculator_parameters_diameter_chosen"
-                    class="chosen-container chosen-container-single"
-                    :class="{'chosen-with-drop' : diameterMenuActive, 'chosen-container-active': diameterMenuActive}"
-                    style="width: 145px;"
-                    title=""
+                  id="pipe_calculator_parameters_diameter_chosen"
+                  class="chosen-container chosen-container-single"
+                  :class="{'chosen-with-drop' : diameterMenuActive, 'chosen-container-active': diameterMenuActive}"
+                  style="width: 145px;"
+                  title=""
                 >
                   <a
-                      class="chosen-single chosen-default"
-                      tabindex="-1"
-                      @click="setDiameterMenu(!diameterMenuActive)"
-                  ><span>{{diameter ? diameter : "Диаметр"}}</span>
+                    class="chosen-single chosen-default"
+                    tabindex="-1"
+                    @click="setDiameterMenu(!diameterMenuActive)"
+                  ><span>{{ diameter ? diameter : "Диаметр" }}</span>
                     <div v-if="diameter">
-                      <abbr class="search-choice-close" @click="choseDiameter('')"></abbr>
+                      <abbr
+                        class="search-choice-close"
+                        @click="choseDiameter('')"
+                      />
                     </div>
                     <div>
-                      <b/>
+                      <b />
                     </div>
                   </a>
                   <div class="chosen-drop">
                     <div class="chosen-search">
                       <input
-                          type="text"
-                          autocomplete="off"
-                          v-model="searchDiameter"
-                          ref="searchDiameterRef"
+                        ref="searchDiameterRef"
+                        v-model="searchDiameter"
+                        type="text"
+                        autocomplete="off"
                       >
                     </div>
                     <ul class="chosen-results">
                       <div v-if="searchDiameter">
                         <li
-                            v-for="diameter in data.diameter.filter((item) => item.name.includes(searchDiameter))"
-                            @click="choseDiameter(diameter.name)"
-                            class="active-result"
-                            :data-option-array-index="diameter.value"
-                            v-html="diameter.value.replace(searchDiameter, '<u>'+searchDiameter+'</u>')"
-                        >
-
-                        </li>
+                          v-for="diameter in data.diameter.filter((item) => item.name.includes(searchDiameter))"
+                          class="active-result"
+                          :data-option-array-index="diameter.value"
+                          @click="choseDiameter(diameter.name)"
+                          v-html="diameter.value.replace(searchDiameter, '<u>'+searchDiameter+'</u>')"
+                        />
                       </div>
                       <div v-else>
-                        <li v-for="diameter in data.diameter" @click="choseDiameter(diameter.name)" class="active-result" :data-option-array-index="diameter.value">
+                        <li
+                          v-for="diameter in data.diameter"
+                          class="active-result"
+                          :data-option-array-index="diameter.value"
+                          @click="choseDiameter(diameter.name)"
+                        >
                           {{ diameter.name }}
                         </li>
                       </div>
@@ -320,21 +342,21 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <input
-                    id="pipe_calculator_parameters_tons"
-                    type="text"
-                    name="pipe_calculator[parameters][tons]"
-                    required
-                    class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
-                    placeholder="Тонны"
-                    data-placeholder="Тонны"
-                    v-model="tons"
-                    @input="updateMeters"
+                  id="pipe_calculator_parameters_tons"
+                  v-model="tons"
+                  type="text"
+                  name="pipe_calculator[parameters][tons]"
+                  required
+                  class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                  placeholder="Тонны"
+                  data-placeholder="Тонны"
+                  @input="(e) => { tons = formatInput(e.target.value); updateMeters(); }"
                 >
               </div>
               <div class="symbol">
                 <label
-                    for="pipe_calculator_parameters_tons"
-                    class="required"
+                  for="pipe_calculator_parameters_tons"
+                  class="required"
                 >
                   тн</label>
               </div>
@@ -344,56 +366,67 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <select
-                    id="pipe_calculator_parameters_thickness"
-                    name="pipe_calculator[parameters][thickness]"
-                    placeholder="Стенка"
-                    data-placeholder="Стенка"
-                    class="ng-pristine ng-untouched ng-valid"
-                    style="display: none;"
+                  id="pipe_calculator_parameters_thickness"
+                  name="pipe_calculator[parameters][thickness]"
+                  placeholder="Стенка"
+                  data-placeholder="Стенка"
+                  class="ng-pristine ng-untouched ng-valid"
+                  style="display: none;"
                 >
-                  <option value=""/>
-                  <option v-for="wall in data.wall" :value="wall.value">
+                  <option value="" />
+                  <option
+                    v-for="wall in data.wall"
+                    :value="wall.value"
+                  >
                     {{ wall.name }}
                   </option>
                 </select>
                 <div
-                    id="pipe_calculator_parameters_thickness_chosen"
-                    class="chosen-container chosen-container-single"
-                    :class="{'chosen-with-drop' : wallMenuActive, 'chosen-container-active': wallMenuActive}"
-                    style="width: 145px;"
-                    title=""
+                  id="pipe_calculator_parameters_thickness_chosen"
+                  class="chosen-container chosen-container-single"
+                  :class="{'chosen-with-drop' : wallMenuActive, 'chosen-container-active': wallMenuActive}"
+                  style="width: 145px;"
+                  title=""
                 >
                   <a
-                      class="chosen-single chosen-default"
-                      @click="wallMenuActive = !wallMenuActive"
-                      tabindex="-1"
-                  ><span>{{wall ? wall : "Стенка"}}</span>
+                    class="chosen-single chosen-default"
+                    tabindex="-1"
+                    @click="wallMenuActive = !wallMenuActive"
+                  ><span>{{ wall ? wall : "Стенка" }}</span>
                     <div v-if="wall">
-                      <abbr class="search-choice-close" @click="choseWall('')"></abbr>
+                      <abbr
+                        class="search-choice-close"
+                        @click="choseWall('')"
+                      />
                     </div>
-                    <div><b/></div>
+                    <div><b /></div>
                   </a>
                   <div class="chosen-drop">
                     <div class="chosen-search">
                       <input
-                          type="text"
-                          autocomplete="off"
-                          v-model="searchWall"
+                        v-model="searchWall"
+                        type="text"
+                        autocomplete="off"
                       >
                     </div>
                     <ul class="chosen-results">
                       <div v-if="searchWall">
-                        <li v-for="wall in data.wall.filter((item) => item.name.includes(searchWall))"
-                            @click="choseWall(wall.name)"
-                            :value="wall.value"
-                            class="active-result"
-                            :data-option-array-index="wall.value"
-                            v-html="wall.value.replace(searchWall, '<u>'+searchWall+'</u>')"
-                        >
-                        </li>
+                        <li
+                          v-for="wall in data.wall.filter((item) => item.name.includes(searchWall))"
+                          :value="wall.value"
+                          class="active-result"
+                          :data-option-array-index="wall.value"
+                          @click="choseWall(wall.name)"
+                          v-html="wall.value.replace(searchWall, '<u>'+searchWall+'</u>')"
+                        />
                       </div>
                       <div v-else>
-                        <li v-for="wall in data.wall" @click="choseWall(wall.name)" class="active-result" :data-option-array-index="wall.value">
+                        <li
+                          v-for="wall in data.wall"
+                          class="active-result"
+                          :data-option-array-index="wall.value"
+                          @click="choseWall(wall.name)"
+                        >
                           {{ wall.name }}
                         </li>
                       </div>
@@ -409,21 +442,21 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <input
-                    id="pipe_calculator_parameters_meters"
-                    type="text"
-                    name="pipe_calculator[parameters][meters]"
-                    required
-                    class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
-                    placeholder="Метры"
-                    data-placeholder="Метры"
-                    v-model="meters"
-                    @input="updateTons"
+                  id="pipe_calculator_parameters_meters"
+                  v-model="meters"
+                  type="text"
+                  name="pipe_calculator[parameters][meters]"
+                  required
+                  class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                  placeholder="Метры"
+                  data-placeholder="Метры"
+                  @input="(e) => { meters = formatInput(e.target.value); updateTons(); }"
                 >
               </div>
               <div class="symbol">
                 <label
-                    for="pipe_calculator_parameters_meters"
-                    class="required"
+                  for="pipe_calculator_parameters_meters"
+                  class="required"
                 >
                   м</label>
               </div>
@@ -436,21 +469,21 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <input
-                    id="pipe_calculator_price_price_per_ton"
-                    type="text"
-                    name="pipe_calculator[price][price_per_ton]"
-                    required
-                    class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
-                    placeholder="Цена за тонну"
-                    data-placeholder="Цена за тонну"
-                    v-model="pricePerTon"
-                    @input="updatePricePerMeter"
+                  id="pipe_calculator_price_price_per_ton"
+                  v-model="pricePerTon"
+                  type="text"
+                  name="pipe_calculator[price][price_per_ton]"
+                  required
+                  class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                  placeholder="Цена за тонну"
+                  data-placeholder="Цена за тонну"
+                  @input="(e) => { pricePerTon = formatInput(e.target.value); updatePricePerMeter(); }"
                 >
               </div>
               <div class="symbol">
                 <label
-                    for="pipe_calculator_price_price_per_ton"
-                    class="required"
+                  for="pipe_calculator_price_price_per_ton"
+                  class="required"
                 >
                   руб/тн</label>
               </div>
@@ -460,21 +493,21 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <input
-                    id="pipe_calculator_price_price_per_meter"
-                    type="text"
-                    name="pipe_calculator[price][price_per_meter]"
-                    required="required"
-                    class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
-                    placeholder="Цена за метр"
-                    data-placeholder="Цена за метр"
-                    v-model="pricePerMeter"
-                    @input="updatePricePerTon"
+                  id="pipe_calculator_price_price_per_meter"
+                  v-model="pricePerMeter"
+                  type="text"
+                  name="pipe_calculator[price][price_per_meter]"
+                  required="required"
+                  class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                  placeholder="Цена за метр"
+                  data-placeholder="Цена за метр"
+                  @input="(e) => { pricePerMeter = formatInput(e.target.value); updatePricePerTon(); }"
                 >
               </div>
               <div class="symbol">
                 <label
-                    for="pipe_calculator_price_price_per_meter"
-                    class="required"
+                  for="pipe_calculator_price_price_per_meter"
+                  class="required"
                 >
                   руб/м</label>
               </div>
@@ -487,21 +520,21 @@ const pipeMessage = ref(`
             <div class="row">
               <div class="widget">
                 <input
-                    id="pipe_calculator_total_price_total_price"
-                    type="text"
-                    name="pipe_calculator[total_price][total_price]"
-                    readonly
-                    required
-                    placeholder="Итоговая стоимость"
-                    data-placeholder="Итоговая стоимость"
-                    class="ng-pristine ng-untouched ng-valid ng-valid-required"
-                    v-model="resultPrice"
+                  id="pipe_calculator_total_price_total_price"
+                  v-model="resultPrice"
+                  type="text"
+                  name="pipe_calculator[total_price][total_price]"
+                  readonly
+                  required
+                  placeholder="Итоговая стоимость"
+                  data-placeholder="Итоговая стоимость"
+                  class="ng-pristine ng-untouched ng-valid ng-valid-required"
                 >
               </div>
               <div class="symbol">
                 <label
-                    for="pipe_calculator_total_price_total_price"
-                    class="required"
+                  for="pipe_calculator_total_price_total_price"
+                  class="required"
                 >
                   руб.</label>
               </div>
@@ -509,16 +542,16 @@ const pipeMessage = ref(`
           </div>
           <div class="column text-pad-left">
             <FancyboxComponent
-                :options="{
-                  defaultType:'html'
-                }"
+              :options="{
+                defaultType:'html'
+              }"
             >
-
-                <a
-                    class="btn red fancybox_dialog js-fancyboxOrder js-calculatorData"
-                    href="#popup-order"
-                    @click="pipeMessage =
-`Диаметр: ${diameter} мм
+              <a
+                class="btn red fancybox_dialog js-fancyboxOrder js-calculatorData"
+                href="#popup-order"
+                data-fancybox="pipe"
+                @click="pipeMessage =
+                  `Диаметр: ${diameter} мм
 Стенка:  ${wall} мм
 Тонны:  ${tons} тн
 Цена за тонну:  ${pricePerTon} руб/тн
@@ -526,16 +559,14 @@ const pipeMessage = ref(`
 -----
 * Итоговая стоимость: ${resultPrice} руб.
 `"
-                    data-fancybox="pipe"
-                >
-                  Заказать
-                </a>
-
+              >
+                Заказать
+              </a>
             </FancyboxComponent>
-        </div>
+          </div>
         </div>
       </form>
-      <OrderModal :message="pipeMessage"/>
+      <OrderModal :message="pipeMessage" />
     </div>
   </div>
 </template>

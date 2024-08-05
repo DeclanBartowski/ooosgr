@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ArticleDto } from '~/types/article'
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 const route = useRoute();
 const id = computed(() => route.path.split('/').pop())
 const { data: detail } = await useContentFetch<ArticleDto>(`articles/news/${id.value}`, {
@@ -24,16 +25,22 @@ useSeoMeta({
           v-if="detail.data.detailImg && detail.data.img"
           class="article_image"
         >
-          <a
-            class="fancybox"
-            :href="`${config.public.baseURL}${detail.data.img.src}`"
-            target="_blank"
+          <FancyboxComponent
+              :options="{
+                defaultType:'image'
+              }"
           >
-            <img
-              :alt="detail.data.title"
-              :src="`${config.public.baseURL}${detail.data.img.src}`"
+            <a data-fancybox="gallery"
+                class="fancybox"
+                :href="`${config.public.baseURL}${detail.data.detailImg.original}`"
             >
-          </a>
+              <img
+                  :alt="detail.data.title"
+                  :src="`${config.public.baseURL}${detail.data.detailImg.src}`"
+              >
+            </a>
+          </FancyboxComponent>
+
         </div>
 
         <h1>{{ detail.data.title }}</h1>

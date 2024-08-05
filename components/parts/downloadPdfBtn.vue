@@ -1,8 +1,9 @@
 <script setup lang="ts">
 let props = defineProps(['link'])
+const config = useRuntimeConfig()
 const redirectToLink = () => {
   if (props.link) {
-    location.href = props.link;
+    location.href = config.public.baseURL + props.link;
   }
 };
 </script>
