@@ -64,7 +64,7 @@ const orderMessage = ref('');
                       width="155" height="105"
                       :key="i.src"
                       :alt="i.alt"
-                      :src="`${config.public.baseURL}${i.src}`"
+                      :src="`${config.public.baseURL}${i.resize.src}`"
                   >
                 </a>
               </div>
