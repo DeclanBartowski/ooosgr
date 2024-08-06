@@ -20,6 +20,7 @@ const config = useRuntimeConfig()
 
 <template>
   <div class="column w75">
+
     <template v-if="template=='vus'">
       <div class="text">
         <h1>{{ category.name }}</h1>
@@ -34,13 +35,13 @@ const config = useRuntimeConfig()
           >
             <a
                 class="photo_thumb fancybox"
-                :href="`${config.public.baseURL}${category.detail_picture.src}`"
+                :href="`${config.public.baseURL}${category.watermark.original_resize}`"
                 rel="insultation-mobile"
                 data-fancybox="gallery"
             >
               <img
                   :alt="category.detail_picture.alt"
-                  :src="`${config.public.baseURL}${category.detail_picture.src}`"
+                  :src="`${config.public.baseURL}${category.watermark.resize.src}`"
               >
             </a>
 
@@ -55,14 +56,14 @@ const config = useRuntimeConfig()
           >
             <a
                 class="archetype archetype--720p photo_thumb fancybox"
-                :href="`${config.public.baseURL}${category.detail_picture.src}`"
+                :href="`${config.public.baseURL}${category.watermark.original_resize}`"
                 rel="insultation"
                 style="float: right; margin: 0 0 20px 20px;"
                 data-fancybox="gallery"
             >
               <img
                   :alt="category.detail_picture.alt"
-                  :src="`${config.public.baseURL}${category.detail_picture.src}`"
+                  :src="`${config.public.baseURL}${category.watermark.resize.src}`"
               >
             </a>
 

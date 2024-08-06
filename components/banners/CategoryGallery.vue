@@ -9,43 +9,24 @@ const config = useRuntimeConfig()
 <template>
   <div class="gallery slider big">
     <template v-if="slides.length>0">
-      <FancyboxComponent
-          :options="{
-                defaultType:'image'
-              }"
-      >
-        <a class="photo_thumb fancybox"
-          :href="`${config.public.baseURL}${slides[0].src}`"
-          :rel="slides[0].alt"
-          :title="slides[0].alt"
-           data-fancybox="gallery"
-        >
-
-          <img alt="" :src="`${config.public.baseURL}${slides[0].src}`">
-        </a>
-
-      </FancyboxComponent>
-
-      <div class="hide">
         <FancyboxComponent
             :options="{
                 defaultType:'image'
               }"
         >
-          <a v-for="(slide, index) in slides.slice(1)"
+          <a v-for="(slide, index) in slides"
                     :key="index"
+                    :style="{display: (index == 0) ? 'block' : 'none'}"
                     class="photo_thumb fancybox"
-                    :href="`${config.public.baseURL}${slide.src}`"
+                    :href="`${config.public.baseURL}${slide.original_resize}`"
                     :rel="slide.alt"
                     :title="slide.alt"
                     data-fancybox="gallery"
           >
-            <img alt=""  :src="`${config.public.baseURL}${slide.src}`">
+            <img alt=""  :src="`${config.public.baseURL}${slide.resize.src}`">
           </a>
-
         </FancyboxComponent>
 
-      </div>
     </template>
     <template v-else>
       <img :alt="slides[0].alt" :src="`${config.public.baseURL}${slides[0].src}`">
