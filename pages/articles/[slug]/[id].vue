@@ -32,11 +32,11 @@ useSeoMeta({
           >
             <a data-fancybox="gallery"
                 class="fancybox"
-                :href="`${config.public.baseURL}${detail.data.detailImg.original}`"
+                :href="`${config.public.baseURL}${detail.data.detailImg?.src}`"
             >
               <img
                   :alt="detail.data.title"
-                  :src="`${config.public.baseURL}${detail.data.detailImg.src}`"
+                  :src="`${config.public.baseURL}${detail.data.img?.src}`"
               >
             </a>
           </FancyboxComponent>

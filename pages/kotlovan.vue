@@ -244,22 +244,26 @@ const config = useRuntimeConfig()
       </li>
     </ul>
   </div>
-  <h2 class="excavation-block__title big-margin margin-80">
-    Примеры работ
+  <h2
+    v-if="kotlovan?.data?.case?.items"
+    class="excavation-block__title big-margin margin-80"
+  >
+    {{ kotlovan.data.case?.title || 'Примеры работ' }}
   </h2>
   <Carousel
+    v-if="kotlovan?.data?.case?.items"
     ref="carousel"
     class="full-carousel"
     :wrap-around="true"
     :items-to-show="3"
   >
     <Slide
-      v-for="slide in 4"
+      v-for="slide in kotlovan.data.case.items"
       :key="slide"
     >
       <div class="carousel__item">
         <img
-          :src="'/images/slider/'+slide+'.png'"
+          :src="`${config.public.baseURL}${slide?.image?.src}`"
           alt=""
         >
       </div>
@@ -288,18 +292,19 @@ const config = useRuntimeConfig()
   </Carousel>
 
   <Carousel
+    v-if="kotlovan?.data?.case?.items"
     ref="mobileCarousel"
     class="mobile-carousel"
     :wrap-around="true"
     :items-to-show="2.5"
   >
     <Slide
-      v-for="slide in 4"
+      v-for="slide in kotlovan.data.case.items"
       :key="slide"
     >
       <div class="carousel__item">
         <img
-          :src="'/images/slider/'+slide+'.png'"
+          :src="`${config.public.baseURL}${slide?.image?.src}`"
           alt=""
         >
       </div>
@@ -767,6 +772,7 @@ const config = useRuntimeConfig()
 
 .carousel__item img {
   width: 100%;
+  border-radius: 5%;
 }
 
 .slider-buttons-full {
