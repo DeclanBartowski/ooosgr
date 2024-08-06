@@ -128,4 +128,14 @@ export default defineNuxtPlugin(nuxtApp => {
             });
         });
     });
+    nuxtApp.provide('closeSlidingMenus', () => {
+        const menus = document.querySelectorAll('.js-menu');
+        menus.forEach(menu => {
+            const switcher = menu.querySelector('.js-menu__switcher');
+            const options = menu.querySelector('.js-menu__options');
+            switcher.classList.remove('menu-switcher--active');
+            options.classList.remove('menu-options--active');
+            options.style.display = 'none';
+        });
+    });
 });

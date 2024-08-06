@@ -50,4 +50,7 @@ defineProps(['className', 'menu']);
     min-width: 90px!important;
   }
 }
+@media only screen and (max-width: 1070px) {
+
+}
 </style>

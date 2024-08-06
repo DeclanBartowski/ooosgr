@@ -108,12 +108,12 @@ const config = useRuntimeConfig()
 .content .text p {
   font-size: 16px;
   text-align: left;
-  margin-bottom: 140px;
-  margin-top: 140px;
+  margin-bottom: 110px;
+  margin-top: 170px;
 }
 
 .bottom-req {
-  margin-top: 10px;
+  margin-top: 115px;
 }
 
 .about_partner p .callibri_phone {
@@ -133,6 +133,9 @@ const config = useRuntimeConfig()
   .text-pad-left {
     padding-left: 0px;
     margin-top: 10px;
+  }
+  .bottom-req {
+    margin-top: 0;
   }
 }
 </style>

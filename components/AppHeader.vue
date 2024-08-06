@@ -9,7 +9,7 @@ const hideShadow = ref(false);
 const isHeaderFixed = ref(false);
 const headerHeight = ref(0);
 const initialOffsetTop = ref(0);
-const { $checkShadowByRouteName , $initSlidingMenus} = useNuxtApp();
+const { $checkShadowByRouteName , $initSlidingMenus,$closeSlidingMenus} = useNuxtApp();
 const initializeHeader = () => {
   const header = document.querySelector('.js-header');
   const menu = document.querySelector('.main_menu');
@@ -29,6 +29,7 @@ onMounted(()=>{
 
 });
 watch(() => route.name, (newName) => {
+  $closeSlidingMenus();
   hideShadow.value = $checkShadowByRouteName(newName);
   $initSlidingMenus();
 });

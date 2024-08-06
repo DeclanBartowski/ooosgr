@@ -147,15 +147,21 @@ const orderMessage = ref('');
 
             <div class="hide" />
 
-            <!--noindex-->
-            <a
-              class="btn red fancybox_dialog js-fancyboxOrder"
-              :data-message="`[ ${item.name} ] ${item.text} * ${item.price}`"
-              href="#popup-order"
+            <FancyboxComponent
+                :options="{
+                defaultType:'html'
+              }"
             >
-              Заказать
-            </a>
-            <!--/noindex-->
+              <a
+                  class="btn red fancybox_dialog js-fancyboxOrder"
+                  href="#bulk-order"
+                  data-fancybox="bulk"
+                  @click="orderMessage = `[ ${item.name} ] ${item.text} * ${item.price}`"
+              >
+                Заказать
+              </a>
+
+            </FancyboxComponent>
           </div>
         </div>
       </li>

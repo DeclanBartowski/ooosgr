@@ -626,7 +626,9 @@ const config = useRuntimeConfig()
 
 @media(max-width: 576px) {
   .tech-list_item-block {
-    grid-template-columns: 45% minmax(auto, 10%) minmax(auto, 45%);
+    display: flex;
+    flex-direction: column;
+    /*grid-template-columns: 45% minmax(auto, 10%) minmax(auto, 45%);*/
   }
 }
 

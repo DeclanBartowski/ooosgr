@@ -6,7 +6,6 @@ const template = ref('balks')
 const { data: balks } = await useContentFetch<BalksDto>('balks', {
   method: 'GET'
 })
-console.log(balks.value)
 
 useSeoMeta({
   ogTitle: () => balks.value!.data.seo.title,

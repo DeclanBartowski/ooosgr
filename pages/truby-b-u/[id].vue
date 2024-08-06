@@ -19,26 +19,6 @@ useSeoMeta({
 })
 
 const data = ref({
-  slider: [
-    {
-      big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-      small: 'https://ooosgr.ru/cache/pipe_category_big/files/pipe/pipe/photos/47/88b08f5e2f500a2c1918bb55109c5e56ae13961e.jpeg',
-      title: 'IMG-20221115-WA0012',
-      rel: 'gallery_5_slider',
-    },
-    {
-      big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/category/photos/5/b40415b7a53f0210838ca6e6ed061b7f12140834.jpeg',
-      small: 'https://ooosgr.ru/cache/pipe_category_big/files/pipe/category/photos/5/b40415b7a53f0210838ca6e6ed061b7f12140834.jpeg',
-      title: '1',
-      rel: 'gallery_5_slider',
-    },
-    {
-      big: 'https://ooosgr.ru/cache/pipe_category_fancybox/files/pipe/category/photos/5/b40415b7a53f0210838ca6e6ed061b7f12140834.jpeg',
-      small: 'https://ooosgr.ru/cache/pipe_category_big/files/pipe/category/photos/5/b40415b7a53f0210838ca6e6ed061b7f12140834.jpeg',
-      title: '219х9',
-      rel: '2014-12-23 09',
-    }
-  ],
   showMenu: true,
   itemsHead: [
     'Диаметр',
@@ -50,7 +30,7 @@ const data = ref({
 </script>
 
 <template>
-  <CategorySliderMobile />
+  <CategorySliderMobile v-if="trubybuid.data.slider" :items="trubybuid.data.slider" />
   <div class="wrap content page pipe">
     <div class="wrap_cont">
       <div class="two columns columns--adaptive">

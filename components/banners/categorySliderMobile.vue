@@ -1,45 +1,72 @@
 <script setup lang="ts">
-const slides = ref([
-  {
-    slide: 'https://ooosgr.ru/cache/slide/files/slide/203133d1c30f5744b56a9bb9853f71807b96f4f88.jpeg',
-    slideText: 'https://ooosgr.ru/cache/slide_text/files/slide/23a907fef0fe655eb62de13a141aa04020566cc86.png'
-  },
-  {
-    slide: 'https://ooosgr.ru/cache/slide/files/slide/eafc64ab5f2e864c9971a79c427ed22598d4dee3.jpeg',
-    slideText: 'https://ooosgr.ru/cache/slide_text/files/slide/4ab81b8629d0458d81a626df365653cc592dab32.png'
-  },
-  {
-    slide: 'https://ooosgr.ru/cache/slide/files/slide/46b4761dce1874adae94b8a0c7851679e3c6118ed.jpeg',
-    slideText: 'https://ooosgr.ru/cache/slide_text/files/slide/4ab81b8629d0458d81a626df365653cc592dab32.png'
-  },
-  {
-    slide: 'https://ooosgr.ru/cache/slide/files/slide/46b4761dce1874adae94b8a0c7851679e3c6118ed.jpeg',
-    slideText: 'https://ooosgr.ru/cache/slide_text/files/slide/4ab81b8629d0458d81a626df365653cc592dab32.png'
-  },
-  {
-    slide: 'https://ooosgr.ru/cache/slide/files/slide/eafc64ab5f2e864c9971a79c427ed22598d4dee3.jpeg',
-    slideText: 'https://ooosgr.ru/cache/slide_text/files/slide/4ab81b8629d0458d81a626df365653cc592dab32.png'
-  },
-  {
-    slide: 'https://ooosgr.ru/cache/slide/files/slide/46b4761dce1874adae94b8a0c7851679e3c6118ed.jpeg',
-    slideText: 'https://ooosgr.ru/cache/slide_text/files/slide/4ab81b8629d0458d81a626df365653cc592dab32.png'
-  },
-]);
+import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css'
+defineProps(['items'])
+const config = useRuntimeConfig()
+const currentSlide = ref(0);
 </script>
 
 <template>
   <div class="main slider mobile mobile--980p">
-    <ul class="owl-carousel js-slider">
-      <li v-for="slide in slides">
-        <div class="parallax">
-          <img v-if="slide.slide" alt="" :src="slide.slide">
+    <Carousel
+        :model="currentSlide"
+        :autoplay="4800"
+        :itemsToShow="1"
+        :wrapAround="true"
+    >
+      <Slide
+          v-for="slide in items"
+          :key="slide"
+      >
+        <div class="slide-wrapper">
+          <div class="parallax">
+            <img
+                alt=""
+                :src="`${config.public.baseURL}${slide.src}`"
+            >
+          </div>
+          <img
+              alt=""
+              :src="`${config.public.baseURL}${slide.src}`"
+          >
         </div>
-        <img v-if="slide.slideText" alt="" :src="slide.slideText">
-      </li>
-    </ul>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <Pagination />
+      </template>
+    </Carousel>
   </div>
 </template>
 
 <style scoped>
-
+.slide-wrapper {
+  align-items: center;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  position: relative;
+}
+.main.slider .slide-wrapper .parallax {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.main.slider .slide-wrapper>img, .main.slider .slide-wrapper .parallax img {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+@media only screen and (max-width: 1280px){
+  .main.slider, .main.slider ol li, .slide-wrapper {
+    height: 30vw;
+  }
+  .main.slider {
+    box-shadow: none;
+    margin: 0 0 30px 0;
+    overflow: visible
+  }
+}
 </style>

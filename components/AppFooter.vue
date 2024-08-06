@@ -28,4 +28,7 @@ defineProps(['footerdata']);
  .wrap_cont.clearfix {
    line-height: 20px;
  }
+ .wrap {
+   z-index: 6;
+ }
 </style>

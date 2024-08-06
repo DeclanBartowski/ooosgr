@@ -4525,6 +4525,14 @@ a.c-white span,.c-white {
 }
 
 @media only screen and (max-width: 980px) {
+    .main_wrapper  {
+        margin-top: 67px;
+    }
+    .header.mobile {
+        margin-top: -67px;
+        position: fixed;
+        background: #f1f1f2;
+    }
     .archetype--980p {
         display:none !important
     }
