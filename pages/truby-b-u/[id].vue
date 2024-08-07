@@ -30,7 +30,7 @@ const data = ref({
 </script>
 
 <template>
-  <CategorySliderMobile v-if="trubybuid.data.slider" :items="trubybuid.data.slider" />
+  <CategorySliderMobile v-if="trubybuid.data && trubybuid.data.slider && trubybuid.data.slider.length > 0" :items="trubybuid.data.slider" />
   <div class="wrap content page pipe">
     <div class="wrap_cont">
       <div class="two columns columns--adaptive">
