@@ -92,8 +92,6 @@ const config = useRuntimeConfig()
                   data-fancybox="gallery"
               > {{slide.resize.src}}
                 <img
-                    width="155"
-                    height="150"
                     :alt="slide.alt"
                     :src="`${config.public.baseURL}${slide.resize.src}`"
                 >
