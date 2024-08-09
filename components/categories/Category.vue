@@ -94,7 +94,7 @@ const config = useRuntimeConfig()
           </div>
         </div>
       </div>
-      <NewsMenu v-if="data.showMenu"  :menu="data.menu" />
+      <NewsMenu v-if="data.showMenu"  :menu="data.menu" :current-path="$route.path"/>
       <CategoryItemsList
         :head="data.itemsHead"
         :items="content.items"

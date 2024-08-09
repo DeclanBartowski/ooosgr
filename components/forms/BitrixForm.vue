@@ -970,7 +970,8 @@ div.b24-form-loader {
 }
 
 .b24-form-state-container .b24-form-success {
-  background-color: rgba(221, 225, 235, 1)
+  background-color: rgba(221, 225, 235, 1);
+  border-radius:10px
 }
 
 .b24-form-state-inner {
@@ -1010,7 +1011,8 @@ div.b24-form-loader {
 }
 
 .b24-form-state-container .b24-form-error {
-  background-color: #f25830
+  background-color: #f25830;
+  border-radius:10px
 }
 
 .b24-form-error-icon {

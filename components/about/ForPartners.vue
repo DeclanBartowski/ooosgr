@@ -35,7 +35,7 @@ const config = useRuntimeConfig()
                 {{ partners.phone }}</a></span>
             </p>
           </div>
-          <NewsMenu :class-name="'news__link-about'" :menu="menu" />
+          <NewsMenu :class-name="'news__link-about'" :menu="menu" :current-path="$route.path"/>
         </div>
 
         <div class="column text-pad-left">
@@ -108,12 +108,12 @@ const config = useRuntimeConfig()
 .content .text p {
   font-size: 16px;
   text-align: left;
-  margin-bottom: 110px;
+  margin-bottom: 90px;
   margin-top: 170px;
 }
 
 .bottom-req {
-  margin-top: 115px;
+  margin-top: 95px;
 }
 
 .about_partner p .callibri_phone {

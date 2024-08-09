@@ -118,7 +118,7 @@ watch(diameter, () => {
   const weightInTons = (weightInKilo / 1000) * +meters.value;
   tons.value = weightInTons.toFixed(3);
 
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 watch(wall, () => {
@@ -126,7 +126,7 @@ watch(wall, () => {
   const weightInTons = (weightInKilo / 1000) * +meters.value;
   tons.value = weightInTons.toFixed(3);
 
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 const searchDiameter = ref('');
@@ -145,7 +145,7 @@ watch(meters, (next, prev) => {
   if(+next == 0) meters.value = '';
   if(!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) meters.value = prev;
   if(isNaN(+next)) meters.value = prev;
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 watch(tons, (next, prev) => {
@@ -153,7 +153,7 @@ watch(tons, (next, prev) => {
   if(!/^(?:\d*|\d+\.\d*|\d*\.\d*|\.\d*)$/.test(next)) tons.value = prev;
   if(isNaN(+next)) tons.value = prev;
 
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 })
 
 const updateTons = () => {
@@ -169,12 +169,12 @@ const updateMeters = () => {
 }
 
 const updatePricePerMeter = () => {
-  pricePerMeter.value = (+pricePerTon.value * 0.0019).toFixed(3);
-  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
+  pricePerMeter.value = (+pricePerTon.value * 0.0019).toFixed(2);
+  resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(2);
 }
 
 const updatePricePerTon = () => {
-  pricePerTon.value = (+pricePerMeter.value / 0.0019).toFixed(3);
+  pricePerTon.value = (+pricePerMeter.value / 0.0019).toFixed(2);
   resultPrice.value = (+pricePerTon.value * +tons.value).toFixed(3);
 }
 
@@ -216,7 +216,7 @@ const pipeMessage = ref(`
   * Итоговая стоимость: ${resultPrice?.value} руб.
 `);
 
-const formatInput = (value: string): string => {
+const formatInput = (value: string,countSymbols:number = 3): string => {
   let formattedValue = value.replace(/[^0-9.]/g, '');
 
   if ((formattedValue.match(/\./g) || []).length > 1) {
@@ -224,8 +224,8 @@ const formatInput = (value: string): string => {
   }
 
   const parts = formattedValue.split('.');
-  if (parts.length > 1 && parts[1].length > 3) {
-    parts[1] = parts[1].slice(0, 3);
+  if (parts.length > 1 && parts[1].length > countSymbols) {
+    parts[1] = parts[1].slice(0, countSymbols);
   }
   return parts.join('.');
 };
@@ -471,7 +471,7 @@ const formatInput = (value: string): string => {
                   class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
                   placeholder="Цена за тонну"
                   data-placeholder="Цена за тонну"
-                  @input="(e) => { pricePerTon = formatInput(e.target.value); updatePricePerMeter(); }"
+                  @input="(e) => { pricePerTon = formatInput(e.target.value,2); updatePricePerMeter(); }"
                 >
               </div>
               <div class="symbol">
@@ -495,7 +495,7 @@ const formatInput = (value: string): string => {
                   class="input_mask_decimal_positive ng-pristine ng-untouched ng-invalid ng-invalid-required"
                   placeholder="Цена за метр"
                   data-placeholder="Цена за метр"
-                  @input="(e) => { pricePerMeter = formatInput(e.target.value); updatePricePerTon(); }"
+                  @input="(e) => { pricePerMeter = formatInput(e.target.value,2); updatePricePerTon(); }"
                 >
               </div>
               <div class="symbol">

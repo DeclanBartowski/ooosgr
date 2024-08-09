@@ -23,7 +23,7 @@ useSeoMeta({
                 v-if="trubybu"
                 :content="trubybu?.data"
                 :category="trubybu?.data.info"
-                :data="trubybu?.data.page"
+                :data="trubybu?.data"
         />
       </div>
     </div>

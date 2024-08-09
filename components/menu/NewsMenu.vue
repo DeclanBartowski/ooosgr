@@ -1,15 +1,23 @@
 <script setup lang="ts">
-defineProps(['className', 'menu']);
+
+import { computed } from 'vue';
+const props = defineProps(['className', 'menu','currentPath']);
+
+const filteredMenu = computed(() => {
+  if (!props.menu) return [];
+  return props.menu.filter(menuItem => menuItem && menuItem.url && menuItem.url !== props.currentPath);
+});
 </script>
 
 <template>
   <div
-      v-if="menu"
+      v-if="filteredMenu.length"
       class="news__link"
       :class="className"
   >
     <NuxtLink
-        v-for="menuItem in menu"
+        v-for="(menuItem, index) in filteredMenu"
+        :key="index"
         class="title"
         :class="{ 'btn red': className === 'news__link-about' }"
         :to="menuItem.url"

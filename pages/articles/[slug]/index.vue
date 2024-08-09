@@ -42,7 +42,7 @@ useSeoMeta({
     <div class="wrap_cont">
       <div class="articles__title">
         <h1>{{ detail.data.title }}</h1>
-        <NewsMenu v-if="detail.data.menu" :menu="detail.data.menu" />
+        <NewsMenu v-if="detail.data.menu" :menu="detail.data.menu" :currentPath="$route.path"/>
       </div>
       <ArticlesCategoryList
         :type="$route.params.slug"

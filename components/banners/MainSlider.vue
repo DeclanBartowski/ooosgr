@@ -18,7 +18,7 @@
         :key="slide"
       >
         <div class="slide-wrapper">
-          <div class="parallax">
+          <div class="parallax-styles">
             <img
               alt=""
               :src="`${config.public.baseURL}${slide.previewImg.src}`"
@@ -46,14 +46,14 @@
   justify-content: center;
   position: relative;
 }
-.main.slider .slide-wrapper .parallax {
+.main.slider .slide-wrapper .parallax-styles {
   bottom: 0;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
 }
-.main.slider .slide-wrapper>img, .main.slider .slide-wrapper .parallax img {
+.main.slider .slide-wrapper>img, .main.slider .slide-wrapper .parallax-styles img {
   display: block;
   position: relative;
   width: 100%;
