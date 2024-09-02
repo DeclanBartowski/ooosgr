@@ -28,7 +28,7 @@ const config = useRuntimeConfig()
             <li style="list-style: none;">
               <div
                 v-if="procurement"
-                class="desc block-shadow"
+                class="desc block-shadow block-shadow-mobile-off"
               >
                 <h1>{{ procurement.data.info.name }}</h1>
                 <div

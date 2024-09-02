@@ -82,7 +82,7 @@ const config = useRuntimeConfig()
               v-html="category.preview_text"
             />
           </div>
-          <div class="column text-pad-left js-column-image text--center">
+          <div class="column text-pad-left js-column-image text--center additional-content">
             <DownloadPdfBtn
               v-if="data.priceList"
               :link="data.priceList"
@@ -110,3 +110,10 @@ const config = useRuntimeConfig()
     </template>
   </div>
 </template>
+<style scoped>
+  @media only screen and (max-width: 980px) {
+    .additional-content {
+      margin-top: 20px;
+    }
+  }
+</style>

@@ -330,7 +330,19 @@ const config = useRuntimeConfig()
       >
     </button>
   </div>
-
+  <h2 v-if="kotlovan?.data?.docs?.items && kotlovan?.data?.docs?.items.length > 0"
+    class="excavation-block__title big-margin margin-80"
+  >
+    {{ kotlovan.data.docs?.title || 'Документы' }}
+  </h2>
+  <div class="documents">
+    <a v-for="doc in kotlovan.data.docs.items"
+      :href="`${config.public.baseURL}${doc?.file}`"
+      rel="noopener noreferrer"
+      class="download icon-pdf-document"
+      data-v-b086d37e=""
+    ><span class="pdf-span">{{ doc.title }}</span></a>
+  </div>
   <div class="feedback-form">
     <BitrixForm />
   </div>
@@ -927,4 +939,21 @@ const config = useRuntimeConfig()
   }
 }
 
+.documents {
+  display: flex;
+  justify-content: center;
+  margin: 75px 0;
+}
+.documents .icon-pdf-document {
+  margin: 0 20px;
+}
+@media only screen and (max-width: 980px) {
+  .documents {
+    flex-direction: column;
+    padding-left: 50px;
+  }
+  .documents .icon-pdf-document {
+    margin: 20px 0;
+  }
+}
 </style>

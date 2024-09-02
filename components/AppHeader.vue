@@ -165,7 +165,7 @@ const searchInputValue = ref('');
       >
         <img
           alt=""
-          :src="`${config.public.baseURL}${headerdata.header.preview_picture.src}`"
+          src="https://ooosgr.ru/bundles/app/images/logo-alt.png?51080781afe3f2dcd50bc049a8d5083a"
         >
       </NuxtLink>
     </div>

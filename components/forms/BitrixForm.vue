@@ -396,7 +396,8 @@ const onSubmit = handleSubmit(async values => {
 
 <style scoped>
 #callback-form {
-  margin: 5px 0;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 .b24-form-click-btn-wrapper button, .b24-form-click-btn-wrapper a {
   cursor: pointer

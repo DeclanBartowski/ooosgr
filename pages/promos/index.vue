@@ -70,7 +70,7 @@ useSeoMeta({
         <Pagination v-if="promos"
                     :current-page="promos?.data?.page?.pageCurrent"
                     :page-count="promos?.data?.page?.pageCount"
-                    url="/promos"
+                    url="/promos/?"
         />
       </div>
     </div>

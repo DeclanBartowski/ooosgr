@@ -45,7 +45,7 @@ useSeoMeta({
       </div>
     </div>
   </div>
-  <div class="push" />
+  <div class="push-mobile" />
 </template>
 
 <style scoped>
