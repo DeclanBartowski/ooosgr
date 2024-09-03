@@ -29,6 +29,6 @@ defineProps(['footerdata']);
    line-height: 20px;
  }
  .wrap {
-   z-index: 6;
+   z-index: 0;
  }
 </style>

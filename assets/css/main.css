@@ -2738,7 +2738,7 @@ footer.wrap {
     position: relative
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 980px) {
     footer.wrap:before {
         content: url(~/assets/images/footer_flag.png);
         width: 485px;
