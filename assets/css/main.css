@@ -2311,7 +2311,7 @@ header .header--fixed .main_menu li a,header .header--fixed .main_menu li span {
 .used_pipes.vertical .body {
     background: #2d3548 url('~/assets/images/used_pipes_bckg_vertical.jpg') top center no-repeat;
     background-size: cover;
-    padding: 80px 10px 145px 10px;
+    padding: 80px 10px 45px 10px;
     text-align: center
 }
 
@@ -4374,7 +4374,7 @@ a.c-white span,.c-white {
     }
 
     .used_pipes.vertical .body {
-        padding: 70px 10px 145px
+        padding: 70px 10px 35px
     }
 
     .used_pipes.vertical>img {
@@ -4658,6 +4658,10 @@ a.c-white span,.c-white {
     .block-shadow-mobile-off {
         box-shadow: none;
     }
+    .news__link {
+        display: flex;
+        justify-content: space-evenly;
+    }
 }
 
 @media only screen and (max-width: 720px) {
@@ -4916,7 +4920,7 @@ a.c-white span,.c-white {
     }
 
     .used_pipes.vertical .body {
-        padding: 55px 10px 145px
+        padding: 55px 10px 35px
     }
 
     .content.home .used_pipes.widget>.body .info_link a {
