@@ -208,6 +208,7 @@ const searchInputValue = ref('');
       </div>
     </div>
   </div>
+  <div class="title js-title mobile-title">ООО «СТРОЙГЕОРЕСУРС»</div>
 </template>
 
 <style scoped>

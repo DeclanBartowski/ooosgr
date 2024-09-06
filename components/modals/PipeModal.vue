@@ -579,4 +579,7 @@ const formatInput = (value: string,countSymbols:number = 3): string => {
   top: 0;
   background-color: rgba(221, 225, 235, 1);
 }
+.pipe_calculator input {
+  border: transparent;
+}
 </style>

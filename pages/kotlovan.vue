@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Carousel, Slide, Navigation} from 'vue3-carousel'
+import { Fancybox } from "@fancyapps/ui";
 //import 'vue3-carousel/dist/carousel.css'
 
 const carousel = ref(null);
@@ -7,6 +8,7 @@ const mobileCarousel = ref(null);
 
 import 'vue3-carousel/dist/carousel.css'
 import type { KotlovanDto } from '~/types/kotlovan'
+import FancyboxComponent from "~/components/parts/FancyboxComponent.vue";
 
 const { data: kotlovan } = await useContentFetch<KotlovanDto>('kotlovan', {
   method: 'GET'
@@ -21,6 +23,18 @@ useSeoMeta({
 })
 
 const config = useRuntimeConfig()
+
+const isMobileDevice = ref(false);
+
+onMounted(() => {
+
+  isMobileDevice.value = window.innerWidth <= 768;
+
+  window.addEventListener('resize', () => {
+    isMobileDevice.value = window.innerWidth <= 768;
+  });
+});
+
 </script>
 
 <template>
@@ -262,10 +276,22 @@ const config = useRuntimeConfig()
       :key="slide"
     >
       <div class="carousel__item">
-        <img
-          :src="`${config.public.baseURL}${slide?.image?.src}`"
-          alt=""
+        <FancyboxComponent
+          :options="{
+            defaultType:'image'
+          }"
         >
+          <a
+            :href="`${config.public.baseURL}${slide?.image?.src}`"
+            data-fancybox="gallery"
+            data-caption=""
+          >
+            <img
+              :src="`${config.public.baseURL}${slide?.image?.src}`"
+              alt=""
+            >
+          </a>
+        </FancyboxComponent>
       </div>
       <div class="slider-blur" />
     </Slide>
@@ -303,10 +329,16 @@ const config = useRuntimeConfig()
       :key="slide"
     >
       <div class="carousel__item">
-        <img
-          :src="`${config.public.baseURL}${slide?.image?.src}`"
-          alt=""
+        <a
+          :href="`${config.public.baseURL}${slide?.image?.src}`"
+          data-fancybox="gallery"
+          data-caption=""
         >
+          <img
+            :src="`${config.public.baseURL}${slide?.image?.src}`"
+            alt=""
+          >
+        </a>
       </div>
     </Slide>
   </Carousel>
@@ -330,17 +362,19 @@ const config = useRuntimeConfig()
       >
     </button>
   </div>
-  <h2 v-if="kotlovan?.data?.docs?.items && kotlovan?.data?.docs?.items.length > 0"
+  <h2
+    v-if="kotlovan?.data?.docs?.items && kotlovan?.data?.docs?.items.length > 0"
     class="excavation-block__title big-margin margin-80"
   >
     {{ kotlovan.data.docs?.title || 'Документы' }}
   </h2>
   <div class="documents">
-    <a v-for="doc in kotlovan.data.docs.items"
+    <a
+      v-for="doc in kotlovan.data.docs.items"
       :href="`${config.public.baseURL}${doc?.file}`"
       rel="noopener noreferrer"
+      :target="isMobileDevice ? '_self' : '_blank'"
       class="download icon-pdf-document"
-      data-v-b086d37e=""
     ><span class="pdf-span">{{ doc.title }}</span></a>
   </div>
   <div class="feedback-form">

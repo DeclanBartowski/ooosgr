@@ -2748,6 +2748,9 @@ footer.wrap {
         right: 0;
         z-index: 0;
     }
+    .mobile-title {
+        display: none;
+    }
 }
 
 footer.wrap .wrap_cont {
@@ -5425,7 +5428,7 @@ body .fancybox__content {
     border-radius: 10px;
 }
 @media only screen and (max-width: 768px) {
-    .main.slider .carousel__prev , .main.slider .carousel__next {
+    .main.slider .carousel__prev , .main.slider .carousel__next, body .carousel__pagination {
         display: none;
     }
     .callibri_phone-mobile small {
@@ -5444,4 +5447,12 @@ body .fancybox__content {
 }
 .social_icons a {
     margin: 0 5px;
+}
+.mobile-title {
+    color: #27297b;
+    font-family: 'RoadRadio', Verdana, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px;
+    text-align: center;
 }

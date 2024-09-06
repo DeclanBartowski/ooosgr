@@ -41,7 +41,7 @@ useSeoMeta({
         </div>
         <AboutBlockSub :description="detail.data.about.detail_text" />
         <BitrixForm />
-        <NewsBlock :title="detail.data.newsLink.text" :link="detail.data.newsLink.link" :items="detail.data.news" />
+        <NewsBlock :title="detail.data.newsLink.text" :link="detail.data.newsLink.link" :items="detail.data.news" :shares="detail.data.shares"/>
       </div>
     </div>
   </div>
