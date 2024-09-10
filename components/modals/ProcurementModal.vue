@@ -3,9 +3,11 @@
 
 import {useForm} from "vee-validate";
 import axios from "axios";
+import { useReCaptcha } from "vue-recaptcha-v3";
 
 const props = defineProps(['message']);
 const config = useRuntimeConfig()
+const { executeRecaptcha } = useReCaptcha();
 
 const { defineField, handleSubmit } = useForm({
   initialValues: {
@@ -37,12 +39,15 @@ const status = ref('');
 
 const onSubmit = async () => {
   const formData = new FormData();
+  const token = await executeRecaptcha('orderModal');
+
   formData.append('file', file.value);
   formData.append('name', name.value);
   formData.append('phone', phone.value);
   formData.append('item', parameters.value);
   formData.append('email', 'testemail@gmail.com');
   formData.append('diametr', '12');
+  formData.append('token', token);
 
   const res = await axios({
     method: "POST",
