@@ -68,4 +68,7 @@
     overflow: visible
   }
 }
+.carousel .slide-wrapper {
+    transition: none; /* Отключение анимации */
+}
 </style>
