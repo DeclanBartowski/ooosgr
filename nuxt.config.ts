@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/alignCatText.ts',
     '~/plugins/custom.ts',
+    '~/plugins/vue-recaptcha-v3.ts'
   ],
   runtimeConfig: {
     public: {

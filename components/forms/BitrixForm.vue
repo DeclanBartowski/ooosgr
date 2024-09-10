@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import {useForm} from "vee-validate";
 import * as yup from "yup";
+import { useReCaptcha } from "vue-recaptcha-v3";
 
 defineProps(['title'])
 const { $openB24AgreementModal } = useNuxtApp();
+const { executeRecaptcha } = useReCaptcha();
 
 const bitrixFormSchema = yup.object({
   name: yup.string().required(),
@@ -41,21 +43,28 @@ const sendRepeat = () => {
 }
 
 const onSubmit = handleSubmit(async values => {
-  const { data: response } = await useContentFetch<{
-    status: 'success' | 'error',
-    data: unknown,
-    errors: Array<{message: string; code: string; customData: unknown}>
-  }>(`/form/call`, {
-    method: 'POST',
-    body: "name=" + values.name + "&phone="+values.phone,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+
+  try {
+
+    const token = await executeRecaptcha('bitrixForm');
+
+    if (!token) {
+      status.value = 'error';
+      return;
     }
-  });
-  if(response.value) {
-    status.value = response.value.status;
-  } else {
-    status.value = "error";
+
+    const { data: response } = await useContentFetch(`/form/call`, {
+      method: 'POST',
+      body: `name=${values.name}&phone=${values.phone}&token=${token}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    status.value = response.value?.status || 'error';
+  } catch (error) {
+    console.error('Ошибка reCAPTCHA или отправки формы:', error);
+    status.value = 'error';
   }
 });
 
