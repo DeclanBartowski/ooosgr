@@ -50,7 +50,7 @@ const hideModal = () => {
                 </div>
                 <div class="b24-window-popup-body" style="padding: 0px 12px 12px;">
                   <div class="b24-window-scrollable">
-                    <div>
+                    <div class="content-scroll">
                       Настоящим в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006
                       года свободно, своей волей и в своем интересе выражаю свое безусловное согласие на обработку моих
                       персональных данных &lt;Без имени&gt;, зарегистрированным в соответствии с законодательством РФ по
@@ -1768,7 +1768,7 @@ div.b24-form-loader {
 }
 
 .b24-window-popup-wrapper .b24-window-scrollable {
-  max-height: 85vh
+  max-height: 82vh
 }
 
 .b24-window-popup-head {
