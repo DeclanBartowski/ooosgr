@@ -3,6 +3,7 @@
   import 'vue3-carousel/dist/carousel.css'
   defineProps(['items'])
   const config = useRuntimeConfig()
+  const currentSlide = ref(0);
 </script>
 
 <template>

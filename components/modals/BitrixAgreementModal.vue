@@ -3480,4 +3480,9 @@ div.b24-form-loader {
   border-radius: 10px;
   background-color: rgba(203, 41, 18, 0.5);
 }
+@media (max-width: 980px) {
+  .b24-window-popup-wrapper {
+    height: 90%;
+  }
+}
 </style>

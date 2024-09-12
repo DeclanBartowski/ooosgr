@@ -13,7 +13,7 @@ const config = useRuntimeConfig()
     <div class="parallax">
       <img
         :alt="banner.preview.alt"
-        :src="`${config.public.baseURL}${banner.preview.src}`"
+        src="~/assets/images/hand.webp"
         style="width: 1260px; height: 1000px;"
       >
     </div>
