@@ -14,7 +14,7 @@ const config = useRuntimeConfig()
     <div class="parallax">
       <img
         :alt="partners.img.alt"
-        :src="`${config.public.baseURL}${partners.img.src}`"
+        src="~/assets/images/hand.webp"
       >
     </div>
 

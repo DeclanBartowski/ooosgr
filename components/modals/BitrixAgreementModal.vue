@@ -1768,7 +1768,7 @@ div.b24-form-loader {
 }
 
 .b24-window-popup-wrapper .b24-window-scrollable {
-  max-height: 82vh
+  max-height: 79vh
 }
 
 .b24-window-popup-head {
@@ -3483,6 +3483,9 @@ div.b24-form-loader {
 @media (max-width: 980px) {
   .b24-window-popup-wrapper {
     height: 90%;
+  }
+  .b24-window-popup-head {
+    padding: 40px 20px 14px 12px;
   }
 }
 </style>
