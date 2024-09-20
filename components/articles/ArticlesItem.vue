@@ -2,7 +2,7 @@
 const props = defineProps(['article']);
 const route = useRoute();
 const url = route.path + props.article.category.code + '/' + props.article.code;
-const categoryUrl = route.path + props.article.category.code;
+const categoryUrl = route.path + '/' + props.article.category.code;
 const config = useRuntimeConfig()
 </script>
 
